@@ -7,55 +7,60 @@ Official repository for the **Universiti Malaya Data Analytics Club (UMDAC) Data
 ## 📋 Table of Contents
 1. [Competition Overview & Timeline](#competition-overview--timeline)
 2. [The Challenge: Reverse-Engineering Swift's Synthetic Payment Engine](#the-challenge-reverse-engineering-swifts-synthetic-payment-engine)
-3. [Dataset Architecture & Feature Dictionary](#dataset-architecture--feature-dictionary)
-4. [Anomaly & Financial Crime Typologies](#anomaly--financial-crime-typologies)
-5. [Preliminary Round Submission Deliverables](#preliminary-round-submission-deliverables)
-6. [Official Evaluation Rubric & Scoring Weights](#official-evaluation-rubric--scoring-weights)
-7. [Recommended Analytical Strategy & Rule Reconstruction](#recommended-analytical-strategy--rule-reconstruction)
-8. [Data Handling & Quickstart Guide](#data-handling--quickstart-guide)
-9. [Rules & Compliance](#rules--compliance)
+3. [Dataset Architecture & Comprehensive Feature Dictionary](#dataset-architecture--comprehensive-feature-dictionary)
+4. [Empirical Dataset Statistics & Anomaly Profiles](#empirical-dataset-statistics--anomaly-profiles)
+5. [Dataset Packaging & Reassembly Guide](#dataset-packaging--reassembly-guide)
+6. [Preliminary Round Submission Deliverables](#preliminary-round-submission-deliverables)
+7. [Official Evaluation Rubric & Scoring Weights](#official-evaluation-rubric--scoring-weights)
+8. [Reverse-Engineering Framework & Feature-Group Blueprints](#reverse-engineering-framework--feature-group-blueprints)
+9. [High-Performance Data Processing Guide](#high-performance-data-processing-guide)
+10. [Rules, Academic Integrity & Compliance](#rules-academic-integrity--compliance)
 
 ---
 
 ## 1. Competition Overview & Timeline
 
-UMDAC Datathon 2026 is an international data analytics competition organised by the Universiti Malaya Data Analytics Club (UMDAC). The competition emphasizes meaningful business insight, reverse-engineering causal mechanisms, and economic interpretability over blind machine learning complexity.
+The **UMDAC Datathon 2026** is an international data analytics competition organised by the Universiti Malaya Data Analytics Club (UMDAC) in collaboration with SWIFT. The competition tests participants' ability to uncover underlying causal data generation mechanisms, reverse-engineer synthetic economic dynamics, and formulate actionable financial intelligence.
 
-### Critical Milestones
+### Critical Deadlines & Milestones
 * **Preliminary Round Commencement**: 13 November 2026 at 11:50 AM (UTC+8)
-* **Preliminary Round Submission Deadline**: **19 November 2026 at 12:00 PM (UTC+8)** (Strict 144-hour / 6-day sprint)
-* **Online Workshop 1**: 17 November 2026 (Tuesday)
+* **Preliminary Round Submission Deadline**: **19 November 2026 at 12:00 PM (UTC+8)** (Strict 144-hour sprint)
+* **Online Workshop 1 (Data Science & Analytics)**: 17 November 2026 (Tuesday)
 * **Finalist Announcement**: 28 November 2026 (Saturday)
-* **Online Workshop 2 (Finalists)**: 30 November 2026 (Monday)
-* **Grand Final & Closing Ceremony (Physical)**: 4 December 2026 (Friday) at the Faculty of Computer Science and Information Technology (FSKTM), Universiti Malaya, Kuala Lumpur.
+* **Online Workshop 2 (Finalist Preparation)**: 30 November 2026 (Monday)
+* **Physical Grand Final & Closing Ceremony**: 4 December 2026 (Friday) at the Faculty of Computer Science & Information Technology (FSKTM), Universiti Malaya, Kuala Lumpur.
 
 ---
 
 ## 2. The Challenge: Reverse-Engineering Swift's Synthetic Payment Engine
 
 ### The Context
-Swift interconnects over 11,500 financial institutions, market infrastructures, fintechs, and corporate clients globally. Cross-border payments traversing the Swift network represent directed temporal pseudographs where institutions and customer accounts form nodes, and payment transactions form directed edges with rich transactional features.
+Swift interconnects over 11,500 financial institutions, market infrastructures, fintechs, and corporate enterprises across 200+ countries and territories. Cross-border payments traversing the Swift network represent a **directed temporal pseudograph** where institutions (BICs) and customer accounts form vertices, and payment messages (MT103 / pacs.008) form directed edges with inter-dependent transactional features.
 
-Due to strict privacy and regulatory compliance (GDPR, banking secrecy), Swift synthesized this artificial payment dataset by distilling real-world financial dynamics, market behavior, and hard-coded business rules.
+Due to global banking secrecy and data privacy mandates (GDPR), Swift distilled real-world payment traffic dynamics into a synthetic data generator written in Python using hard-coded business logic, the `Faker` library, and NumPy random distribution models.
 
-### The Objective
-Participants must **reverse-engineer the business logic and causal rules** used by Swift to generate the dataset.
+### The Problem Statement
+Participants must **reverse-engineer the underlying generating rules and causal logic** used to construct the dataset.
 
 > **Key Rule Requirement**:
 > Findings must be framed as explicit, testable causal rules rather than simple correlations:
 > $$\text{Rule Structure: When [Condition } X\text{], [Target Feature } Y\text{] changes by [Factor } Z\text{] across [Segment } W\text{].}$$
 
-*Note*: Initial baseline properties (e.g., country populations, city geography, and Faker-generated entity names) are randomized for public release. The underlying **economic decision rules, routing behavior, and settlement dynamics** follow rigorous causal logic.
+*Note on Synthetic Boundaries*: Baseline properties (e.g., country populations, city geography, and Faker-generated entity names) are randomized for public release. The underlying **economic decision rules, routing behavior, clearing latency cut-offs, and anomaly injection mechanisms** follow strict causal logic.
 
 ---
 
-## 3. Dataset Architecture & Feature Dictionary
+## 3. Dataset Architecture & Comprehensive Feature Dictionary
 
-The primary data file is `swift_umdac_datathon_2026_fictitious_payment_data.csv` (1.56 GB compressed ZIP, ~4.95 GB uncompressed CSV, ~10,000,000 records).
+The primary data file is `swift_umdac_datathon_2026_fictitious_payment_data.csv`:
+* **Exact Total Records**: **10,000,000 payment instructions**
+* **Total Physical CSV Lines**: 83,806,705 lines (due to embedded multiline formatting in party details and token strings)
+* **Raw File Size**: 4,952,194,328 bytes (~4.95 GB)
+* **Compressed ZIP Size**: 1,563,561,489 bytes (~1.56 GB)
 
 ### The 21 Features
 
-| # | Feature Name | Data Type | Description & Reverse-Engineering Relevance |
+| # | Column Name | Data Type | Description & Reverse-Engineering Relevance |
 | :---: | :--- | :--- | :--- |
 | 1 | `DISCLAIMER` | Text | Legal header / metadata disclaiming liability for fictitious data. |
 | 2 | `EPOCH_SECONDS` | Integer | Unix timestamp in seconds. Used to analyze diurnal rhythms, business hours, weekend effects, and clearing cut-offs. |
@@ -81,149 +86,190 @@ The primary data file is `swift_umdac_datathon_2026_fictitious_payment_data.csv`
 
 ---
 
-## 4. Anomaly & Financial Crime Typologies
+## 4. Empirical Dataset Statistics & Anomaly Profiles
 
-The dataset contains six labeled anomaly categories injected via deterministic programmatic rules:
+Empirical profiling across the 10,000,000 records reveals key baseline properties and distinct anomaly footprints:
+
+### Traffic Distributions
+* **Transaction Types**: Direct (~63.2%), Indirect (~32.6%), Covered (~4.2%).
+* **Ordering Entity Types**: Business `B` (~78.7%), Consumer `C` (~21.3%).
+* **Beneficiary Entity Types**: Consumer `C` (~71.1%), Business `B` (~28.9%).
+* **Top Settlement Currencies**: EUR (~32.1%), USD (~17.2%), GBP (~8.8%), CHF (~7.9%), SGD (~3.7%), CNY (~3.3%).
+* **Route Continuity**: Observable `Y` (~92.4%), Obfuscated / Gap `N` (~7.6%).
+
+### Ground-Truth Anomaly Profiles (`ANOMALY_TYPE`)
 
 ```mermaid
 graph TD
-    Root["Transaction Population"] --> Norm["Legitimate Traffic (~99.85%)"]
-    Root --> Anom["Injected Anomalies (~0.15%)"]
-    Anom --> RS["ROMANCE_SCAM: C -> C / C -> B (Repeated retail outflows)"]
-    Anom --> CS["CEO_SCAM: B -> C / B -> B (High-value executive imposter fraud)"]
-    Anom --> ARS["ACCOUNT_REPLACEMENT_SCAM: Invoice interception & altered beneficiary IBAN"]
-    Anom --> FF["FAT_FINGER_MISTAKE: Comma / decimal placement error (10x-1000x amount shift)"]
-    Anom --> DP["DUPLICATE_PAYMENT: Identical amount & counterparty in rapid succession"]
-    Anom --> CR["CUSTOMER_RECALL: Reversal instructions following erroneous transfers"]
+    Pop["10,000,000 Transactions"] --> Legitimate["Legitimate Traffic (~99.86%)"]
+    Pop --> Injected["Injected Anomalies (~0.14%)"]
+    Injected --> RS["ROMANCE_SCAM (100% C -> C/B, Mean: $4.3K USD)"]
+    Injected --> CS["CEO_SCAM (100% B -> C, Mean: $2.2M USD, Max: $17M)"]
+    Injected --> FF["FAT_FINGER_MISTAKE (Shifted decimal, Outliers up to $3.35B)"]
+    Injected --> ARS["ACCOUNT_REPLACEMENT_SCAM (Hijacked vendor accounts)"]
+    Injected --> DP["DUPLICATE_PAYMENT (Exact duplicate (Amount, Parties) at Δt ≈ 0)"]
+    Injected --> CR["CUSTOMER_RECALL (Out-of-band recall / stop-payment requests)"]
 ```
 
-### Typology Characteristics
-1. **ROMANCE_SCAM**:
-   * Initiator: Exclusively Consumers (`ORDERING_TYPE = C`).
-   * Recipient: Predominantly individual mules (`C`).
-   * Amounts: Modest retail payments (mean ~\$4,300 USD), often recurring.
-2. **CEO_SCAM (Business Email Compromise)**:
-   * Initiator: Exclusively Corporate entities (`ORDERING_TYPE = B`).
-   * Recipient: Uncharacteristic retail or money mule accounts (`C`).
-   * Amounts: Extreme transaction values (mean > \$2,200,000 USD, up to \$17M USD).
-3. **ACCOUNT_REPLACEMENT_SCAM (Vendor Invoice Fraud)**:
-   * Legitimate B2B invoice hijacked; beneficiary account substituted for an unverified recipient.
-4. **FAT_FINGER_MISTAKE**:
-   * Data entry typo shifting decimal point (e.g., 500.00 entered as 50000.00). Generates extreme statistical outliers (amounts reaching into hundreds of millions or billions of USD).
-5. **DUPLICATE_PAYMENT**:
-   * Exact matching tuples `(ORDERING_ACCOUNT, BENEFICIARY_ACCOUNT, USD_AMOUNT)` executed within a tight time window ($\Delta t \approx 0$).
-6. **CUSTOMER_RECALL**:
-   * Formal SWIFT gpi / MT192 stop-payment and recall requests.
+| Anomaly Type | Sender Archetype | Recipient Archetype | Routing Distribution | Sizing & Behavioral Signature |
+| :--- | :---: | :---: | :--- | :--- |
+| **`ROMANCE_SCAM`** | **100% `C`** | 77% `C`, 23% `B` | 54% Direct, 46% Indirect | Modest retail outflows (mean: \$4,351 USD; median: \$800–\$2,500). Recurring cross-border gifts/support. |
+| **`CEO_SCAM`** | **100% `B`** | 88% `C`, 12% `B` | 56% Direct, 44% Indirect | Extreme values (mean: \$2,214,148 USD, up to \$16.9M USD). Spoofed executive instructions paying individual mule accounts. |
+| **`FAT_FINGER_MISTAKE`** | 80% `B`, 20% `C` | 71% `C`, 29% `B` | 54% Direct, 32% Indirect, 14% Covered | Comma/period placement error multiplying amounts by $10^2$ to $10^3$ (mean: \$124.6M USD, max: **\$3.35 Billion USD**). |
+| **`ACCOUNT_REPLACEMENT_SCAM`** | 56% `B`, 44% `C` | 56% `C`, 44% `B` | 81% Direct, 19% Indirect | Legitimate invoice intercepted; beneficiary account swapped to an unverified recipient (mean: \$146K USD). |
+| **`DUPLICATE_PAYMENT`** | **100% `B`** | **100% `C`** | 100% Indirect | Exact duplicate tuples `(ORDERING_ACCOUNT, BENEFICIARY_ACCOUNT, USD_AMOUNT)` executed within seconds (race condition). |
+| **`CUSTOMER_RECALL`** | **100% `B`** | 50% `B`, 50% `C` | 75% Direct, 25% Covered | Formal recall message following erroneous payment instruction. |
 
 ---
 
-## 5. Preliminary Round Submission Deliverables
+## 5. Dataset Packaging & Reassembly Guide
 
-Participants must submit **two standalone PDF files** before **19 November 2026, 12:00 PM**:
+Due to GitHub's strict file size limit (maximum 2.00 GB per object in Git LFS), the 4.95 GB CSV is stored using two redundant, validated methods:
+
+### Option A: Unzip the Archive (Recommended)
+```bash
+unzip swift_umdac_datathon_2026_fictitious_payment_data.zip
+```
+
+### Option B: Reassemble Multi-Part LFS Chunks
+The CSV is partitioned into three chunks strictly under 1.7 GB:
+* `swift_umdac_datathon_2026_fictitious_payment_data.csv.part_aa` (1.7 GB)
+* `swift_umdac_datathon_2026_fictitious_payment_data.csv.part_ab` (1.7 GB)
+* `swift_umdac_datathon_2026_fictitious_payment_data.csv.part_ac` (1.4 GB)
+
+To reassemble the original 4.95 GB file with a single command:
+```bash
+chmod +x reassemble_csv.sh
+./reassemble_csv.sh
+```
+Or directly via shell:
+```bash
+cat swift_umdac_datathon_2026_fictitious_payment_data.csv.part_* > swift_umdac_datathon_2026_fictitious_payment_data.csv
+```
+
+---
+
+## 6. Preliminary Round Submission Deliverables
+
+Participating teams must submit **two PDF deliverables** before **19 November 2026 at 12:00 PM**:
 
 ### Deliverable 1: Dashboard Suite (PDF Format)
-* **Scope**: 5 to 15 dashboard pages (one page per feature group).
-* **Content**:
-  * Clearly stated reconstructed business rule for each insight.
-  * At least one primary chart demonstrating how the rule is reflected in the data.
-  * Baseline or comparison group benchmarks.
-* **Evaluation Criteria**: Visual Clarity (35%), Effectiveness of Charts & Evidence (50%), Correctness of Insights (15%).
+* **Volume**: 5 to 15 dashboard pages (one page per feature group).
+* **Format**: Exported from Looker Studio, Tableau, Power BI, or equivalent.
+* **Requirements per Page**:
+  * Clear header stating the reconstructed business rule.
+  * At least one primary chart illustrating how the rule manifests in data.
+  * Baseline / control group comparison.
+* **Grading Criteria**: Effectiveness of Charts & Evidence (50%), Visual Clarity (35%), Correctness of Insights (15%).
 
 ### Deliverable 2: Presentation Slide Deck (PDF Format)
-* **Scope**: 10 to 20 slides total (including Title and Methodology).
+* **Volume**: 10 to 20 slides total.
 * **Constraint**: **Maximum of 1 slide per feature-type group**.
-* **Content**:
-  * Formal restatement of reconstructed rules.
-  * Supporting charts extracted or referenced from the dashboard.
-  * Real-world economic behavior & correspondent banking mechanics explaining each rule.
-  * Step-by-step analytical methodology and counterfactual validation.
-* **Evaluation Criteria**: Methodology & Analytical Process (65%), Economic Explanations (20%), Overall Presentation Quality (15%).
+* **Required Slide Structure**:
+  1. Title & Team Overview
+  2. Executive Summary (Headline Findings)
+  3. Reverse-Engineering Methodology & Hypothesis Testing Framework
+  4–11. Feature-Group Deep Dives (Rule statement, Dashboard chart, Real-world economic rationale, Counterfactual controls)
+  12. Multi-Factor Causal Interaction Model
+  13. Anomaly Detection Decision Matrix
+  14. **Tested & Rejected Hypotheses** (critical for explanatory depth score)
+  15. Synthetic Boundaries vs. Real-World Banking Dynamics
+  16. Conclusion & Recommendations
+* **Grading Criteria**: Methodology & Analytical Process (65%), Economic Explanations (20%), Overall Presentation Quality (15%).
 
 ---
 
-## 6. Official Evaluation Rubric & Scoring Weights
+## 7. Official Evaluation Rubric & Scoring Weights
 
-Across both deliverables, marks are distributed across four main pillars:
+Across both deliverables, marks are allocated across four core pillars:
 
 ```mermaid
-pie title Official Preliminary Round Rubric
+pie title Official Preliminary Round Scoring
     "Insight Quality" : 45
     "Evidence, Method & Data Integrity" : 23
     "Communication" : 20
     "Interpretation & Economic Reasoning" : 12
 ```
 
-### Deep Dive into Rubric Sub-Criteria
-
-| Category | Weight | Sub-Criterion | Scoring Focus |
-| :--- | :---: | :--- | :--- |
-| **Insight Quality** | **45%** | Task understanding (5%) | Formulates specific, testable causal hypotheses. |
-| | | Rule reconstruction quality (12%) | Explicit preconditions, magnitude of change, and segment coverage. |
-| | | Explanatory depth (14%) | Separates causality from correlation; **reports rejected hypotheses**. |
-| | | Specificity of finding (5%) | Concise, quantified one-sentence headline per insight. |
-| | | Correctness of rules (9%) | Accuracy against Swift's true generator script. |
-| **Evidence & Integrity**| **23%** | Empirical proof (6%) | Statistically sound baseline comparisons and confidence intervals. |
-| | | Data integrity (6%) | Transparent data transformations; zero data leakage. |
-| | | Method appropriateness (8%) | Suitability of analytical technique. (Avoid unneeded complexity). |
-| | | Responsible data use (3%) | Strict use of provided data; proper APA citations for reference metrics. |
-| **Communication** | **20%** | Narrative structure (6%) | Headline-first presentation flow leading to clear conclusions. |
-| | | Dashboard quality (8%) | Self-explanatory visualizations with annotations and baselines. |
-| | | Visual clarity (6%) | Clean design, zero clutter, honest axes, and focused takeaways. |
-| **Economic Reasoning**| **12%** | Plausibility (6%) | Grounded in correspondent banking, RTGS, and market dynamics. |
-| | | Scope & limits (6%) | Identifies boundaries between synthetic noise and causal rules. |
-
----
-
-## 7. Recommended Analytical Strategy & Rule Reconstruction
-
-### 8 Candidate Feature Groups (One per Dashboard & Slide)
-1. **Monetary Sizing & Distribution**: Sizing distributions across $B \to B$ vs. $C \to C$; log-normal modeling; Benford's Law analysis.
-2. **Temporal & Settlement Latency**: `TOTAL_DURATION` modeling conditioned on local bank business hours, weekend gaps, and RTGS clearing cut-offs.
-3. **Routing Architecture & Topology**: Decision logic choosing `Direct`, `Indirect`, or `Covered` routing based on jurisdiction and clearing corridors.
-4. **Foreign Exchange & Corridors**: Corridors requiring `CURRENCY_CONVERSION_COUNT \ge 1` and intermediary FX clearing hubs.
-5. **Counterparty Interaction Dynamics**: Transaction matrices ($B \to B$, $B \to C$, $C \to B$, $C \to C$) and volume ratios.
-6. **Tokenized Text & Remittance Fields**: Regex token structure analysis (`ORDERING_TOKENS`, IBAN compliance, character entropy).
-7. **Path Continuity & Intermediary Obfuscation**: Root-cause triggers for `CONTINUITY_QFLAG = N` (unobserved intermediary hops `...`).
-8. **Financial Crime & Anomaly Engine**: Quantitative decision boundaries separating normal traffic from CEO Scams, Romance Scams, and Typo Errors.
+### Detailed Sub-Criteria
+1. **Insight Quality (45%)**:
+   * *Rule Reconstruction Quality (12%)*: Stating exact preconditions, magnitude of change, and segment coverage.
+   * *Explanatory Depth (14%)*: Distinguishing causality from correlation; rigorously evaluating confounding factors; reporting rejected hypotheses.
+   * *Correctness of Rules (9%)*: Accuracy of recovered rules against Swift's true generator script.
+   * *Task Understanding (5%)* & *Specificity (5%)*: Quantified, single-sentence headline claims.
+2. **Evidence, Method & Data Integrity (23%)**:
+   * *Method Appropriateness (8%)*: Using defensible, interpretable techniques (decision trees, regression, counterfactuals). Unnecessary black-box complexity is penalized.
+   * *Empirical Proof (6%)* & *Data Integrity (6%)*: Honest axes, confidence intervals, correct Unix timestamp conversion to UTC/local hours.
+   * *Responsible Data Use (3%)*: Strict adherence to provided data; APA citations for external reference statistics.
+3. **Communication (20%)**:
+   * *Dashboard Quality (8%)*: Self-explanatory views with clear baselines and callouts.
+   * *Narrative Structure (6%)*: Headline-led progression in slides.
+   * *Visual Clarity (6%)*: Zero clutter; single takeaway per visual.
+4. **Interpretation & Economic Reasoning (12%)**:
+   * *Plausibility (6%)*: Grounding findings in correspondent banking, Nostro/Vostro liquidity, and RTGS clearing cut-offs.
+   * *Scope & Limits (6%)*: Distinguishing synthetic artifacts from economic rules.
 
 ---
 
-## 8. Data Handling & Quickstart Guide
+## 8. Reverse-Engineering Framework & Feature-Group Blueprints
 
-Because the uncompressed CSV is 4.95 GB, avoid loading the entire dataset into memory at once with standard `pandas.read_csv()`. Instead, use **Polars** (lazy execution) or **DuckDB**.
+To fulfill the 5–15 dashboard and slide requirements, analyze these 8 distinct feature groups:
 
-### High-Performance Python Example (Polars)
+1. **Feature Group 1: Transaction Sizing & Benford's Law (`USD_AMOUNT`)**
+   * *Rule*: Legitimate amounts follow log-normal distributions segmented by entity pair ($B \to B \gg B \to C \gg C \to C$).
+   * *Anomaly*: `FAT_FINGER_MISTAKE` multiplies intended amounts by $10^2$ or $10^3$, creating observable decimal transposition spikes.
+2. **Feature Group 2: Temporal Clearing & Diurnal Dynamics (`EPOCH_SECONDS`, `TOTAL_DURATION`)**
+   * *Rule*: Payment duration $T$ is a step function of local business hours. Payments submitted after 17:00 local time or on weekends exhibit a duration spike equal to the time delta until 08:00 of the next business day.
+3. **Feature Group 3: Routing Selection Mechanics (`TRANSACTION_TYPE_CODE`, `BIC8_PATH`)**
+   * *Rule*: Direct routing requires bilateral correspondent accounts. When currency conversion is required or jurisdictions lack direct settlement rails, the generator switches to `Indirect` or `Covered` routing.
+4. **Feature Group 4: Foreign Exchange Dynamics (`CURRENCY_CODE`, `CURRENCY_CONVERSION_COUNT`)**
+   * *Rule*: Cross-border payments where ordering and beneficiary countries share a regional currency (e.g., EUR within SEPA) maintain conversion count $= 0$. Inter-continental payments invoke $1$ or $2$ FX hops through global reserve hubs (USD, EUR).
+5. **Feature Group 5: Counterparty Interaction Matrices (`ORDERING_TYPE`, `BENEFICIARY_TYPE`)**
+   * *Rule*: Transaction volume is dominated by $B \to C$ payroll/dividends and $B \to B$ commercial trade. $C \to C$ is heavily localized or remittance-specific.
+6. **Feature Group 6: Semantic Token Syntax (`ORDERING_TOKENS`, `BENEFICIARY_TOKENS`)**
+   * *Rule*: The generator builds details using regex token rules (`<iban>`, `<street>`, `<business>`, `<line_break:35>`). Anomalies often contain malformed or missing address tokens.
+7. **Feature Group 7: Path Obfuscation & Dark Routing (`CONTINUITY_QFLAG`)**
+   * *Rule*: `CONTINUITY_QFLAG = N` triggers when payments route through non-cooperative jurisdictions, multi-tier correspondent chains, or covered serial legs where intermediary visibility is masked (`...`).
+8. **Feature Group 8: Financial Crime Decision Boundaries (`ANOMALY_TYPE`)**
+   * *Rule*: CEO Scams require $B \to C$ routing with values exceeding \$500,000 USD; Romance Scams require $C \to C$ retail payments with recurring temporal clusters.
+
+---
+
+## 9. High-Performance Data Processing Guide
+
+Because the dataset is 4.95 GB with 10,000,000 records, standard `pandas.read_csv()` will exhaust RAM. Use **Polars** (lazy scanning) or **DuckDB**:
+
 ```python
 import polars as pl
 
-# Connect via LazyFrame without loading 5GB into memory
+# 1. Connect via LazyFrame (Zero RAM overhead)
 lazy_df = pl.scan_csv("swift_umdac_datathon_2026_fictitious_payment_data.csv")
 
-# Compute anomaly profiling across counterparty archetypes
-anomaly_profile = (
+# 2. Extract anomaly breakdown across transaction and entity types
+anomaly_summary = (
     lazy_df
     .filter(pl.col("ANOMALY_TYPE") != "")
-    .group_by(["ANOMALY_TYPE", "ORDERING_TYPE", "BENEFICIARY_TYPE"])
+    .group_by(["ANOMALY_TYPE", "ORDERING_TYPE", "BENEFICIARY_TYPE", "TRANSACTION_TYPE_CODE"])
     .agg([
         pl.count().alias("count"),
         pl.col("USD_AMOUNT").mean().alias("mean_usd"),
         pl.col("USD_AMOUNT").median().alias("median_usd"),
         pl.col("TOTAL_DURATION").mean().alias("mean_duration_sec")
     ])
+    .sort("count", descending=True)
     .collect()
 )
 
-print(anomaly_profile)
+print(anomaly_summary)
 ```
 
 ---
 
-## 9. Rules & Compliance
+## 10. Rules, Academic Integrity & Compliance
 
-* **Primary Data Exclusivity**: You must **only** use the provided Swift dataset for primary analysis. External datasets are strictly prohibited.
-* **External Reference Statistics**: Credible external statistics (e.g., World Bank, BIS, IMF, SWIFT public reports) are allowed **solely to calibrate and benchmark findings**, provided they are cited in **APA format** with active hyperlinks.
-* **AI Tool Usage**: LLMs and AI coding assistants (ChatGPT, Claude, Gemini, etc.) are **explicitly permitted**. No separate declaration is needed, but participants must understand, explain, and defend all submitted methodologies and results.
+* **Exclusivity of Primary Data**: Only the provided Swift dataset may be used for primary empirical modeling. External primary datasets are strictly banned.
+* **External Reference Calibration**: Public reference statistics (World Bank, BIS, IMF, SWIFT reports) are permitted solely to contextualize and calibrate findings, and must be cited in **APA format** with clickable URLs.
+* **AI Tool Allowance**: Generative AI tools (ChatGPT, Claude, Gemini, Copilot) are explicitly permitted for coding, analysis, and slide design. No declaration is required, but teams must be able to explain, defend, and justify all methods during judging.
 
 ---
-
-*Repository maintained for UMDAC Datathon 2026 participation.*
+*Maintained for UMDAC Datathon 2026.*

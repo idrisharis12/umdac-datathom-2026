@@ -1,1 +1,2 @@
 *.zip filter=lfs diff=lfs merge=lfs -text
+swift_umdac_datathon_2026_fictitious_payment_data.csv.part_* filter=lfs diff=lfs merge=lfs -text
