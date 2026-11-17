@@ -1,0 +1,465 @@
+{
+  "amount_buckets": [
+    {
+      "bucket": "< $100",
+      "cnt": 849851,
+      "pct": 8.5,
+      "total_usd_B": 0.036
+    },
+    {
+      "bucket": "$100 - $1K",
+      "cnt": 2223897,
+      "pct": 22.24,
+      "total_usd_B": 0.989
+    },
+    {
+      "bucket": "$1K - $10K",
+      "cnt": 3442986,
+      "pct": 34.43,
+      "total_usd_B": 13.419
+    },
+    {
+      "bucket": "$10K - $100K",
+      "cnt": 2514618,
+      "pct": 25.15,
+      "total_usd_B": 84.207
+    },
+    {
+      "bucket": "$100K - $1M",
+      "cnt": 838507,
+      "pct": 8.39,
+      "total_usd_B": 238.753
+    },
+    {
+      "bucket": "$1M - $10M",
+      "cnt": 122555,
+      "pct": 1.23,
+      "total_usd_B": 294.649
+    },
+    {
+      "bucket": ">= $10M",
+      "cnt": 7586,
+      "pct": 0.08,
+      "total_usd_B": 339.988
+    }
+  ],
+  "duration_buckets": [
+    {
+      "dur_bucket": "< 30s",
+      "cnt": 3035252,
+      "pct": 30.35
+    },
+    {
+      "dur_bucket": "30s - 2m",
+      "cnt": 2356631,
+      "pct": 23.57
+    },
+    {
+      "dur_bucket": "2m - 10m",
+      "cnt": 1334146,
+      "pct": 13.34
+    },
+    {
+      "dur_bucket": "10m - 1h",
+      "cnt": 2852508,
+      "pct": 28.53
+    },
+    {
+      "dur_bucket": ">= 1h",
+      "cnt": 421463,
+      "pct": 4.21
+    }
+  ],
+  "anomaly_by_flow_all": [
+    {
+      "ANOMALY_TYPE": "ACCOUNT_REPLACEMENT_SCAM",
+      "flow_type": "B2C",
+      "cnt": 370,
+      "pct_of_anom": 57.0,
+      "avg_usd": 55077.45,
+      "med_usd": 3691.33
+    },
+    {
+      "ANOMALY_TYPE": "ACCOUNT_REPLACEMENT_SCAM",
+      "flow_type": "B2B",
+      "cnt": 138,
+      "pct_of_anom": 21.3,
+      "avg_usd": 111283.52,
+      "med_usd": 22385.07
+    },
+    {
+      "ANOMALY_TYPE": "ACCOUNT_REPLACEMENT_SCAM",
+      "flow_type": "C2C",
+      "cnt": 107,
+      "pct_of_anom": 16.5,
+      "avg_usd": 4293.11,
+      "med_usd": 476.02
+    },
+    {
+      "ANOMALY_TYPE": "ACCOUNT_REPLACEMENT_SCAM",
+      "flow_type": "C2B",
+      "cnt": 34,
+      "pct_of_anom": 5.2,
+      "avg_usd": 29675.18,
+      "med_usd": 4493.79
+    },
+    {
+      "ANOMALY_TYPE": "CEO_SCAM",
+      "flow_type": "B2C",
+      "cnt": 683,
+      "pct_of_anom": 72.3,
+      "avg_usd": 1367064.74,
+      "med_usd": 25556.02
+    },
+    {
+      "ANOMALY_TYPE": "CEO_SCAM",
+      "flow_type": "B2B",
+      "cnt": 262,
+      "pct_of_anom": 27.7,
+      "avg_usd": 1431287.55,
+      "med_usd": 15178.25
+    },
+    {
+      "ANOMALY_TYPE": "CUSTOMER_RECALL",
+      "flow_type": "B2C",
+      "cnt": 183,
+      "pct_of_anom": 57.7,
+      "avg_usd": 104657.99,
+      "med_usd": 3379.25
+    },
+    {
+      "ANOMALY_TYPE": "CUSTOMER_RECALL",
+      "flow_type": "B2B",
+      "cnt": 63,
+      "pct_of_anom": 19.9,
+      "avg_usd": 185952.44,
+      "med_usd": 30026.65
+    },
+    {
+      "ANOMALY_TYPE": "CUSTOMER_RECALL",
+      "flow_type": "C2C",
+      "cnt": 49,
+      "pct_of_anom": 15.5,
+      "avg_usd": 2507.52,
+      "med_usd": 232.81
+    },
+    {
+      "ANOMALY_TYPE": "CUSTOMER_RECALL",
+      "flow_type": "C2B",
+      "cnt": 22,
+      "pct_of_anom": 6.9,
+      "avg_usd": 9735.52,
+      "med_usd": 1319.58
+    },
+    {
+      "ANOMALY_TYPE": "DUPLICATE_PAYMENT",
+      "flow_type": "B2C",
+      "cnt": 393,
+      "pct_of_anom": 57.9,
+      "avg_usd": 15003.98,
+      "med_usd": 4412.57
+    },
+    {
+      "ANOMALY_TYPE": "DUPLICATE_PAYMENT",
+      "flow_type": "B2B",
+      "cnt": 152,
+      "pct_of_anom": 22.4,
+      "avg_usd": 594658.37,
+      "med_usd": 13078.71
+    },
+    {
+      "ANOMALY_TYPE": "DUPLICATE_PAYMENT",
+      "flow_type": "C2C",
+      "cnt": 113,
+      "pct_of_anom": 16.6,
+      "avg_usd": 2578.03,
+      "med_usd": 213.58
+    },
+    {
+      "ANOMALY_TYPE": "DUPLICATE_PAYMENT",
+      "flow_type": "C2B",
+      "cnt": 21,
+      "pct_of_anom": 3.1,
+      "avg_usd": 3726.98,
+      "med_usd": 990.66
+    },
+    {
+      "ANOMALY_TYPE": "FAT_FINGER_MISTAKE",
+      "flow_type": "B2C",
+      "cnt": 1098,
+      "pct_of_anom": 56.6,
+      "avg_usd": 33591426.22,
+      "med_usd": 217740.23
+    },
+    {
+      "ANOMALY_TYPE": "FAT_FINGER_MISTAKE",
+      "flow_type": "B2B",
+      "cnt": 445,
+      "pct_of_anom": 22.9,
+      "avg_usd": 293187299.93,
+      "med_usd": 1966450.7
+    },
+    {
+      "ANOMALY_TYPE": "FAT_FINGER_MISTAKE",
+      "flow_type": "C2C",
+      "cnt": 296,
+      "pct_of_anom": 15.3,
+      "avg_usd": 16877936.8,
+      "med_usd": 50736.51
+    },
+    {
+      "ANOMALY_TYPE": "FAT_FINGER_MISTAKE",
+      "flow_type": "C2B",
+      "cnt": 101,
+      "pct_of_anom": 5.2,
+      "avg_usd": 27621756.07,
+      "med_usd": 113340.08
+    },
+    {
+      "ANOMALY_TYPE": "ROMANCE_SCAM",
+      "flow_type": "C2C",
+      "cnt": 1811,
+      "pct_of_anom": 73.1,
+      "avg_usd": 1924.48,
+      "med_usd": 104.65
+    },
+    {
+      "ANOMALY_TYPE": "ROMANCE_SCAM",
+      "flow_type": "C2B",
+      "cnt": 665,
+      "pct_of_anom": 26.9,
+      "avg_usd": 2050.59,
+      "med_usd": 120.77
+    }
+  ],
+  "anomaly_fx_and_crossborder": [
+    {
+      "anomaly": "ACCOUNT_REPLACEMENT_SCAM",
+      "pct_crossborder": 99.38,
+      "avg_fx": 1.41,
+      "avg_part": 2.51,
+      "pct_discontinuous": 6.32
+    },
+    {
+      "anomaly": "CEO_SCAM",
+      "pct_crossborder": 98.73,
+      "avg_fx": 1.45,
+      "avg_part": 2.572,
+      "pct_discontinuous": 7.2
+    },
+    {
+      "anomaly": "CUSTOMER_RECALL",
+      "pct_crossborder": 94.64,
+      "avg_fx": 1.388,
+      "avg_part": 2.625,
+      "pct_discontinuous": 11.04
+    },
+    {
+      "anomaly": "DUPLICATE_PAYMENT",
+      "pct_crossborder": 91.75,
+      "avg_fx": 1.348,
+      "avg_part": 2.642,
+      "pct_discontinuous": 6.77
+    },
+    {
+      "anomaly": "FAT_FINGER_MISTAKE",
+      "pct_crossborder": 93.4,
+      "avg_fx": 1.313,
+      "avg_part": 2.554,
+      "pct_discontinuous": 6.96
+    },
+    {
+      "anomaly": "NORMAL",
+      "pct_crossborder": 92.89,
+      "avg_fx": 1.343,
+      "avg_part": 2.582,
+      "pct_discontinuous": 7.67
+    },
+    {
+      "anomaly": "ROMANCE_SCAM",
+      "pct_crossborder": 96.97,
+      "avg_fx": 1.497,
+      "avg_part": 2.582,
+      "pct_discontinuous": 8.72
+    }
+  ],
+  "fx_vs_direct_indirect": [
+    {
+      "TRANSACTION_TYPE_CODE": "Covered",
+      "CURRENCY_CONVERSION_COUNT": 0,
+      "cnt": 14956,
+      "pct_within_type": 3.63
+    },
+    {
+      "TRANSACTION_TYPE_CODE": "Covered",
+      "CURRENCY_CONVERSION_COUNT": 1,
+      "cnt": 59833,
+      "pct_within_type": 14.53
+    },
+    {
+      "TRANSACTION_TYPE_CODE": "Covered",
+      "CURRENCY_CONVERSION_COUNT": 2,
+      "cnt": 229736,
+      "pct_within_type": 55.79
+    },
+    {
+      "TRANSACTION_TYPE_CODE": "Covered",
+      "CURRENCY_CONVERSION_COUNT": 3,
+      "cnt": 73963,
+      "pct_within_type": 17.96
+    },
+    {
+      "TRANSACTION_TYPE_CODE": "Covered",
+      "CURRENCY_CONVERSION_COUNT": 4,
+      "cnt": 25061,
+      "pct_within_type": 6.09
+    },
+    {
+      "TRANSACTION_TYPE_CODE": "Covered",
+      "CURRENCY_CONVERSION_COUNT": 5,
+      "cnt": 8235,
+      "pct_within_type": 2.0
+    },
+    {
+      "TRANSACTION_TYPE_CODE": "Direct",
+      "CURRENCY_CONVERSION_COUNT": 0,
+      "cnt": 991870,
+      "pct_within_type": 15.69
+    },
+    {
+      "TRANSACTION_TYPE_CODE": "Direct",
+      "CURRENCY_CONVERSION_COUNT": 1,
+      "cnt": 5331410,
+      "pct_within_type": 84.31
+    },
+    {
+      "TRANSACTION_TYPE_CODE": "Indirect",
+      "CURRENCY_CONVERSION_COUNT": 0,
+      "cnt": 79705,
+      "pct_within_type": 2.47
+    },
+    {
+      "TRANSACTION_TYPE_CODE": "Indirect",
+      "CURRENCY_CONVERSION_COUNT": 1,
+      "cnt": 504598,
+      "pct_within_type": 15.63
+    },
+    {
+      "TRANSACTION_TYPE_CODE": "Indirect",
+      "CURRENCY_CONVERSION_COUNT": 2,
+      "cnt": 1788256,
+      "pct_within_type": 55.4
+    },
+    {
+      "TRANSACTION_TYPE_CODE": "Indirect",
+      "CURRENCY_CONVERSION_COUNT": 3,
+      "cnt": 592642,
+      "pct_within_type": 18.36
+    },
+    {
+      "TRANSACTION_TYPE_CODE": "Indirect",
+      "CURRENCY_CONVERSION_COUNT": 4,
+      "cnt": 197001,
+      "pct_within_type": 6.1
+    },
+    {
+      "TRANSACTION_TYPE_CODE": "Indirect",
+      "CURRENCY_CONVERSION_COUNT": 5,
+      "cnt": 65728,
+      "pct_within_type": 2.04
+    }
+  ],
+  "token_tag_counts_sample": [
+    {
+      "tag": "<chr:",
+      "cnt": 529061
+    },
+    {
+      "tag": "<street:",
+      "cnt": 284302
+    },
+    {
+      "tag": "<city:",
+      "cnt": 265812
+    },
+    {
+      "tag": "<country_code:",
+      "cnt": 243894
+    },
+    {
+      "tag": "<line_break:",
+      "cnt": 204431
+    },
+    {
+      "tag": "<iban:",
+      "cnt": 200449
+    },
+    {
+      "tag": "<business:",
+      "cnt": 184001
+    },
+    {
+      "tag": "<post_code:",
+      "cnt": 177934
+    },
+    {
+      "tag": "<last_name:",
+      "cnt": 175256
+    },
+    {
+      "tag": "<other_words:",
+      "cnt": 139233
+    },
+    {
+      "tag": "<first_name:",
+      "cnt": 111220
+    },
+    {
+      "tag": "<country_name:",
+      "cnt": 94879
+    },
+    {
+      "tag": "<company_keyword:",
+      "cnt": 56839
+    },
+    {
+      "tag": "<finance_word:",
+      "cnt": 51051
+    },
+    {
+      "tag": "<separator:",
+      "cnt": 48519
+    },
+    {
+      "tag": "<numerical:",
+      "cnt": 37908
+    },
+    {
+      "tag": "<stop_word:",
+      "cnt": 32147
+    },
+    {
+      "tag": "<other_word:",
+      "cnt": 28863
+    },
+    {
+      "tag": "<truncation:",
+      "cnt": 6
+    }
+  ],
+  "romance_scam_details": [
+    {
+      "total_rows": 2476,
+      "distinct_senders": 500,
+      "distinct_receivers": 378,
+      "min_usd": 0.01,
+      "max_usd": 123370.39
+    }
+  ],
+  "duplicate_payment_check": [
+    {
+      "dup_rows": 679,
+      "distinct_tuples": 185
+    }
+  ]
+}

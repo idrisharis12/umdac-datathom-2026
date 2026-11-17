@@ -1,0 +1,1515 @@
+{
+  "top_ord_countries": [
+    {
+      "ord_ctry": "US",
+      "cnt": 1582415,
+      "pct": 15.82,
+      "avg_usd": 140247.66,
+      "med_usd": 7416.0
+    },
+    {
+      "ord_ctry": "CH",
+      "cnt": 786246,
+      "pct": 7.86,
+      "avg_usd": 105854.28,
+      "med_usd": 6058.24
+    },
+    {
+      "ord_ctry": "GB",
+      "cnt": 662529,
+      "pct": 6.63,
+      "avg_usd": 79455.14,
+      "med_usd": 3882.39
+    },
+    {
+      "ord_ctry": "FR",
+      "cnt": 538746,
+      "pct": 5.39,
+      "avg_usd": 81565.75,
+      "med_usd": 4158.81
+    },
+    {
+      "ord_ctry": "DE",
+      "cnt": 509341,
+      "pct": 5.09,
+      "avg_usd": 110054.09,
+      "med_usd": 5178.33
+    },
+    {
+      "ord_ctry": "SG",
+      "cnt": 393191,
+      "pct": 3.93,
+      "avg_usd": 127537.79,
+      "med_usd": 6640.1
+    },
+    {
+      "ord_ctry": "CN",
+      "cnt": 342194,
+      "pct": 3.42,
+      "avg_usd": 20205.83,
+      "med_usd": 1201.57
+    },
+    {
+      "ord_ctry": "IT",
+      "cnt": 298586,
+      "pct": 2.99,
+      "avg_usd": 107248.5,
+      "med_usd": 3371.41
+    },
+    {
+      "ord_ctry": "BE",
+      "cnt": 295928,
+      "pct": 2.96,
+      "avg_usd": 106229.17,
+      "med_usd": 6304.41
+    },
+    {
+      "ord_ctry": "LU",
+      "cnt": 290106,
+      "pct": 2.9,
+      "avg_usd": 249830.73,
+      "med_usd": 10929.54
+    },
+    {
+      "ord_ctry": "NL",
+      "cnt": 210608,
+      "pct": 2.11,
+      "avg_usd": 90789.33,
+      "med_usd": 5425.01
+    },
+    {
+      "ord_ctry": "HK",
+      "cnt": 209892,
+      "pct": 2.1,
+      "avg_usd": 124823.14,
+      "med_usd": 4942.72
+    },
+    {
+      "ord_ctry": "JP",
+      "cnt": 193331,
+      "pct": 1.93,
+      "avg_usd": 50292.38,
+      "med_usd": 2723.06
+    },
+    {
+      "ord_ctry": "AU",
+      "cnt": 183299,
+      "pct": 1.83,
+      "avg_usd": 101493.12,
+      "med_usd": 4910.6
+    },
+    {
+      "ord_ctry": "IM",
+      "cnt": 180162,
+      "pct": 1.8,
+      "avg_usd": 87463.7,
+      "med_usd": 4655.13
+    },
+    {
+      "ord_ctry": "FI",
+      "cnt": 153256,
+      "pct": 1.53,
+      "avg_usd": 85223.91,
+      "med_usd": 4595.79
+    },
+    {
+      "ord_ctry": "ES",
+      "cnt": 151548,
+      "pct": 1.52,
+      "avg_usd": 47259.56,
+      "med_usd": 2923.68
+    },
+    {
+      "ord_ctry": "CA",
+      "cnt": 124534,
+      "pct": 1.25,
+      "avg_usd": 127335.95,
+      "med_usd": 4809.08
+    },
+    {
+      "ord_ctry": "KR",
+      "cnt": 119542,
+      "pct": 1.2,
+      "avg_usd": 50751.26,
+      "med_usd": 2827.05
+    },
+    {
+      "ord_ctry": "AT",
+      "cnt": 107091,
+      "pct": 1.07,
+      "avg_usd": 100339.87,
+      "med_usd": 5890.8
+    },
+    {
+      "ord_ctry": "AE",
+      "cnt": 106600,
+      "pct": 1.07,
+      "avg_usd": 75284.65,
+      "med_usd": 4296.42
+    },
+    {
+      "ord_ctry": "SA",
+      "cnt": 102893,
+      "pct": 1.03,
+      "avg_usd": 68701.26,
+      "med_usd": 3332.34
+    },
+    {
+      "ord_ctry": "RU",
+      "cnt": 87964,
+      "pct": 0.88,
+      "avg_usd": 28121.46,
+      "med_usd": 1607.45
+    },
+    {
+      "ord_ctry": "UA",
+      "cnt": 72980,
+      "pct": 0.73,
+      "avg_usd": 5232.33,
+      "med_usd": 202.09
+    },
+    {
+      "ord_ctry": "IE",
+      "cnt": 69859,
+      "pct": 0.7,
+      "avg_usd": 159807.37,
+      "med_usd": 8562.27
+    }
+  ],
+  "top_ben_countries": [
+    {
+      "ben_ctry": "US",
+      "cnt": 1924035,
+      "pct": 19.24,
+      "avg_usd": 98583.41,
+      "med_usd": 3943.35
+    },
+    {
+      "ben_ctry": "CH",
+      "cnt": 830356,
+      "pct": 8.3,
+      "avg_usd": 64827.49,
+      "med_usd": 2658.27
+    },
+    {
+      "ben_ctry": "GB",
+      "cnt": 662166,
+      "pct": 6.62,
+      "avg_usd": 107243.57,
+      "med_usd": 3537.21
+    },
+    {
+      "ben_ctry": "FR",
+      "cnt": 561771,
+      "pct": 5.62,
+      "avg_usd": 110709.83,
+      "med_usd": 3961.26
+    },
+    {
+      "ben_ctry": "DE",
+      "cnt": 522715,
+      "pct": 5.23,
+      "avg_usd": 93242.03,
+      "med_usd": 3686.95
+    },
+    {
+      "ben_ctry": "SG",
+      "cnt": 390535,
+      "pct": 3.91,
+      "avg_usd": 121830.49,
+      "med_usd": 3938.27
+    },
+    {
+      "ben_ctry": "CN",
+      "cnt": 346005,
+      "pct": 3.46,
+      "avg_usd": 117978.38,
+      "med_usd": 3497.0
+    },
+    {
+      "ben_ctry": "IT",
+      "cnt": 337216,
+      "pct": 3.37,
+      "avg_usd": 95106.76,
+      "med_usd": 3813.4
+    },
+    {
+      "ben_ctry": "BE",
+      "cnt": 328693,
+      "pct": 3.29,
+      "avg_usd": 89279.6,
+      "med_usd": 3663.66
+    },
+    {
+      "ben_ctry": "LU",
+      "cnt": 294696,
+      "pct": 2.95,
+      "avg_usd": 76115.96,
+      "med_usd": 3129.4
+    },
+    {
+      "ben_ctry": "IM",
+      "cnt": 196496,
+      "pct": 1.96,
+      "avg_usd": 83973.91,
+      "med_usd": 3595.69
+    },
+    {
+      "ben_ctry": "NL",
+      "cnt": 192823,
+      "pct": 1.93,
+      "avg_usd": 114272.36,
+      "med_usd": 4018.99
+    },
+    {
+      "ben_ctry": "FI",
+      "cnt": 177704,
+      "pct": 1.78,
+      "avg_usd": 101518.4,
+      "med_usd": 4892.58
+    },
+    {
+      "ben_ctry": "HK",
+      "cnt": 173818,
+      "pct": 1.74,
+      "avg_usd": 109582.66,
+      "med_usd": 4579.4
+    },
+    {
+      "ben_ctry": "JP",
+      "cnt": 166088,
+      "pct": 1.66,
+      "avg_usd": 115927.93,
+      "med_usd": 3631.38
+    },
+    {
+      "ben_ctry": "AU",
+      "cnt": 161456,
+      "pct": 1.61,
+      "avg_usd": 93937.97,
+      "med_usd": 4258.8
+    },
+    {
+      "ben_ctry": "ES",
+      "cnt": 132207,
+      "pct": 1.32,
+      "avg_usd": 93665.44,
+      "med_usd": 4104.36
+    },
+    {
+      "ben_ctry": "CA",
+      "cnt": 106089,
+      "pct": 1.06,
+      "avg_usd": 78173.09,
+      "med_usd": 3454.34
+    },
+    {
+      "ben_ctry": "KR",
+      "cnt": 104152,
+      "pct": 1.04,
+      "avg_usd": 66183.94,
+      "med_usd": 2839.59
+    },
+    {
+      "ben_ctry": "AT",
+      "cnt": 94404,
+      "pct": 0.94,
+      "avg_usd": 77185.41,
+      "med_usd": 3707.5
+    },
+    {
+      "ben_ctry": "SA",
+      "cnt": 88739,
+      "pct": 0.89,
+      "avg_usd": 96147.95,
+      "med_usd": 4093.45
+    },
+    {
+      "ben_ctry": "AE",
+      "cnt": 86841,
+      "pct": 0.87,
+      "avg_usd": 87260.86,
+      "med_usd": 3404.56
+    },
+    {
+      "ben_ctry": "RU",
+      "cnt": 76082,
+      "pct": 0.76,
+      "avg_usd": 91257.44,
+      "med_usd": 3686.56
+    },
+    {
+      "ben_ctry": "UA",
+      "cnt": 72350,
+      "pct": 0.72,
+      "avg_usd": 106132.41,
+      "med_usd": 3836.06
+    },
+    {
+      "ben_ctry": "DK",
+      "cnt": 65311,
+      "pct": 0.65,
+      "avg_usd": 80819.14,
+      "med_usd": 3324.03
+    }
+  ],
+  "domestic_vs_crossborder": [
+    {
+      "scope": "Cross-Border",
+      "cnt": 9288884,
+      "pct": 92.89,
+      "avg_usd": 96241.11,
+      "med_usd": 3529.31,
+      "avg_dur": 763.8,
+      "med_dur": 55.0,
+      "avg_fx": 1.382,
+      "avg_part": 2.582
+    },
+    {
+      "scope": "Domestic (Same Country)",
+      "cnt": 711116,
+      "pct": 7.11,
+      "avg_usd": 109783.14,
+      "med_usd": 5669.36,
+      "avg_dur": 872.16,
+      "med_dur": 167.0,
+      "avg_fx": 0.83,
+      "avg_part": 2.581
+    }
+  ],
+  "same_bic_check": [
+    {
+      "bic_rel": "Same BIC8",
+      "cnt": 2387,
+      "pct": 0.024
+    },
+    {
+      "bic_rel": "Different BIC8",
+      "cnt": 9997613,
+      "pct": 99.976
+    }
+  ],
+  "top_corridors": [
+    {
+      "corridor": "US -> US",
+      "cnt": 385598,
+      "pct": 3.86,
+      "avg_usd": 138377.01,
+      "med_usd": 7458.14
+    },
+    {
+      "corridor": "CH -> US",
+      "cnt": 135698,
+      "pct": 1.36,
+      "avg_usd": 120638.76,
+      "med_usd": 6181.09
+    },
+    {
+      "corridor": "GB -> US",
+      "cnt": 129737,
+      "pct": 1.3,
+      "avg_usd": 78806.34,
+      "med_usd": 4035.05
+    },
+    {
+      "corridor": "US -> CH",
+      "cnt": 116603,
+      "pct": 1.17,
+      "avg_usd": 94469.58,
+      "med_usd": 5405.87
+    },
+    {
+      "corridor": "FR -> US",
+      "cnt": 96910,
+      "pct": 0.97,
+      "avg_usd": 77780.02,
+      "med_usd": 4199.7
+    },
+    {
+      "corridor": "US -> GB",
+      "cnt": 91969,
+      "pct": 0.92,
+      "avg_usd": 129140.26,
+      "med_usd": 7394.16
+    },
+    {
+      "corridor": "SG -> US",
+      "cnt": 87910,
+      "pct": 0.88,
+      "avg_usd": 120012.42,
+      "med_usd": 6363.74
+    },
+    {
+      "corridor": "DE -> US",
+      "cnt": 86032,
+      "pct": 0.86,
+      "avg_usd": 92446.69,
+      "med_usd": 5560.47
+    },
+    {
+      "corridor": "US -> FR",
+      "cnt": 78361,
+      "pct": 0.78,
+      "avg_usd": 160783.71,
+      "med_usd": 8161.0
+    },
+    {
+      "corridor": "US -> DE",
+      "cnt": 78107,
+      "pct": 0.78,
+      "avg_usd": 126138.92,
+      "med_usd": 7822.47
+    },
+    {
+      "corridor": "CH -> CH",
+      "cnt": 77035,
+      "pct": 0.77,
+      "avg_usd": 61694.29,
+      "med_usd": 4374.33
+    },
+    {
+      "corridor": "LU -> US",
+      "cnt": 65393,
+      "pct": 0.65,
+      "avg_usd": 184936.53,
+      "med_usd": 10823.32
+    },
+    {
+      "corridor": "GB -> GB",
+      "cnt": 64993,
+      "pct": 0.65,
+      "avg_usd": 70052.99,
+      "med_usd": 4000.86
+    },
+    {
+      "corridor": "CN -> US",
+      "cnt": 61739,
+      "pct": 0.62,
+      "avg_usd": 24403.11,
+      "med_usd": 1257.52
+    },
+    {
+      "corridor": "US -> SG",
+      "cnt": 58303,
+      "pct": 0.58,
+      "avg_usd": 203621.32,
+      "med_usd": 7759.8
+    },
+    {
+      "corridor": "GB -> CH",
+      "cnt": 55199,
+      "pct": 0.55,
+      "avg_usd": 90230.13,
+      "med_usd": 2649.29
+    },
+    {
+      "corridor": "IT -> US",
+      "cnt": 53838,
+      "pct": 0.54,
+      "avg_usd": 64551.74,
+      "med_usd": 3302.08
+    },
+    {
+      "corridor": "US -> CN",
+      "cnt": 52170,
+      "pct": 0.52,
+      "avg_usd": 132913.55,
+      "med_usd": 7500.0
+    },
+    {
+      "corridor": "CH -> GB",
+      "cnt": 50923,
+      "pct": 0.51,
+      "avg_usd": 130076.44,
+      "med_usd": 6186.8
+    },
+    {
+      "corridor": "BE -> US",
+      "cnt": 50692,
+      "pct": 0.51,
+      "avg_usd": 109249.33,
+      "med_usd": 6645.93
+    }
+  ],
+  "temporal_dow": [
+    {
+      "dow_0sun": 0,
+      "day_name": "Sun",
+      "cnt": 683541,
+      "pct": 6.84,
+      "avg_usd": 102026.01,
+      "med_usd": 3574.38,
+      "avg_dur": 778.24,
+      "med_dur": 56.0
+    },
+    {
+      "dow_0sun": 1,
+      "day_name": "Mon",
+      "cnt": 1833685,
+      "pct": 18.34,
+      "avg_usd": 89827.44,
+      "med_usd": 3646.76,
+      "avg_dur": 772.47,
+      "med_dur": 56.0
+    },
+    {
+      "dow_0sun": 2,
+      "day_name": "Tue",
+      "cnt": 1708480,
+      "pct": 17.08,
+      "avg_usd": 96584.85,
+      "med_usd": 3665.84,
+      "avg_dur": 771.5,
+      "med_dur": 56.0
+    },
+    {
+      "dow_0sun": 3,
+      "day_name": "Wed",
+      "cnt": 1704615,
+      "pct": 17.05,
+      "avg_usd": 88145.69,
+      "med_usd": 3658.48,
+      "avg_dur": 770.23,
+      "med_dur": 56.0
+    },
+    {
+      "dow_0sun": 4,
+      "day_name": "Thu",
+      "cnt": 1801042,
+      "pct": 18.01,
+      "avg_usd": 100915.36,
+      "med_usd": 3659.97,
+      "avg_dur": 771.63,
+      "med_dur": 56.0
+    },
+    {
+      "dow_0sun": 5,
+      "day_name": "Fri",
+      "cnt": 1833702,
+      "pct": 18.34,
+      "avg_usd": 106911.7,
+      "med_usd": 3685.32,
+      "avg_dur": 770.27,
+      "med_dur": 56.0
+    },
+    {
+      "dow_0sun": 6,
+      "day_name": "Sat",
+      "cnt": 434935,
+      "pct": 4.35,
+      "avg_usd": 102364.91,
+      "med_usd": 3783.88,
+      "avg_dur": 766.69,
+      "med_dur": 54.0
+    }
+  ],
+  "temporal_hour": [
+    {
+      "utc_hour": 0,
+      "cnt": 308404,
+      "avg_usd": 95801.51,
+      "med_usd": 3737.4,
+      "avg_dur": 773.35,
+      "med_dur": 52.0
+    },
+    {
+      "utc_hour": 1,
+      "cnt": 258682,
+      "avg_usd": 159855.58,
+      "med_usd": 3467.9,
+      "avg_dur": 781.32,
+      "med_dur": 53.0
+    },
+    {
+      "utc_hour": 2,
+      "cnt": 233387,
+      "avg_usd": 80337.41,
+      "med_usd": 3299.22,
+      "avg_dur": 791.58,
+      "med_dur": 55.0
+    },
+    {
+      "utc_hour": 3,
+      "cnt": 218010,
+      "avg_usd": 80990.02,
+      "med_usd": 3143.13,
+      "avg_dur": 789.94,
+      "med_dur": 56.0
+    },
+    {
+      "utc_hour": 4,
+      "cnt": 224509,
+      "avg_usd": 72955.31,
+      "med_usd": 2799.59,
+      "avg_dur": 795.77,
+      "med_dur": 57.0
+    },
+    {
+      "utc_hour": 5,
+      "cnt": 308543,
+      "avg_usd": 80768.12,
+      "med_usd": 2994.02,
+      "avg_dur": 776.71,
+      "med_dur": 56.0
+    },
+    {
+      "utc_hour": 6,
+      "cnt": 488784,
+      "avg_usd": 83454.21,
+      "med_usd": 3650.46,
+      "avg_dur": 768.64,
+      "med_dur": 57.0
+    },
+    {
+      "utc_hour": 7,
+      "cnt": 502613,
+      "avg_usd": 79417.48,
+      "med_usd": 3597.18,
+      "avg_dur": 776.89,
+      "med_dur": 58.0
+    },
+    {
+      "utc_hour": 8,
+      "cnt": 466923,
+      "avg_usd": 108558.19,
+      "med_usd": 3470.57,
+      "avg_dur": 774.28,
+      "med_dur": 57.0
+    },
+    {
+      "utc_hour": 9,
+      "cnt": 467648,
+      "avg_usd": 80582.13,
+      "med_usd": 3462.0,
+      "avg_dur": 776.08,
+      "med_dur": 58.0
+    },
+    {
+      "utc_hour": 10,
+      "cnt": 442088,
+      "avg_usd": 139576.16,
+      "med_usd": 3213.78,
+      "avg_dur": 781.3,
+      "med_dur": 58.0
+    },
+    {
+      "utc_hour": 11,
+      "cnt": 432747,
+      "avg_usd": 82778.78,
+      "med_usd": 3204.71,
+      "avg_dur": 785.67,
+      "med_dur": 59.0
+    },
+    {
+      "utc_hour": 12,
+      "cnt": 555110,
+      "avg_usd": 94214.49,
+      "med_usd": 3844.84,
+      "avg_dur": 763.11,
+      "med_dur": 55.0
+    },
+    {
+      "utc_hour": 13,
+      "cnt": 504019,
+      "avg_usd": 102078.44,
+      "med_usd": 3686.52,
+      "avg_dur": 767.53,
+      "med_dur": 56.0
+    },
+    {
+      "utc_hour": 14,
+      "cnt": 501984,
+      "avg_usd": 86262.8,
+      "med_usd": 3683.59,
+      "avg_dur": 766.42,
+      "med_dur": 56.0
+    },
+    {
+      "utc_hour": 15,
+      "cnt": 585888,
+      "avg_usd": 94466.74,
+      "med_usd": 3970.84,
+      "avg_dur": 754.61,
+      "med_dur": 55.0
+    },
+    {
+      "utc_hour": 16,
+      "cnt": 571034,
+      "avg_usd": 102519.44,
+      "med_usd": 3857.1,
+      "avg_dur": 761.5,
+      "med_dur": 56.0
+    },
+    {
+      "utc_hour": 17,
+      "cnt": 549128,
+      "avg_usd": 87807.75,
+      "med_usd": 3919.79,
+      "avg_dur": 762.79,
+      "med_dur": 57.0
+    },
+    {
+      "utc_hour": 18,
+      "cnt": 511858,
+      "avg_usd": 89766.28,
+      "med_usd": 4000.0,
+      "avg_dur": 763.94,
+      "med_dur": 57.0
+    },
+    {
+      "utc_hour": 19,
+      "cnt": 421224,
+      "avg_usd": 125174.54,
+      "med_usd": 3931.31,
+      "avg_dur": 770.84,
+      "med_dur": 57.0
+    },
+    {
+      "utc_hour": 20,
+      "cnt": 367728,
+      "avg_usd": 89078.82,
+      "med_usd": 4031.7,
+      "avg_dur": 773.77,
+      "med_dur": 56.0
+    },
+    {
+      "utc_hour": 21,
+      "cnt": 364237,
+      "avg_usd": 99218.86,
+      "med_usd": 4353.05,
+      "avg_dur": 771.14,
+      "med_dur": 54.0
+    },
+    {
+      "utc_hour": 22,
+      "cnt": 333826,
+      "avg_usd": 116208.67,
+      "med_usd": 4026.0,
+      "avg_dur": 773.87,
+      "med_dur": 53.0
+    },
+    {
+      "utc_hour": 23,
+      "cnt": 381626,
+      "avg_usd": 108245.16,
+      "med_usd": 3925.3,
+      "avg_dur": 766.92,
+      "med_dur": 52.0
+    }
+  ],
+  "temporal_month": [
+    {
+      "ym": "2023-04",
+      "cnt": 6161,
+      "pct": 0.06,
+      "avg_usd": 61679.82,
+      "total_usd": 380009385.11
+    },
+    {
+      "ym": "2023-05",
+      "cnt": 3044400,
+      "pct": 30.44,
+      "avg_usd": 90353.94,
+      "total_usd": 275073533684.48
+    },
+    {
+      "ym": "2023-06",
+      "cnt": 4050160,
+      "pct": 40.5,
+      "avg_usd": 103054.31,
+      "total_usd": 417386454138.38
+    },
+    {
+      "ym": "2023-07",
+      "cnt": 2899279,
+      "pct": 28.99,
+      "avg_usd": 96300.16,
+      "total_usd": 279201023174.12
+    }
+  ],
+  "anomaly_by_flow": [
+    {
+      "anomaly": "ACCOUNT_REPLACEMENT_SCAM",
+      "flow_type": "B2C",
+      "cnt": 370,
+      "avg_usd": 55077.45,
+      "med_usd": 3691.33,
+      "avg_dur": 1142.83,
+      "med_dur": 508.0
+    },
+    {
+      "anomaly": "ACCOUNT_REPLACEMENT_SCAM",
+      "flow_type": "B2B",
+      "cnt": 138,
+      "avg_usd": 111283.52,
+      "med_usd": 22385.07,
+      "avg_dur": 1214.95,
+      "med_dur": 739.0
+    },
+    {
+      "anomaly": "ACCOUNT_REPLACEMENT_SCAM",
+      "flow_type": "C2C",
+      "cnt": 107,
+      "avg_usd": 4293.11,
+      "med_usd": 476.02,
+      "avg_dur": 1154.34,
+      "med_dur": 583.0
+    },
+    {
+      "anomaly": "ACCOUNT_REPLACEMENT_SCAM",
+      "flow_type": "C2B",
+      "cnt": 34,
+      "avg_usd": 29675.18,
+      "med_usd": 4493.79,
+      "avg_dur": 1124.38,
+      "med_dur": 646.0
+    },
+    {
+      "anomaly": "CEO_SCAM",
+      "flow_type": "B2C",
+      "cnt": 683,
+      "avg_usd": 1367064.74,
+      "med_usd": 25556.02,
+      "avg_dur": 1208.14,
+      "med_dur": 751.0
+    },
+    {
+      "anomaly": "CEO_SCAM",
+      "flow_type": "B2B",
+      "cnt": 262,
+      "avg_usd": 1431287.55,
+      "med_usd": 15178.25,
+      "avg_dur": 1102.74,
+      "med_dur": 601.5
+    },
+    {
+      "anomaly": "CUSTOMER_RECALL",
+      "flow_type": "B2C",
+      "cnt": 183,
+      "avg_usd": 104657.99,
+      "med_usd": 3379.25,
+      "avg_dur": 606.77,
+      "med_dur": 52.0
+    },
+    {
+      "anomaly": "CUSTOMER_RECALL",
+      "flow_type": "B2B",
+      "cnt": 63,
+      "avg_usd": 185952.44,
+      "med_usd": 30026.65,
+      "avg_dur": 779.78,
+      "med_dur": 47.0
+    },
+    {
+      "anomaly": "CUSTOMER_RECALL",
+      "flow_type": "C2C",
+      "cnt": 49,
+      "avg_usd": 2507.52,
+      "med_usd": 232.81,
+      "avg_dur": 1077.04,
+      "med_dur": 369.0
+    },
+    {
+      "anomaly": "CUSTOMER_RECALL",
+      "flow_type": "C2B",
+      "cnt": 22,
+      "avg_usd": 9735.52,
+      "med_usd": 1319.58,
+      "avg_dur": 687.41,
+      "med_dur": 188.5
+    },
+    {
+      "anomaly": "DUPLICATE_PAYMENT",
+      "flow_type": "B2C",
+      "cnt": 393,
+      "avg_usd": 15003.98,
+      "med_usd": 4412.57,
+      "avg_dur": 963.2,
+      "med_dur": 416.0
+    },
+    {
+      "anomaly": "DUPLICATE_PAYMENT",
+      "flow_type": "B2B",
+      "cnt": 152,
+      "avg_usd": 594658.37,
+      "med_usd": 13078.71,
+      "avg_dur": 1077.21,
+      "med_dur": 271.0
+    },
+    {
+      "anomaly": "DUPLICATE_PAYMENT",
+      "flow_type": "C2C",
+      "cnt": 113,
+      "avg_usd": 2578.03,
+      "med_usd": 213.58,
+      "avg_dur": 727.41,
+      "med_dur": 78.0
+    },
+    {
+      "anomaly": "DUPLICATE_PAYMENT",
+      "flow_type": "C2B",
+      "cnt": 21,
+      "avg_usd": 3726.98,
+      "med_usd": 990.66,
+      "avg_dur": 50.05,
+      "med_dur": 13.0
+    },
+    {
+      "anomaly": "FAT_FINGER_MISTAKE",
+      "flow_type": "B2C",
+      "cnt": 1098,
+      "avg_usd": 33591426.22,
+      "med_usd": 217740.23,
+      "avg_dur": 756.95,
+      "med_dur": 54.0
+    },
+    {
+      "anomaly": "FAT_FINGER_MISTAKE",
+      "flow_type": "B2B",
+      "cnt": 445,
+      "avg_usd": 293187299.93,
+      "med_usd": 1966450.7,
+      "avg_dur": 762.85,
+      "med_dur": 64.0
+    },
+    {
+      "anomaly": "FAT_FINGER_MISTAKE",
+      "flow_type": "C2C",
+      "cnt": 296,
+      "avg_usd": 16877936.8,
+      "med_usd": 50736.51,
+      "avg_dur": 635.69,
+      "med_dur": 45.0
+    },
+    {
+      "anomaly": "FAT_FINGER_MISTAKE",
+      "flow_type": "C2B",
+      "cnt": 101,
+      "avg_usd": 27621756.07,
+      "med_usd": 113340.08,
+      "avg_dur": 778.96,
+      "med_dur": 47.0
+    },
+    {
+      "anomaly": "ROMANCE_SCAM",
+      "flow_type": "C2C",
+      "cnt": 1811,
+      "avg_usd": 1924.48,
+      "med_usd": 104.65,
+      "avg_dur": 1590.68,
+      "med_dur": 1262.0
+    },
+    {
+      "anomaly": "ROMANCE_SCAM",
+      "flow_type": "C2B",
+      "cnt": 665,
+      "avg_usd": 2050.59,
+      "med_usd": 120.77,
+      "avg_dur": 1468.71,
+      "med_dur": 1100.0
+    }
+  ],
+  "anomaly_by_txtype_cont": [
+    {
+      "ANOMALY_TYPE": "ACCOUNT_REPLACEMENT_SCAM",
+      "TRANSACTION_TYPE_CODE": "Direct",
+      "CONTINUITY_QFLAG": "Y",
+      "cnt": 425
+    },
+    {
+      "ANOMALY_TYPE": "ACCOUNT_REPLACEMENT_SCAM",
+      "TRANSACTION_TYPE_CODE": "Indirect",
+      "CONTINUITY_QFLAG": "Y",
+      "cnt": 181
+    },
+    {
+      "ANOMALY_TYPE": "ACCOUNT_REPLACEMENT_SCAM",
+      "TRANSACTION_TYPE_CODE": "Indirect",
+      "CONTINUITY_QFLAG": "N",
+      "cnt": 22
+    },
+    {
+      "ANOMALY_TYPE": "ACCOUNT_REPLACEMENT_SCAM",
+      "TRANSACTION_TYPE_CODE": "Direct",
+      "CONTINUITY_QFLAG": "N",
+      "cnt": 18
+    },
+    {
+      "ANOMALY_TYPE": "ACCOUNT_REPLACEMENT_SCAM",
+      "TRANSACTION_TYPE_CODE": "Covered",
+      "CONTINUITY_QFLAG": "Y",
+      "cnt": 2
+    },
+    {
+      "ANOMALY_TYPE": "ACCOUNT_REPLACEMENT_SCAM",
+      "TRANSACTION_TYPE_CODE": "Covered",
+      "CONTINUITY_QFLAG": "N",
+      "cnt": 1
+    },
+    {
+      "ANOMALY_TYPE": "CEO_SCAM",
+      "TRANSACTION_TYPE_CODE": "Direct",
+      "CONTINUITY_QFLAG": "Y",
+      "cnt": 564
+    },
+    {
+      "ANOMALY_TYPE": "CEO_SCAM",
+      "TRANSACTION_TYPE_CODE": "Indirect",
+      "CONTINUITY_QFLAG": "Y",
+      "cnt": 306
+    },
+    {
+      "ANOMALY_TYPE": "CEO_SCAM",
+      "TRANSACTION_TYPE_CODE": "Indirect",
+      "CONTINUITY_QFLAG": "N",
+      "cnt": 40
+    },
+    {
+      "ANOMALY_TYPE": "CEO_SCAM",
+      "TRANSACTION_TYPE_CODE": "Direct",
+      "CONTINUITY_QFLAG": "N",
+      "cnt": 28
+    },
+    {
+      "ANOMALY_TYPE": "CEO_SCAM",
+      "TRANSACTION_TYPE_CODE": "Covered",
+      "CONTINUITY_QFLAG": "Y",
+      "cnt": 7
+    },
+    {
+      "ANOMALY_TYPE": "CUSTOMER_RECALL",
+      "TRANSACTION_TYPE_CODE": "Direct",
+      "CONTINUITY_QFLAG": "Y",
+      "cnt": 176
+    },
+    {
+      "ANOMALY_TYPE": "CUSTOMER_RECALL",
+      "TRANSACTION_TYPE_CODE": "Indirect",
+      "CONTINUITY_QFLAG": "Y",
+      "cnt": 93
+    },
+    {
+      "ANOMALY_TYPE": "CUSTOMER_RECALL",
+      "TRANSACTION_TYPE_CODE": "Indirect",
+      "CONTINUITY_QFLAG": "N",
+      "cnt": 22
+    },
+    {
+      "ANOMALY_TYPE": "CUSTOMER_RECALL",
+      "TRANSACTION_TYPE_CODE": "Covered",
+      "CONTINUITY_QFLAG": "Y",
+      "cnt": 13
+    },
+    {
+      "ANOMALY_TYPE": "CUSTOMER_RECALL",
+      "TRANSACTION_TYPE_CODE": "Direct",
+      "CONTINUITY_QFLAG": "N",
+      "cnt": 11
+    },
+    {
+      "ANOMALY_TYPE": "CUSTOMER_RECALL",
+      "TRANSACTION_TYPE_CODE": "Covered",
+      "CONTINUITY_QFLAG": "N",
+      "cnt": 2
+    },
+    {
+      "ANOMALY_TYPE": "DUPLICATE_PAYMENT",
+      "TRANSACTION_TYPE_CODE": "Direct",
+      "CONTINUITY_QFLAG": "Y",
+      "cnt": 388
+    },
+    {
+      "ANOMALY_TYPE": "DUPLICATE_PAYMENT",
+      "TRANSACTION_TYPE_CODE": "Indirect",
+      "CONTINUITY_QFLAG": "Y",
+      "cnt": 226
+    },
+    {
+      "ANOMALY_TYPE": "DUPLICATE_PAYMENT",
+      "TRANSACTION_TYPE_CODE": "Direct",
+      "CONTINUITY_QFLAG": "N",
+      "cnt": 20
+    },
+    {
+      "ANOMALY_TYPE": "DUPLICATE_PAYMENT",
+      "TRANSACTION_TYPE_CODE": "Covered",
+      "CONTINUITY_QFLAG": "Y",
+      "cnt": 19
+    },
+    {
+      "ANOMALY_TYPE": "DUPLICATE_PAYMENT",
+      "TRANSACTION_TYPE_CODE": "Indirect",
+      "CONTINUITY_QFLAG": "N",
+      "cnt": 14
+    },
+    {
+      "ANOMALY_TYPE": "DUPLICATE_PAYMENT",
+      "TRANSACTION_TYPE_CODE": "Covered",
+      "CONTINUITY_QFLAG": "N",
+      "cnt": 12
+    },
+    {
+      "ANOMALY_TYPE": "FAT_FINGER_MISTAKE",
+      "TRANSACTION_TYPE_CODE": "Direct",
+      "CONTINUITY_QFLAG": "Y",
+      "cnt": 1226
+    },
+    {
+      "ANOMALY_TYPE": "FAT_FINGER_MISTAKE",
+      "TRANSACTION_TYPE_CODE": "Indirect",
+      "CONTINUITY_QFLAG": "Y",
+      "cnt": 503
+    },
+    {
+      "ANOMALY_TYPE": "FAT_FINGER_MISTAKE",
+      "TRANSACTION_TYPE_CODE": "Indirect",
+      "CONTINUITY_QFLAG": "N",
+      "cnt": 78
+    },
+    {
+      "ANOMALY_TYPE": "FAT_FINGER_MISTAKE",
+      "TRANSACTION_TYPE_CODE": "Covered",
+      "CONTINUITY_QFLAG": "Y",
+      "cnt": 76
+    },
+    {
+      "ANOMALY_TYPE": "FAT_FINGER_MISTAKE",
+      "TRANSACTION_TYPE_CODE": "Direct",
+      "CONTINUITY_QFLAG": "N",
+      "cnt": 45
+    },
+    {
+      "ANOMALY_TYPE": "FAT_FINGER_MISTAKE",
+      "TRANSACTION_TYPE_CODE": "Covered",
+      "CONTINUITY_QFLAG": "N",
+      "cnt": 12
+    },
+    {
+      "ANOMALY_TYPE": "ROMANCE_SCAM",
+      "TRANSACTION_TYPE_CODE": "Direct",
+      "CONTINUITY_QFLAG": "Y",
+      "cnt": 1392
+    },
+    {
+      "ANOMALY_TYPE": "ROMANCE_SCAM",
+      "TRANSACTION_TYPE_CODE": "Indirect",
+      "CONTINUITY_QFLAG": "Y",
+      "cnt": 865
+    },
+    {
+      "ANOMALY_TYPE": "ROMANCE_SCAM",
+      "TRANSACTION_TYPE_CODE": "Indirect",
+      "CONTINUITY_QFLAG": "N",
+      "cnt": 114
+    },
+    {
+      "ANOMALY_TYPE": "ROMANCE_SCAM",
+      "TRANSACTION_TYPE_CODE": "Direct",
+      "CONTINUITY_QFLAG": "N",
+      "cnt": 102
+    },
+    {
+      "ANOMALY_TYPE": "ROMANCE_SCAM",
+      "TRANSACTION_TYPE_CODE": "Covered",
+      "CONTINUITY_QFLAG": "Y",
+      "cnt": 3
+    }
+  ],
+  "txtype_x_continuity": [
+    {
+      "TRANSACTION_TYPE_CODE": "Covered",
+      "CONTINUITY_QFLAG": "N",
+      "cnt": 51262,
+      "pct": 0.51,
+      "avg_part": 3.904,
+      "avg_dur": 986.91,
+      "med_dur": 427.0
+    },
+    {
+      "TRANSACTION_TYPE_CODE": "Covered",
+      "CONTINUITY_QFLAG": "Y",
+      "cnt": 364700,
+      "pct": 3.65,
+      "avg_part": 3.537,
+      "avg_dur": 916.48,
+      "med_dur": 377.0
+    },
+    {
+      "TRANSACTION_TYPE_CODE": "Direct",
+      "CONTINUITY_QFLAG": "N",
+      "cnt": 315266,
+      "pct": 3.15,
+      "avg_part": 2.0,
+      "avg_dur": 664.46,
+      "med_dur": 39.0
+    },
+    {
+      "TRANSACTION_TYPE_CODE": "Direct",
+      "CONTINUITY_QFLAG": "Y",
+      "cnt": 6008014,
+      "pct": 60.08,
+      "avg_part": 2.0,
+      "avg_dur": 663.25,
+      "med_dur": 39.0
+    },
+    {
+      "TRANSACTION_TYPE_CODE": "Indirect",
+      "CONTINUITY_QFLAG": "N",
+      "cnt": 400676,
+      "pct": 4.01,
+      "avg_part": 3.902,
+      "avg_dur": 1025.72,
+      "med_dur": 363.0
+    },
+    {
+      "TRANSACTION_TYPE_CODE": "Indirect",
+      "CONTINUITY_QFLAG": "Y",
+      "cnt": 2860082,
+      "pct": 28.6,
+      "avg_part": 3.537,
+      "avg_dur": 952.77,
+      "med_dur": 271.0
+    }
+  ],
+  "flow_x_txtype": [
+    {
+      "flow_type": "B2B",
+      "TRANSACTION_TYPE_CODE": "Direct",
+      "cnt": 1435631,
+      "pct_within_flow": 63.22
+    },
+    {
+      "flow_type": "B2B",
+      "TRANSACTION_TYPE_CODE": "Indirect",
+      "cnt": 742381,
+      "pct_within_flow": 32.69
+    },
+    {
+      "flow_type": "B2B",
+      "TRANSACTION_TYPE_CODE": "Covered",
+      "cnt": 92933,
+      "pct_within_flow": 4.09
+    },
+    {
+      "flow_type": "B2C",
+      "TRANSACTION_TYPE_CODE": "Direct",
+      "cnt": 3543336,
+      "pct_within_flow": 63.23
+    },
+    {
+      "flow_type": "B2C",
+      "TRANSACTION_TYPE_CODE": "Indirect",
+      "cnt": 1824042,
+      "pct_within_flow": 32.55
+    },
+    {
+      "flow_type": "B2C",
+      "TRANSACTION_TYPE_CODE": "Covered",
+      "cnt": 236314,
+      "pct_within_flow": 4.22
+    },
+    {
+      "flow_type": "C2B",
+      "TRANSACTION_TYPE_CODE": "Direct",
+      "cnt": 385841,
+      "pct_within_flow": 63.19
+    },
+    {
+      "flow_type": "C2B",
+      "TRANSACTION_TYPE_CODE": "Indirect",
+      "cnt": 199866,
+      "pct_within_flow": 32.73
+    },
+    {
+      "flow_type": "C2B",
+      "TRANSACTION_TYPE_CODE": "Covered",
+      "cnt": 24898,
+      "pct_within_flow": 4.08
+    },
+    {
+      "flow_type": "C2C",
+      "TRANSACTION_TYPE_CODE": "Direct",
+      "cnt": 958472,
+      "pct_within_flow": 63.28
+    },
+    {
+      "flow_type": "C2C",
+      "TRANSACTION_TYPE_CODE": "Indirect",
+      "cnt": 494469,
+      "pct_within_flow": 32.64
+    },
+    {
+      "flow_type": "C2C",
+      "TRANSACTION_TYPE_CODE": "Covered",
+      "cnt": 61817,
+      "pct_within_flow": 4.08
+    }
+  ],
+  "sample_tokens_and_paths": [
+    {
+      "TRANSACTION_TYPE_CODE": "Direct",
+      "CONTINUITY_QFLAG": "Y",
+      "PARTICIPANT_COUNT": 2,
+      "BIC8_PATH": "0082SAR0;0022SES0",
+      "ORDERING_TYPE": "B",
+      "BENEFICIARY_TYPE": "C",
+      "ORDERING_TOKENS": "/<iban:22>\n<business:2> <company_keyword:5> <chr:999> <other_words:2> <post_code:SA:5> <city:SA:6> <country_code:SA>\n<stop_word:the> <stop_word:what> <chr:AAAAAAA>",
+      "BENEFICIARY_TOKENS": "/<iban:22>\n<first_name:9> <last_name:4> <street:13> <post_code:CN:6> <country_code:CN>",
+      "ANOMALY_TYPE": NaN
+    },
+    {
+      "TRANSACTION_TYPE_CODE": "Direct",
+      "CONTINUITY_QFLAG": "Y",
+      "PARTICIPANT_COUNT": 2,
+      "BIC8_PATH": "0047JPJ0;0812US30",
+      "ORDERING_TYPE": "B",
+      "BENEFICIARY_TYPE": "C",
+      "ORDERING_TOKENS": "/<separator:/><chr:99A99/99>\n<line_break:35><business:32> <chr:999> <street:17> <city:JP:12> <country_code:JP>",
+      "BENEFICIARY_TOKENS": "/<chr:9999999999-99999>\n<line_break:35><line_break:70><first_name:8> <last_name:5> <street:13> <chr:999> <post_code:GB:7> <city:GB:18> <country_name:GB:en-gb>",
+      "ANOMALY_TYPE": NaN
+    },
+    {
+      "TRANSACTION_TYPE_CODE": "Direct",
+      "CONTINUITY_QFLAG": "Y",
+      "PARTICIPANT_COUNT": 2,
+      "BIC8_PATH": "0010US30;0005CHZ0",
+      "ORDERING_TYPE": "B",
+      "BENEFICIARY_TYPE": "C",
+      "ORDERING_TOKENS": "/<chr:A9999999999 9 A999>\n<business:22> <other_words:2>",
+      "BENEFICIARY_TOKENS": "/<iban:22>\n<chr:A> <last_name:9> <street:11> <chr:9> <city:BD:6> <country_code:BD>",
+      "ANOMALY_TYPE": NaN
+    },
+    {
+      "TRANSACTION_TYPE_CODE": "Indirect",
+      "CONTINUITY_QFLAG": "Y",
+      "PARTICIPANT_COUNT": 3,
+      "BIC8_PATH": "0176US30;0137BEB0;0161CNB0",
+      "ORDERING_TYPE": "B",
+      "BENEFICIARY_TYPE": "B",
+      "ORDERING_TOKENS": "/<chr:999999A9999999999 9>\n<other_words:6> <street:17> <chr:999> <other_words:2> <country_code:US>",
+      "BENEFICIARY_TOKENS": "/<chr:9.999.99>\n<business:5> <chr:99> <street:12> <post_code:SD:7> <country_code:SD>",
+      "ANOMALY_TYPE": NaN
+    },
+    {
+      "TRANSACTION_TYPE_CODE": "Covered",
+      "CONTINUITY_QFLAG": "Y",
+      "PARTICIPANT_COUNT": 3,
+      "BIC8_PATH": "0412FRP0;0017IT20;0085BEB0",
+      "ORDERING_TYPE": "C",
+      "BENEFICIARY_TYPE": "C",
+      "ORDERING_TOKENS": "/<iban:22>\n<line_break:35><first_name:9> <last_name:7> <street:18> <country_code:FR>\n<chr:A99A>",
+      "BENEFICIARY_TOKENS": "/<iban:22>\n<first_name:8> <last_name:3> <chr:99> <street:8> <city:KP:6> <country_code:KP>",
+      "ANOMALY_TYPE": NaN
+    },
+    {
+      "TRANSACTION_TYPE_CODE": "Indirect",
+      "CONTINUITY_QFLAG": "Y",
+      "PARTICIPANT_COUNT": 4,
+      "BIC8_PATH": "0016AT20;0140CNB0;0431FRP0;0423DEF0",
+      "ORDERING_TYPE": "B",
+      "BENEFICIARY_TYPE": "C",
+      "ORDERING_TOKENS": "/<separator:/><iban:22>\n1/<business:9>\n2/<street:18> <chr:99> <post_code:AT:4>\n3/<country_code:AT>/<city:AT:25>",
+      "BENEFICIARY_TOKENS": "/<iban:22>\n<line_break:35><first_name:5> <last_name:5> <street:16> <chr:99> <post_code:MY:5> <city:MY:8> <country_code:MY>",
+      "ANOMALY_TYPE": NaN
+    },
+    {
+      "TRANSACTION_TYPE_CODE": "Direct",
+      "CONTINUITY_QFLAG": "Y",
+      "PARTICIPANT_COUNT": 2,
+      "BIC8_PATH": "0086SGS0;0175DEF0",
+      "ORDERING_TYPE": "B",
+      "BENEFICIARY_TYPE": "B",
+      "ORDERING_TOKENS": "/<chr:99-9999>\n<business:5>",
+      "BENEFICIARY_TOKENS": "/<iban:22>\n<line_break:35><business:10> <street:18> <chr:999> <post_code:MX:5> <country_code:MX>",
+      "ANOMALY_TYPE": NaN
+    },
+    {
+      "TRANSACTION_TYPE_CODE": "Direct",
+      "CONTINUITY_QFLAG": "Y",
+      "PARTICIPANT_COUNT": 2,
+      "BIC8_PATH": "0032MYK0;0281CNB0",
+      "ORDERING_TYPE": "C",
+      "BENEFICIARY_TYPE": "C",
+      "ORDERING_TOKENS": "/<chr:99/99 9999AA99-A9-99>\n<line_break:35><first_name:6> <last_name:7> <chr:99> <street:25> <city:MY:10> <country_code:MY>",
+      "BENEFICIARY_TOKENS": "/<chr:99999.9.99999A>\n<chr:A> <last_name:10> <street:15> <post_code:TH:5> <city:TH:11> <country_code:TH>\n<numerical:5>",
+      "ANOMALY_TYPE": "ROMANCE_SCAM"
+    },
+    {
+      "TRANSACTION_TYPE_CODE": "Direct",
+      "CONTINUITY_QFLAG": "Y",
+      "PARTICIPANT_COUNT": 2,
+      "BIC8_PATH": "0315US30;0204ESM0",
+      "ORDERING_TYPE": "B",
+      "BENEFICIARY_TYPE": "C",
+      "ORDERING_TOKENS": "<chr:9999AA99>",
+      "BENEFICIARY_TOKENS": "/<iban:22>\n<line_break:35><first_name:5> <last_name:9> <chr:99> <street:21> <city:BR:6> <country_code:BR>\n<chr:9AAAAAAA9>",
+      "ANOMALY_TYPE": NaN
+    },
+    {
+      "TRANSACTION_TYPE_CODE": "Indirect",
+      "CONTINUITY_QFLAG": "Y",
+      "PARTICIPANT_COUNT": 3,
+      "BIC8_PATH": "0218GB20;0033US30;0100SGS0",
+      "ORDERING_TYPE": "B",
+      "BENEFICIARY_TYPE": "B",
+      "ORDERING_TOKENS": "/<iban:22>\n<line_break:70><business:10> <company_keyword:7> <street:16> <chr:999> <city:GB:18> <country_name:GB:en-gb>",
+      "BENEFICIARY_TOKENS": "/<chr:99999A999>\n<business:7> <company_keyword:7>\n<chr:A>",
+      "ANOMALY_TYPE": NaN
+    },
+    {
+      "TRANSACTION_TYPE_CODE": "Direct",
+      "CONTINUITY_QFLAG": "N",
+      "PARTICIPANT_COUNT": 2,
+      "BIC8_PATH": "0708US30;...;0309CHZ0",
+      "ORDERING_TYPE": "B",
+      "BENEFICIARY_TYPE": "C",
+      "ORDERING_TOKENS": "/<chr:.99/9999999>\n<line_break:35><other_words:8> <chr:999> <other_words:2> <post_code:US:5> <country_code:US>\n<chr:AA>",
+      "BENEFICIARY_TOKENS": "/<iban:22>\n1/<first_name:6> <last_name:8>\n3/<country_code:UA>",
+      "ANOMALY_TYPE": NaN
+    },
+    {
+      "TRANSACTION_TYPE_CODE": "Direct",
+      "CONTINUITY_QFLAG": "Y",
+      "PARTICIPANT_COUNT": 2,
+      "BIC8_PATH": "0007BBB0;0033US30",
+      "ORDERING_TYPE": "B",
+      "BENEFICIARY_TYPE": "B",
+      "ORDERING_TOKENS": "/<chr:999AAA99>\n<business:11> <chr:999> <street:10> <post_code:BB:8> <city:BB:13> <country_code:BB>",
+      "BENEFICIARY_TOKENS": "/<separator:/><chr:99.9999999A999A9A999>\n<business:5> <company_keyword:4> <country_name:BR:en-gb>\n<numerical:3>",
+      "ANOMALY_TYPE": NaN
+    },
+    {
+      "TRANSACTION_TYPE_CODE": "Direct",
+      "CONTINUITY_QFLAG": "Y",
+      "PARTICIPANT_COUNT": 2,
+      "BIC8_PATH": "0175DEF0;0005EE20",
+      "ORDERING_TYPE": "B",
+      "BENEFICIARY_TYPE": "C",
+      "ORDERING_TOKENS": "/<iban:22>\n<line_break:35><business:22> <chr:99-99> <street:9> <country_code:DE>\n<other_word:6> <other_word:4>",
+      "BENEFICIARY_TOKENS": "/<iban:22>\n<chr:A> <last_name:7> <street:13> <city:MW:8> <country_code:MW>",
+      "ANOMALY_TYPE": NaN
+    },
+    {
+      "TRANSACTION_TYPE_CODE": "Indirect",
+      "CONTINUITY_QFLAG": "Y",
+      "PARTICIPANT_COUNT": 3,
+      "BIC8_PATH": "0223US30;0012LT20;0085BEB0",
+      "ORDERING_TYPE": "B",
+      "BENEFICIARY_TYPE": "C",
+      "ORDERING_TOKENS": "/<chr:99/ 9A-999999/99>\n<business:8> <chr:99999> <street:14> <other_words:2> <city:US:12> <country_code:US>\n<finance_word:bank> <finance_word:finance>",
+      "BENEFICIARY_TOKENS": "/<iban:22>\n<line_break:35><other_words:13> <other_words:26> <chr:9> <street:24> <city:BR:8> <country_name:BR:en-gb>",
+      "ANOMALY_TYPE": NaN
+    },
+    {
+      "TRANSACTION_TYPE_CODE": "Indirect",
+      "CONTINUITY_QFLAG": "Y",
+      "PARTICIPANT_COUNT": 4,
+      "BIC8_PATH": "0427GB20;0354FRP0;0309CHZ0;0343CNB0",
+      "ORDERING_TYPE": "C",
+      "BENEFICIARY_TYPE": "B",
+      "ORDERING_TOKENS": "/<iban:22>\n1/<last_name:5> <separator:-> <last_name:4>\n3/<country_code:GB>/<city:GB:16>",
+      "BENEFICIARY_TOKENS": "/<chr:A999AAA9999.>\n<line_break:35><business:8> <street:14> <chr:99/9999> <post_code:IN:6> <city:IN:8> <country_code:IN>",
+      "ANOMALY_TYPE": NaN
+    }
+  ]
+}

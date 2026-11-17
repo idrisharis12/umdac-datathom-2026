@@ -15,6 +15,7 @@ Official repository for the **Universiti Malaya Data Analytics Club (UMDAC) Data
 8. [Reverse-Engineering Framework & Feature-Group Blueprints](#reverse-engineering-framework--feature-group-blueprints)
 9. [High-Performance Data Processing Guide](#high-performance-data-processing-guide)
 10. [Rules, Academic Integrity & Compliance](#rules-academic-integrity--compliance)
+11. [Full-Dataset Analysis Deliverables & Reverse-Engineered Causal Rules](#11-full-dataset-analysis-deliverables--reverse-engineered-causal-rules)
 
 ---
 
@@ -270,6 +271,32 @@ print(anomaly_summary)
 * **Exclusivity of Primary Data**: Only the provided Swift dataset may be used for primary empirical modeling. External primary datasets are strictly banned.
 * **External Reference Calibration**: Public reference statistics (World Bank, BIS, IMF, SWIFT reports) are permitted solely to contextualize and calibrate findings, and must be cited in **APA format** with clickable URLs.
 * **AI Tool Allowance**: Generative AI tools (ChatGPT, Claude, Gemini, Copilot) are explicitly permitted for coding, analysis, and slide design. No declaration is required, but teams must be able to explain, defend, and justify all methods during judging.
+
+---
+
+## 11. Full-Dataset Analysis Deliverables & Reverse-Engineered Causal Rules
+
+Exact full-table SQL profiling across all **10,000,000 rows** (using DuckDB 2.0.0) has been completed and packaged into this repository:
+
+### Repository Additions
+* **Word Report:** [`Swift_UMDAC_Datathon_2026_Data_Analysis_Report.docx`](Swift_UMDAC_Datathon_2026_Data_Analysis_Report.docx) — 12-page technical report covering schema completeness, party-flow & currency categories, routing/FX architecture, temporal patterns, token taxonomy, anomaly forensics, and all 9 reconstructed generating rules.
+* **Aggregated Summary Data (`data/`):** `pass1_summary.json`, `pass2_summary.json`, `pass3_summary.json`, `pass4_causal_rules.json` (exact 10M-row counts, quantiles, cross-tabs, and causal tests).
+* **Visualizations (`charts/`):** `chart1_flow_types.png` through `chart6_anomalies.png`.
+* **Reproducible Scripts (`scripts/`):** `analyze_pass1.py`–`analyze_pass4.py`, `make_charts.py`, and `generate_report.js`.
+
+### 9 Reverse-Engineered Generating Rules & Causal Logic
+
+| # | Reconstructed Rule | Empirical Proof (10,000,000 Rows) | Economic / System Logic |
+| :-: | :--- | :--- | :--- |
+| **1** | **Account Role Permanence** | **391,132 / 391,132 (100.00%)** `ORDERING_ACCOUNT`s have a single immutable `ORDERING_TYPE` (`B` or `C`). | Entity type is a fixed node property in the payment graph, never resampled per edge. |
+| **2** | **Sender Home-Currency Dominance** | **83.8%–94.5%** of wires use the ordering country's home currency (`DE` 94.5% EUR, `FR` 94.0% EUR, `US` 90.5% USD, `CH` 88.8% CHF, `GB` 88.6% GBP, `JP` 88.3% JPY, `SG` 87.6% SGD). | Exporters and corporates initiate payments in their domestic operating currency, pushing FX conversion downstream. |
+| **3** | **Local-Timezone Business-Hour Modulation** | Asia-Pacific (`AU` 46.4%, `JP` 41.9%, `CN` 41.5%, `SG` 40.7%) peaks `00:00–07:59 UTC`; Europe (`DE` 43.0%, `CH` 42.7%, `GB` 41.3%) peaks `08:00–15:59 UTC`; `US` (46.7%) peaks `16:00–23:59 UTC`. Weekend volume drops ~75% (Sat 4.35%, Sun 6.84% vs. Mon/Fri 18.34%). | Payment initiation follows local banking hours and RTGS/clearing calendar closures. |
+| **4** | **Hop-Count Linear Duration Law** | `PARTICIPANT_COUNT` (not FX count) drives latency by **~200s per hop**: mean duration scales `663s (2) -> 841s (3) -> 1,042s (4) -> 1,242s (5) -> 1,437s (6) -> 1,649s (7)`. | Each correspondent intermediary adds a clearing/compliance hop delay. |
+| **5** | **Direct-Route Structural Ceiling** | `Direct` (63.23%) strictly enforces `PARTICIPANT_COUNT = 2` and `CURRENCY_CONVERSION_COUNT ∈ {0, 1}` (**0.00%** have $\ge 2$ FX steps). `Indirect` (32.61%) & `Covered` (4.16%) average `3.582` participants and peak at `2` FX steps (~55.5%). | Bilateral Nostro/Vostro links settle in 2 hops with at most one FX leg; correspondent chains require multi-hop FX. |
+| **6** | **Flow-Type vs. Routing Independence** | Every flow category (`B2B`, `B2C`, `C2B`, `C2C`) routes at **~63.2% Direct / ~32.6% Indirect / ~4.1% Covered**, despite `B2B` median value ($22,888) being ~50× `C2C` ($463). | Routing topology is determined by bank-corridor relationships rather than customer ticket size. |
+| **7** | **Role-Gated Social Engineering** | `ROMANCE_SCAM` (2,476 rows) is **100% Consumer-originated** (`C2C` 73.1%, `C2B` 26.9%) across just **500 senders & 378 receivers** (median $109.45, median 1,148s). `CEO_SCAM` (945 rows) is **100% Business-originated** (`B2C` 72.3%, `B2B` 27.7%, median $20,602). | Fraud injection enforces realistic victim-type constraints and mule-account reuse. |
+| **8** | **Error & Replay Mechanics** | `FAT_FINGER_MISTAKE` (1,940 rows) keeps normal duration (median 53s) but inflates median amount **71×** ($260,241; **$175.14B** total = **18.02%** of all dataset volume). `DUPLICATE_PAYMENT` (679 rows) replays **185** exact `(sender, receiver, amount)` tuples within `0–6,940s` (median `1,099s`). | Models human decimal-entry errors and back-office race-condition retries. |
+| **9** | **Discontinuity & Recall Coupling** | `CUSTOMER_RECALL` (317 rows, undocumented in PDF Appendix) has the highest path discontinuity rate (**11.04%** `CONTINUITY_QFLAG = 'N'` vs. 7.67% normal). | Recalls disproportionately surface along opaque/incomplete correspondent chains. |
 
 ---
 *Maintained for UMDAC Datathon 2026.*

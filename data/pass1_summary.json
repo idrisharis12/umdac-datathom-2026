@@ -1,0 +1,1729 @@
+{
+  "overview": {
+    "total_rows": 10000000,
+    "min_epoch": 1682853746,
+    "max_epoch": 1690797361,
+    "min_utc": "2023-04-30 11:22:26",
+    "max_utc": "2023-07-31 09:56:01",
+    "min_usd": 0.01,
+    "p01_usd": 7.2,
+    "p05_usd": 48.89,
+    "p25_usd": 634.0875,
+    "p50_usd": 3661.895,
+    "avg_usd": 97204.10203821087,
+    "p75_usd": 19959.855,
+    "p95_usd": 230027.87899999868,
+    "p99_usd": 1218752.8671999977,
+    "max_usd": 15664132213.09,
+    "sum_usd": 972041020382.1086,
+    "min_dur": 2,
+    "p05_dur": 11.0,
+    "p25_dur": 26.0,
+    "p50_dur": 56.0,
+    "avg_dur": 771.5102084,
+    "p75_dur": 1105.0,
+    "p95_dur": 3403.0,
+    "p99_dur": 5293.0,
+    "max_dur": 21649,
+    "n_currencies": 155,
+    "n_ord_bic": 8392,
+    "n_ben_bic": 8266,
+    "n_ord_acct": 391132,
+    "n_ben_acct": 2590877
+  },
+  "null_counts": {
+    "null_DISCLAIMER": 9999999,
+    "null_EPOCH_SECONDS": 0,
+    "null_CURRENCY_CODE": 0,
+    "null_USD_AMOUNT": 0,
+    "null_ORDERING_BIC8": 0,
+    "null_BENEFICIARY_BIC8": 0,
+    "null_BIC8_PATH": 0,
+    "null_TOTAL_DURATION": 0,
+    "null_CONTINUITY_QFLAG": 0,
+    "null_CURRENCY_CONVERSION_COUNT": 0,
+    "null_PARTICIPANT_COUNT": 0,
+    "null_TRANSACTION_TYPE_CODE": 0,
+    "null_ORDERING_ACCOUNT": 0,
+    "null_BENEFICIARY_ACCOUNT": 0,
+    "null_ORDERING_DETAILS": 0,
+    "null_ORDERING_TOKENS": 0,
+    "null_BENEFICIARY_DETAILS": 0,
+    "null_BENEFICIARY_TOKENS": 0,
+    "null_ORDERING_TYPE": 0,
+    "null_BENEFICIARY_TYPE": 0,
+    "null_ANOMALY_TYPE": 9992994
+  },
+  "anomaly_type": [
+    {
+      "category": "NORMAL (NULL)",
+      "cnt": 9992994,
+      "pct": 99.9299,
+      "avg_usd": 79598.27,
+      "med_usd": 3662.58,
+      "total_usd": 795425005045.45,
+      "avg_dur": 771.25,
+      "med_dur": 56.0
+    },
+    {
+      "category": "ROMANCE_SCAM",
+      "cnt": 2476,
+      "pct": 0.0248,
+      "avg_usd": 1958.35,
+      "med_usd": 109.45,
+      "total_usd": 4848880.18,
+      "avg_dur": 1557.92,
+      "med_dur": 1148.0
+    },
+    {
+      "category": "FAT_FINGER_MISTAKE",
+      "cnt": 1940,
+      "pct": 0.0194,
+      "avg_usd": 90277010.88,
+      "med_usd": 260241.23,
+      "total_usd": 175137401113.81,
+      "avg_dur": 740.95,
+      "med_dur": 53.0
+    },
+    {
+      "category": "CEO_SCAM",
+      "cnt": 945,
+      "pct": 0.0095,
+      "avg_usd": 1384870.43,
+      "med_usd": 20602.13,
+      "total_usd": 1308702556.27,
+      "avg_dur": 1178.92,
+      "med_dur": 741.0
+    },
+    {
+      "category": "DUPLICATE_PAYMENT",
+      "cnt": 679,
+      "pct": 0.0068,
+      "avg_usd": 142347.9,
+      "med_usd": 2888.63,
+      "total_usd": 96654221.34,
+      "avg_dur": 921.24,
+      "med_dur": 261.0
+    },
+    {
+      "category": "ACCOUNT_REPLACEMENT_SCAM",
+      "cnt": 649,
+      "pct": 0.0065,
+      "avg_usd": 57325.27,
+      "med_usd": 3977.3,
+      "total_usd": 37204099.47,
+      "avg_dur": 1159.1,
+      "med_dur": 571.0
+    },
+    {
+      "category": "CUSTOMER_RECALL",
+      "cnt": 317,
+      "pct": 0.0032,
+      "avg_usd": 98436.8,
+      "med_usd": 3163.97,
+      "total_usd": 31204465.59,
+      "avg_dur": 719.44,
+      "med_dur": 53.0
+    }
+  ],
+  "transaction_type": [
+    {
+      "TRANSACTION_TYPE_CODE": "Direct",
+      "cnt": 6323280,
+      "pct": 63.2328,
+      "avg_usd": 99871.87,
+      "med_usd": 3656.98,
+      "avg_dur": 663.31,
+      "med_dur": 39.0,
+      "avg_participants": 2.0,
+      "avg_fx": 0.843
+    },
+    {
+      "TRANSACTION_TYPE_CODE": "Indirect",
+      "cnt": 3260758,
+      "pct": 32.6076,
+      "avg_usd": 92840.16,
+      "med_usd": 3604.77,
+      "avg_dur": 961.73,
+      "med_dur": 281.0,
+      "avg_participants": 3.582,
+      "avg_fx": 2.205
+    },
+    {
+      "TRANSACTION_TYPE_CODE": "Covered",
+      "cnt": 415962,
+      "pct": 4.1596,
+      "avg_usd": 90859.14,
+      "med_usd": 4250.8,
+      "avg_dur": 925.16,
+      "med_dur": 383.0,
+      "avg_participants": 3.582,
+      "avg_fx": 2.187
+    }
+  ],
+  "continuity_qflag": [
+    {
+      "CONTINUITY_QFLAG": "Y",
+      "cnt": 9232796,
+      "pct": 92.328,
+      "avg_usd": 96221.65,
+      "avg_dur": 762.94,
+      "avg_participants": 2.537
+    },
+    {
+      "CONTINUITY_QFLAG": "N",
+      "cnt": 767204,
+      "pct": 7.672,
+      "avg_usd": 109027.27,
+      "avg_dur": 874.68,
+      "avg_participants": 3.121
+    }
+  ],
+  "party_pair": [
+    {
+      "ORDERING_TYPE": "B",
+      "BENEFICIARY_TYPE": "C",
+      "flow_type": "B2C",
+      "cnt": 5603692,
+      "pct": 56.0369,
+      "avg_usd": 40992.03,
+      "med_usd": 3119.0,
+      "total_usd": 229706700664.48
+    },
+    {
+      "ORDERING_TYPE": "B",
+      "BENEFICIARY_TYPE": "B",
+      "flow_type": "B2B",
+      "cnt": 2270945,
+      "pct": 22.7095,
+      "avg_usd": 310506.47,
+      "med_usd": 22887.71,
+      "total_usd": 705143117536.02
+    },
+    {
+      "ORDERING_TYPE": "C",
+      "BENEFICIARY_TYPE": "C",
+      "flow_type": "C2C",
+      "cnt": 1514758,
+      "pct": 15.1476,
+      "avg_usd": 8311.4,
+      "med_usd": 463.17,
+      "total_usd": 12589760286.23
+    },
+    {
+      "ORDERING_TYPE": "C",
+      "BENEFICIARY_TYPE": "B",
+      "flow_type": "C2B",
+      "cnt": 610605,
+      "pct": 6.1061,
+      "avg_usd": 40290.27,
+      "med_usd": 3229.06,
+      "total_usd": 24601441895.35
+    }
+  ],
+  "currencies": [
+    {
+      "CURRENCY_CODE": "EUR",
+      "cnt": 3198639,
+      "pct": 31.9864,
+      "avg_usd": 111720.62,
+      "med_usd": 4603.62,
+      "total_usd": 357353921864.36
+    },
+    {
+      "CURRENCY_CODE": "USD",
+      "cnt": 1702991,
+      "pct": 17.0299,
+      "avg_usd": 129552.92,
+      "med_usd": 6373.37,
+      "total_usd": 220627460254.86
+    },
+    {
+      "CURRENCY_CODE": "GBP",
+      "cnt": 873781,
+      "pct": 8.7378,
+      "avg_usd": 77980.97,
+      "med_usd": 3586.12,
+      "total_usd": 68138291640.45
+    },
+    {
+      "CURRENCY_CODE": "CHF",
+      "cnt": 803898,
+      "pct": 8.039,
+      "avg_usd": 111321.04,
+      "med_usd": 6098.55,
+      "total_usd": 89490764615.04
+    },
+    {
+      "CURRENCY_CODE": "SGD",
+      "cnt": 367648,
+      "pct": 3.6765,
+      "avg_usd": 123235.38,
+      "med_usd": 6404.81,
+      "total_usd": 45307240761.35
+    },
+    {
+      "CURRENCY_CODE": "CNY",
+      "cnt": 324963,
+      "pct": 3.2496,
+      "avg_usd": 25518.36,
+      "med_usd": 1347.22,
+      "total_usd": 8292523711.7
+    },
+    {
+      "CURRENCY_CODE": "HKD",
+      "cnt": 197458,
+      "pct": 1.9746,
+      "avg_usd": 130343.83,
+      "med_usd": 4892.98,
+      "total_usd": 25737432191.75
+    },
+    {
+      "CURRENCY_CODE": "JPY",
+      "cnt": 184251,
+      "pct": 1.8425,
+      "avg_usd": 54053.93,
+      "med_usd": 2812.37,
+      "total_usd": 9959490372.14
+    },
+    {
+      "CURRENCY_CODE": "AUD",
+      "cnt": 166877,
+      "pct": 1.6688,
+      "avg_usd": 102629.64,
+      "med_usd": 4623.23,
+      "total_usd": 17126526741.16
+    },
+    {
+      "CURRENCY_CODE": "CAD",
+      "cnt": 111146,
+      "pct": 1.1115,
+      "avg_usd": 132531.17,
+      "med_usd": 4706.4,
+      "total_usd": 14730309622.08
+    },
+    {
+      "CURRENCY_CODE": "KRW",
+      "cnt": 108765,
+      "pct": 1.0877,
+      "avg_usd": 52559.41,
+      "med_usd": 2859.34,
+      "total_usd": 5716624226.71
+    },
+    {
+      "CURRENCY_CODE": "AED",
+      "cnt": 97143,
+      "pct": 0.9714,
+      "avg_usd": 76659.91,
+      "med_usd": 4206.09,
+      "total_usd": 7446973579.88
+    },
+    {
+      "CURRENCY_CODE": "SAR",
+      "cnt": 97116,
+      "pct": 0.9712,
+      "avg_usd": 70308.67,
+      "med_usd": 3309.57,
+      "total_usd": 6828097144.06
+    },
+    {
+      "CURRENCY_CODE": "UAH",
+      "cnt": 69006,
+      "pct": 0.6901,
+      "avg_usd": 10239.32,
+      "med_usd": 221.91,
+      "total_usd": 706574580.94
+    },
+    {
+      "CURRENCY_CODE": "RUB",
+      "cnt": 65105,
+      "pct": 0.6511,
+      "avg_usd": 34045.13,
+      "med_usd": 1673.73,
+      "total_usd": 2216507899.2
+    },
+    {
+      "CURRENCY_CODE": "DKK",
+      "cnt": 63387,
+      "pct": 0.6339,
+      "avg_usd": 106682.65,
+      "med_usd": 6270.08,
+      "total_usd": 6762292950.19
+    },
+    {
+      "CURRENCY_CODE": "PAB",
+      "cnt": 61600,
+      "pct": 0.616,
+      "avg_usd": 43268.81,
+      "med_usd": 1023.64,
+      "total_usd": 2665358662.84
+    },
+    {
+      "CURRENCY_CODE": "QAR",
+      "cnt": 59848,
+      "pct": 0.5985,
+      "avg_usd": 72155.38,
+      "med_usd": 3413.5,
+      "total_usd": 4318355140.48
+    },
+    {
+      "CURRENCY_CODE": "TRY",
+      "cnt": 55351,
+      "pct": 0.5535,
+      "avg_usd": 21726.5,
+      "med_usd": 1227.3,
+      "total_usd": 1202583389.57
+    },
+    {
+      "CURRENCY_CODE": "MYR",
+      "cnt": 54058,
+      "pct": 0.5406,
+      "avg_usd": 22408.7,
+      "med_usd": 1028.47,
+      "total_usd": 1211369533.03
+    },
+    {
+      "CURRENCY_CODE": "INR",
+      "cnt": 51163,
+      "pct": 0.5116,
+      "avg_usd": 8628.03,
+      "med_usd": 354.85,
+      "total_usd": 441436056.02
+    },
+    {
+      "CURRENCY_CODE": "ILS",
+      "cnt": 49045,
+      "pct": 0.4905,
+      "avg_usd": 426227.01,
+      "med_usd": 3358.98,
+      "total_usd": 20904303703.77
+    },
+    {
+      "CURRENCY_CODE": "ARS",
+      "cnt": 46494,
+      "pct": 0.4649,
+      "avg_usd": 20521.51,
+      "med_usd": 1117.18,
+      "total_usd": 954126895.84
+    },
+    {
+      "CURRENCY_CODE": "ZAR",
+      "cnt": 44481,
+      "pct": 0.4448,
+      "avg_usd": 28849.44,
+      "med_usd": 717.67,
+      "total_usd": 1283251743.16
+    },
+    {
+      "CURRENCY_CODE": "KYD",
+      "cnt": 41531,
+      "pct": 0.4153,
+      "avg_usd": 226072.61,
+      "med_usd": 9137.57,
+      "total_usd": 9389021485.39
+    },
+    {
+      "CURRENCY_CODE": "PLN",
+      "cnt": 40386,
+      "pct": 0.4039,
+      "avg_usd": 36672.99,
+      "med_usd": 2138.95,
+      "total_usd": 1481075456.4
+    },
+    {
+      "CURRENCY_CODE": "CZK",
+      "cnt": 39013,
+      "pct": 0.3901,
+      "avg_usd": 51104.06,
+      "med_usd": 2532.14,
+      "total_usd": 1993722807.5
+    },
+    {
+      "CURRENCY_CODE": "TWD",
+      "cnt": 38116,
+      "pct": 0.3812,
+      "avg_usd": 17401.06,
+      "med_usd": 680.81,
+      "total_usd": 663258669.55
+    },
+    {
+      "CURRENCY_CODE": "BHD",
+      "cnt": 35322,
+      "pct": 0.3532,
+      "avg_usd": 65091.25,
+      "med_usd": 2570.89,
+      "total_usd": 2299153033.25
+    },
+    {
+      "CURRENCY_CODE": "HUF",
+      "cnt": 34676,
+      "pct": 0.3468,
+      "avg_usd": 54956.6,
+      "med_usd": 3199.77,
+      "total_usd": 1905674962.91
+    },
+    {
+      "CURRENCY_CODE": "SEK",
+      "cnt": 32872,
+      "pct": 0.3287,
+      "avg_usd": 87001.71,
+      "med_usd": 5150.87,
+      "total_usd": 2859920184.49
+    },
+    {
+      "CURRENCY_CODE": "BSD",
+      "cnt": 31971,
+      "pct": 0.3197,
+      "avg_usd": 68819.68,
+      "med_usd": 3586.01,
+      "total_usd": 2200233859.16
+    },
+    {
+      "CURRENCY_CODE": "VND",
+      "cnt": 29570,
+      "pct": 0.2957,
+      "avg_usd": 11894.45,
+      "med_usd": 416.58,
+      "total_usd": 351718876.53
+    },
+    {
+      "CURRENCY_CODE": "RON",
+      "cnt": 29348,
+      "pct": 0.2935,
+      "avg_usd": 327849.99,
+      "med_usd": 2212.05,
+      "total_usd": 9621741472.7
+    },
+    {
+      "CURRENCY_CODE": "NZD",
+      "cnt": 28879,
+      "pct": 0.2888,
+      "avg_usd": 51424.81,
+      "med_usd": 1805.3,
+      "total_usd": 1485097007.98
+    },
+    {
+      "CURRENCY_CODE": "COP",
+      "cnt": 28670,
+      "pct": 0.2867,
+      "avg_usd": 12819.14,
+      "med_usd": 630.94,
+      "total_usd": 367524726.62
+    },
+    {
+      "CURRENCY_CODE": "CLP",
+      "cnt": 27854,
+      "pct": 0.2785,
+      "avg_usd": 24758.8,
+      "med_usd": 1120.54,
+      "total_usd": 689631487.05
+    },
+    {
+      "CURRENCY_CODE": "BWP",
+      "cnt": 27278,
+      "pct": 0.2728,
+      "avg_usd": 29611.75,
+      "med_usd": 984.7,
+      "total_usd": 807749362.96
+    },
+    {
+      "CURRENCY_CODE": "XOF",
+      "cnt": 25887,
+      "pct": 0.2589,
+      "avg_usd": 7251.82,
+      "med_usd": 145.2,
+      "total_usd": 187727967.07
+    },
+    {
+      "CURRENCY_CODE": "BBD",
+      "cnt": 24350,
+      "pct": 0.2435,
+      "avg_usd": 28129.12,
+      "med_usd": 1854.3,
+      "total_usd": 684944046.46
+    },
+    {
+      "CURRENCY_CODE": "ALL",
+      "cnt": 24281,
+      "pct": 0.2428,
+      "avg_usd": 14873.95,
+      "med_usd": 820.05,
+      "total_usd": 361154332.72
+    },
+    {
+      "CURRENCY_CODE": "MUR",
+      "cnt": 22811,
+      "pct": 0.2281,
+      "avg_usd": 15358.53,
+      "med_usd": 327.03,
+      "total_usd": 350343480.99
+    },
+    {
+      "CURRENCY_CODE": "KZT",
+      "cnt": 22494,
+      "pct": 0.2249,
+      "avg_usd": 35660.24,
+      "med_usd": 1956.97,
+      "total_usd": 802141431.11
+    },
+    {
+      "CURRENCY_CODE": "BDT",
+      "cnt": 21979,
+      "pct": 0.2198,
+      "avg_usd": 6151.61,
+      "med_usd": 200.4,
+      "total_usd": 135206218.81
+    },
+    {
+      "CURRENCY_CODE": "NOK",
+      "cnt": 21256,
+      "pct": 0.2126,
+      "avg_usd": 108268.37,
+      "med_usd": 6185.23,
+      "total_usd": 2301352411.25
+    },
+    {
+      "CURRENCY_CODE": "XCD",
+      "cnt": 20152,
+      "pct": 0.2015,
+      "avg_usd": 18665.56,
+      "med_usd": 955.02,
+      "total_usd": 376148408.26
+    },
+    {
+      "CURRENCY_CODE": "BRL",
+      "cnt": 20131,
+      "pct": 0.2013,
+      "avg_usd": 18806.62,
+      "med_usd": 948.43,
+      "total_usd": 378595990.07
+    },
+    {
+      "CURRENCY_CODE": "MXN",
+      "cnt": 18883,
+      "pct": 0.1888,
+      "avg_usd": 18316.86,
+      "med_usd": 883.33,
+      "total_usd": 345877185.21
+    },
+    {
+      "CURRENCY_CODE": "KWD",
+      "cnt": 18195,
+      "pct": 0.182,
+      "avg_usd": 40117.03,
+      "med_usd": 1735.59,
+      "total_usd": 729929297.82
+    },
+    {
+      "CURRENCY_CODE": "GTQ",
+      "cnt": 15047,
+      "pct": 0.1505,
+      "avg_usd": 8674.25,
+      "med_usd": 422.42,
+      "total_usd": 130521448.18
+    },
+    {
+      "CURRENCY_CODE": "LKR",
+      "cnt": 14505,
+      "pct": 0.1451,
+      "avg_usd": 13883.48,
+      "med_usd": 465.78,
+      "total_usd": 201379866.6
+    },
+    {
+      "CURRENCY_CODE": "LBP",
+      "cnt": 13795,
+      "pct": 0.138,
+      "avg_usd": 15504.83,
+      "med_usd": 379.08,
+      "total_usd": 213889171.59
+    },
+    {
+      "CURRENCY_CODE": "MOP",
+      "cnt": 13099,
+      "pct": 0.131,
+      "avg_usd": 74026.05,
+      "med_usd": 3056.34,
+      "total_usd": 969667223.23
+    },
+    {
+      "CURRENCY_CODE": "PYG",
+      "cnt": 12431,
+      "pct": 0.1243,
+      "avg_usd": 14383.77,
+      "med_usd": 919.89,
+      "total_usd": 178804586.46
+    },
+    {
+      "CURRENCY_CODE": "ANG",
+      "cnt": 12089,
+      "pct": 0.1209,
+      "avg_usd": 32031.21,
+      "med_usd": 1999.99,
+      "total_usd": 387225241.03
+    },
+    {
+      "CURRENCY_CODE": "IQD",
+      "cnt": 11844,
+      "pct": 0.1184,
+      "avg_usd": 11591.94,
+      "med_usd": 518.09,
+      "total_usd": 137294922.33
+    },
+    {
+      "CURRENCY_CODE": "KHR",
+      "cnt": 11798,
+      "pct": 0.118,
+      "avg_usd": 6863.53,
+      "med_usd": 237.86,
+      "total_usd": 80975872.07
+    },
+    {
+      "CURRENCY_CODE": "IDR",
+      "cnt": 10510,
+      "pct": 0.1051,
+      "avg_usd": 12571.51,
+      "med_usd": 464.48,
+      "total_usd": 132126601.94
+    },
+    {
+      "CURRENCY_CODE": "THB",
+      "cnt": 9729,
+      "pct": 0.0973,
+      "avg_usd": 15941.93,
+      "med_usd": 1060.83,
+      "total_usd": 155098996.09
+    },
+    {
+      "CURRENCY_CODE": "UGX",
+      "cnt": 9666,
+      "pct": 0.0967,
+      "avg_usd": 6415.06,
+      "med_usd": 107.98,
+      "total_usd": 62007953.09
+    },
+    {
+      "CURRENCY_CODE": "BGN",
+      "cnt": 9649,
+      "pct": 0.0965,
+      "avg_usd": 38374.67,
+      "med_usd": 2134.78,
+      "total_usd": 370277223.0
+    },
+    {
+      "CURRENCY_CODE": "ISK",
+      "cnt": 9634,
+      "pct": 0.0963,
+      "avg_usd": 57914.44,
+      "med_usd": 3921.52,
+      "total_usd": 557947688.45
+    },
+    {
+      "CURRENCY_CODE": "EGP",
+      "cnt": 9282,
+      "pct": 0.0928,
+      "avg_usd": 6882.95,
+      "med_usd": 252.52,
+      "total_usd": 63887544.88
+    },
+    {
+      "CURRENCY_CODE": "BMD",
+      "cnt": 8877,
+      "pct": 0.0888,
+      "avg_usd": 116999.5,
+      "med_usd": 5438.57,
+      "total_usd": 1038604573.9
+    },
+    {
+      "CURRENCY_CODE": "PHP",
+      "cnt": 8637,
+      "pct": 0.0864,
+      "avg_usd": 15878.92,
+      "med_usd": 465.41,
+      "total_usd": 137146210.98
+    },
+    {
+      "CURRENCY_CODE": "NGN",
+      "cnt": 8566,
+      "pct": 0.0857,
+      "avg_usd": 4628.65,
+      "med_usd": 58.94,
+      "total_usd": 39649018.9
+    },
+    {
+      "CURRENCY_CODE": "DOP",
+      "cnt": 8537,
+      "pct": 0.0854,
+      "avg_usd": 21623.62,
+      "med_usd": 1454.92,
+      "total_usd": 184600824.05
+    },
+    {
+      "CURRENCY_CODE": "DZD",
+      "cnt": 8154,
+      "pct": 0.0815,
+      "avg_usd": 8213.56,
+      "med_usd": 313.24,
+      "total_usd": 66973407.92
+    },
+    {
+      "CURRENCY_CODE": "PEN",
+      "cnt": 7934,
+      "pct": 0.0793,
+      "avg_usd": 13896.96,
+      "med_usd": 314.45,
+      "total_usd": 110258461.82
+    },
+    {
+      "CURRENCY_CODE": "LAK",
+      "cnt": 7560,
+      "pct": 0.0756,
+      "avg_usd": 5729.46,
+      "med_usd": 111.84,
+      "total_usd": 43314683.72
+    },
+    {
+      "CURRENCY_CODE": "JOD",
+      "cnt": 7130,
+      "pct": 0.0713,
+      "avg_usd": 12219.22,
+      "med_usd": 422.26,
+      "total_usd": 87123017.72
+    },
+    {
+      "CURRENCY_CODE": "XPF",
+      "cnt": 6968,
+      "pct": 0.0697,
+      "avg_usd": 15907.01,
+      "med_usd": 877.16,
+      "total_usd": 110840012.04
+    },
+    {
+      "CURRENCY_CODE": "AOA",
+      "cnt": 6916,
+      "pct": 0.0692,
+      "avg_usd": 14267.29,
+      "med_usd": 228.46,
+      "total_usd": 98672569.34
+    },
+    {
+      "CURRENCY_CODE": "MMK",
+      "cnt": 6890,
+      "pct": 0.0689,
+      "avg_usd": 4513.8,
+      "med_usd": 174.16,
+      "total_usd": 31100058.81
+    },
+    {
+      "CURRENCY_CODE": "OMR",
+      "cnt": 6799,
+      "pct": 0.068,
+      "avg_usd": 38894.02,
+      "med_usd": 2316.39,
+      "total_usd": 264440460.27
+    },
+    {
+      "CURRENCY_CODE": "UYU",
+      "cnt": 6083,
+      "pct": 0.0608,
+      "avg_usd": 42048.3,
+      "med_usd": 3367.3,
+      "total_usd": 255779805.68
+    },
+    {
+      "CURRENCY_CODE": "TND",
+      "cnt": 5904,
+      "pct": 0.059,
+      "avg_usd": 14422.04,
+      "med_usd": 447.92,
+      "total_usd": 85147725.97
+    },
+    {
+      "CURRENCY_CODE": "PGK",
+      "cnt": 5751,
+      "pct": 0.0575,
+      "avg_usd": 7734.02,
+      "med_usd": 268.0,
+      "total_usd": 44478369.7
+    },
+    {
+      "CURRENCY_CODE": "XAF",
+      "cnt": 5278,
+      "pct": 0.0528,
+      "avg_usd": 13103.6,
+      "med_usd": 303.06,
+      "total_usd": 69160782.57
+    },
+    {
+      "CURRENCY_CODE": "MNT",
+      "cnt": 5167,
+      "pct": 0.0517,
+      "avg_usd": 44799.13,
+      "med_usd": 1294.2,
+      "total_usd": 231477096.74
+    },
+    {
+      "CURRENCY_CODE": "GHS",
+      "cnt": 5035,
+      "pct": 0.0504,
+      "avg_usd": 7763.7,
+      "med_usd": 220.83,
+      "total_usd": 39090209.2
+    },
+    {
+      "CURRENCY_CODE": "LYD",
+      "cnt": 4877,
+      "pct": 0.0488,
+      "avg_usd": 13495.06,
+      "med_usd": 707.74,
+      "total_usd": 65815385.14
+    },
+    {
+      "CURRENCY_CODE": "AWG",
+      "cnt": 4752,
+      "pct": 0.0475,
+      "avg_usd": 69222.42,
+      "med_usd": 4475.48,
+      "total_usd": 328944961.74
+    },
+    {
+      "CURRENCY_CODE": "BYN",
+      "cnt": 4583,
+      "pct": 0.0458,
+      "avg_usd": 14565.54,
+      "med_usd": 624.34,
+      "total_usd": 66753859.39
+    },
+    {
+      "CURRENCY_CODE": "NAD",
+      "cnt": 4489,
+      "pct": 0.0449,
+      "avg_usd": 11408.99,
+      "med_usd": 278.22,
+      "total_usd": 51214968.09
+    },
+    {
+      "CURRENCY_CODE": "UZS",
+      "cnt": 4481,
+      "pct": 0.0448,
+      "avg_usd": 10389.26,
+      "med_usd": 272.11,
+      "total_usd": 46554284.9
+    },
+    {
+      "CURRENCY_CODE": "AZN",
+      "cnt": 4236,
+      "pct": 0.0424,
+      "avg_usd": 39898.93,
+      "med_usd": 855.07,
+      "total_usd": 169011878.71
+    },
+    {
+      "CURRENCY_CODE": "RWF",
+      "cnt": 4198,
+      "pct": 0.042,
+      "avg_usd": 66985.29,
+      "med_usd": 69.15,
+      "total_usd": 281204260.42
+    },
+    {
+      "CURRENCY_CODE": "ZWL",
+      "cnt": 4189,
+      "pct": 0.0419,
+      "avg_usd": 11317.67,
+      "med_usd": 307.6,
+      "total_usd": 47409711.04
+    },
+    {
+      "CURRENCY_CODE": "CVE",
+      "cnt": 4118,
+      "pct": 0.0412,
+      "avg_usd": 5630.51,
+      "med_usd": 260.5,
+      "total_usd": 23186448.97
+    },
+    {
+      "CURRENCY_CODE": "YER",
+      "cnt": 4110,
+      "pct": 0.0411,
+      "avg_usd": 4634.23,
+      "med_usd": 50.56,
+      "total_usd": 19046692.39
+    },
+    {
+      "CURRENCY_CODE": "KES",
+      "cnt": 4031,
+      "pct": 0.0403,
+      "avg_usd": 9379.45,
+      "med_usd": 207.84,
+      "total_usd": 37808569.32
+    },
+    {
+      "CURRENCY_CODE": "AMD",
+      "cnt": 3941,
+      "pct": 0.0394,
+      "avg_usd": 42858.1,
+      "med_usd": 923.23,
+      "total_usd": 168903786.13
+    },
+    {
+      "CURRENCY_CODE": "MAD",
+      "cnt": 3866,
+      "pct": 0.0387,
+      "avg_usd": 8771.93,
+      "med_usd": 402.84,
+      "total_usd": 33912272.69
+    },
+    {
+      "CURRENCY_CODE": "BAM",
+      "cnt": 3775,
+      "pct": 0.0378,
+      "avg_usd": 38246.92,
+      "med_usd": 1096.41,
+      "total_usd": 144382119.63
+    },
+    {
+      "CURRENCY_CODE": "HNL",
+      "cnt": 3754,
+      "pct": 0.0375,
+      "avg_usd": 7910.52,
+      "med_usd": 300.55,
+      "total_usd": 29696099.95
+    },
+    {
+      "CURRENCY_CODE": "CRC",
+      "cnt": 3695,
+      "pct": 0.0369,
+      "avg_usd": 64635.94,
+      "med_usd": 1963.79,
+      "total_usd": 238829806.24
+    },
+    {
+      "CURRENCY_CODE": "GNF",
+      "cnt": 3607,
+      "pct": 0.0361,
+      "avg_usd": 5696.16,
+      "med_usd": 116.59,
+      "total_usd": 20546048.1
+    },
+    {
+      "CURRENCY_CODE": "TJS",
+      "cnt": 3515,
+      "pct": 0.0352,
+      "avg_usd": 5121.47,
+      "med_usd": 236.31,
+      "total_usd": 18001976.65
+    },
+    {
+      "CURRENCY_CODE": "MKD",
+      "cnt": 3506,
+      "pct": 0.0351,
+      "avg_usd": 38220.08,
+      "med_usd": 688.11,
+      "total_usd": 133999611.89
+    },
+    {
+      "CURRENCY_CODE": "FJD",
+      "cnt": 3415,
+      "pct": 0.0342,
+      "avg_usd": 6956.81,
+      "med_usd": 397.09,
+      "total_usd": 23757516.98
+    },
+    {
+      "CURRENCY_CODE": "RSD",
+      "cnt": 3210,
+      "pct": 0.0321,
+      "avg_usd": 16343.11,
+      "med_usd": 1476.88,
+      "total_usd": 52461392.49
+    },
+    {
+      "CURRENCY_CODE": "SDG",
+      "cnt": 3158,
+      "pct": 0.0316,
+      "avg_usd": 4911.79,
+      "med_usd": 120.62,
+      "total_usd": 15511432.41
+    },
+    {
+      "CURRENCY_CODE": "BZD",
+      "cnt": 3072,
+      "pct": 0.0307,
+      "avg_usd": 21377.66,
+      "med_usd": 1131.98,
+      "total_usd": 65672163.17
+    },
+    {
+      "CURRENCY_CODE": "MVR",
+      "cnt": 3018,
+      "pct": 0.0302,
+      "avg_usd": 12895.68,
+      "med_usd": 541.36,
+      "total_usd": 38919160.07
+    },
+    {
+      "CURRENCY_CODE": "CUP",
+      "cnt": 3014,
+      "pct": 0.0301,
+      "avg_usd": 9166.76,
+      "med_usd": 452.13,
+      "total_usd": 27628612.49
+    },
+    {
+      "CURRENCY_CODE": "PKR",
+      "cnt": 2770,
+      "pct": 0.0277,
+      "avg_usd": 22230.26,
+      "med_usd": 180.74,
+      "total_usd": 61577811.31
+    },
+    {
+      "CURRENCY_CODE": "ETB",
+      "cnt": 2739,
+      "pct": 0.0274,
+      "avg_usd": 12154.14,
+      "med_usd": 129.41,
+      "total_usd": 33290191.37
+    },
+    {
+      "CURRENCY_CODE": "GEL",
+      "cnt": 2645,
+      "pct": 0.0265,
+      "avg_usd": 12461.63,
+      "med_usd": 542.86,
+      "total_usd": 32961010.29
+    },
+    {
+      "CURRENCY_CODE": "VES",
+      "cnt": 2496,
+      "pct": 0.025,
+      "avg_usd": 6929.51,
+      "med_usd": 299.41,
+      "total_usd": 17296050.42
+    },
+    {
+      "CURRENCY_CODE": "NIO",
+      "cnt": 2446,
+      "pct": 0.0245,
+      "avg_usd": 7182.32,
+      "med_usd": 272.54,
+      "total_usd": 17567945.96
+    },
+    {
+      "CURRENCY_CODE": "TOP",
+      "cnt": 2390,
+      "pct": 0.0239,
+      "avg_usd": 10787.71,
+      "med_usd": 267.51,
+      "total_usd": 25782638.05
+    },
+    {
+      "CURRENCY_CODE": "SSP",
+      "cnt": 2286,
+      "pct": 0.0229,
+      "avg_usd": 6188.74,
+      "med_usd": 90.96,
+      "total_usd": 14147463.28
+    },
+    {
+      "CURRENCY_CODE": "SLL",
+      "cnt": 2007,
+      "pct": 0.0201,
+      "avg_usd": 6192.79,
+      "med_usd": 75.13,
+      "total_usd": 12428926.37
+    },
+    {
+      "CURRENCY_CODE": "MDL",
+      "cnt": 1953,
+      "pct": 0.0195,
+      "avg_usd": 12889.77,
+      "med_usd": 660.11,
+      "total_usd": 25173725.54
+    },
+    {
+      "CURRENCY_CODE": "BND",
+      "cnt": 1874,
+      "pct": 0.0187,
+      "avg_usd": 37829.03,
+      "med_usd": 2632.98,
+      "total_usd": 70891606.22
+    },
+    {
+      "CURRENCY_CODE": "TZS",
+      "cnt": 1870,
+      "pct": 0.0187,
+      "avg_usd": 21844.52,
+      "med_usd": 105.78,
+      "total_usd": 40849257.54
+    },
+    {
+      "CURRENCY_CODE": "MRU",
+      "cnt": 1807,
+      "pct": 0.0181,
+      "avg_usd": 9996.88,
+      "med_usd": 288.78,
+      "total_usd": 18064367.01
+    },
+    {
+      "CURRENCY_CODE": "SRD",
+      "cnt": 1803,
+      "pct": 0.018,
+      "avg_usd": 8230.14,
+      "med_usd": 461.17,
+      "total_usd": 14838934.33
+    },
+    {
+      "CURRENCY_CODE": "CDF",
+      "cnt": 1766,
+      "pct": 0.0177,
+      "avg_usd": 23314.52,
+      "med_usd": 1304.55,
+      "total_usd": 41173450.93
+    },
+    {
+      "CURRENCY_CODE": "SYP",
+      "cnt": 1707,
+      "pct": 0.0171,
+      "avg_usd": 7654.22,
+      "med_usd": 97.79,
+      "total_usd": 13065760.62
+    },
+    {
+      "CURRENCY_CODE": "BTN",
+      "cnt": 1587,
+      "pct": 0.0159,
+      "avg_usd": 8707.83,
+      "med_usd": 696.41,
+      "total_usd": 13819332.76
+    },
+    {
+      "CURRENCY_CODE": "IRR",
+      "cnt": 1584,
+      "pct": 0.0158,
+      "avg_usd": 13011.6,
+      "med_usd": 653.23,
+      "total_usd": 20610376.16
+    },
+    {
+      "CURRENCY_CODE": "KGS",
+      "cnt": 1515,
+      "pct": 0.0152,
+      "avg_usd": 12591.33,
+      "med_usd": 313.07,
+      "total_usd": 19075863.19
+    },
+    {
+      "CURRENCY_CODE": "TMT",
+      "cnt": 1392,
+      "pct": 0.0139,
+      "avg_usd": 9696.46,
+      "med_usd": 489.96,
+      "total_usd": 13497472.69
+    },
+    {
+      "CURRENCY_CODE": "BOB",
+      "cnt": 1336,
+      "pct": 0.0134,
+      "avg_usd": 12733.14,
+      "med_usd": 489.22,
+      "total_usd": 17011478.26
+    },
+    {
+      "CURRENCY_CODE": "GYD",
+      "cnt": 1301,
+      "pct": 0.013,
+      "avg_usd": 56370.55,
+      "med_usd": 3324.59,
+      "total_usd": 73338085.5
+    },
+    {
+      "CURRENCY_CODE": "NPR",
+      "cnt": 1083,
+      "pct": 0.0108,
+      "avg_usd": 11205.78,
+      "med_usd": 138.32,
+      "total_usd": 12135857.03
+    },
+    {
+      "CURRENCY_CODE": "DJF",
+      "cnt": 1043,
+      "pct": 0.0104,
+      "avg_usd": 10362.46,
+      "med_usd": 304.89,
+      "total_usd": 10808047.21
+    },
+    {
+      "CURRENCY_CODE": "SBD",
+      "cnt": 1006,
+      "pct": 0.0101,
+      "avg_usd": 7055.05,
+      "med_usd": 282.65,
+      "total_usd": 7097385.29
+    },
+    {
+      "CURRENCY_CODE": "MZN",
+      "cnt": 890,
+      "pct": 0.0089,
+      "avg_usd": 4193.22,
+      "med_usd": 31.72,
+      "total_usd": 3731969.73
+    },
+    {
+      "CURRENCY_CODE": "ZMW",
+      "cnt": 872,
+      "pct": 0.0087,
+      "avg_usd": 6271.6,
+      "med_usd": 122.91,
+      "total_usd": 5468832.5
+    },
+    {
+      "CURRENCY_CODE": "AFN",
+      "cnt": 697,
+      "pct": 0.007,
+      "avg_usd": 6616.49,
+      "med_usd": 85.98,
+      "total_usd": 4611693.27
+    },
+    {
+      "CURRENCY_CODE": "VUV",
+      "cnt": 696,
+      "pct": 0.007,
+      "avg_usd": 13588.75,
+      "med_usd": 631.43,
+      "total_usd": 9457772.26
+    },
+    {
+      "CURRENCY_CODE": "BIF",
+      "cnt": 639,
+      "pct": 0.0064,
+      "avg_usd": 53993.8,
+      "med_usd": 16.35,
+      "total_usd": 34502040.18
+    },
+    {
+      "CURRENCY_CODE": "SHP",
+      "cnt": 563,
+      "pct": 0.0056,
+      "avg_usd": 19711.01,
+      "med_usd": 326.12,
+      "total_usd": 11097297.03
+    },
+    {
+      "CURRENCY_CODE": "TTD",
+      "cnt": 556,
+      "pct": 0.0056,
+      "avg_usd": 16069.87,
+      "med_usd": 1078.44,
+      "total_usd": 8934850.15
+    },
+    {
+      "CURRENCY_CODE": "LRD",
+      "cnt": 516,
+      "pct": 0.0052,
+      "avg_usd": 4643.31,
+      "med_usd": 118.78,
+      "total_usd": 2395949.33
+    },
+    {
+      "CURRENCY_CODE": "GMD",
+      "cnt": 506,
+      "pct": 0.0051,
+      "avg_usd": 747001.79,
+      "med_usd": 116.7,
+      "total_usd": 377982905.29
+    },
+    {
+      "CURRENCY_CODE": "GIP",
+      "cnt": 493,
+      "pct": 0.0049,
+      "avg_usd": 13095.76,
+      "med_usd": 347.4,
+      "total_usd": 6456210.83
+    },
+    {
+      "CURRENCY_CODE": "KMF",
+      "cnt": 466,
+      "pct": 0.0047,
+      "avg_usd": 10851.42,
+      "med_usd": 135.69,
+      "total_usd": 5056763.26
+    },
+    {
+      "CURRENCY_CODE": "JMD",
+      "cnt": 442,
+      "pct": 0.0044,
+      "avg_usd": 8759.39,
+      "med_usd": 710.61,
+      "total_usd": 3871648.62
+    },
+    {
+      "CURRENCY_CODE": "MWK",
+      "cnt": 354,
+      "pct": 0.0035,
+      "avg_usd": 3863.97,
+      "med_usd": 69.37,
+      "total_usd": 1367846.27
+    },
+    {
+      "CURRENCY_CODE": "KPW",
+      "cnt": 303,
+      "pct": 0.003,
+      "avg_usd": 11924.23,
+      "med_usd": 500.0,
+      "total_usd": 3613042.45
+    },
+    {
+      "CURRENCY_CODE": "SZL",
+      "cnt": 303,
+      "pct": 0.003,
+      "avg_usd": 4458.7,
+      "med_usd": 448.8,
+      "total_usd": 1350985.67
+    },
+    {
+      "CURRENCY_CODE": "LSL",
+      "cnt": 288,
+      "pct": 0.0029,
+      "avg_usd": 6765.97,
+      "med_usd": 164.07,
+      "total_usd": 1948598.37
+    },
+    {
+      "CURRENCY_CODE": "HTG",
+      "cnt": 237,
+      "pct": 0.0024,
+      "avg_usd": 7205.8,
+      "med_usd": 209.21,
+      "total_usd": 1707775.14
+    },
+    {
+      "CURRENCY_CODE": "SOS",
+      "cnt": 217,
+      "pct": 0.0022,
+      "avg_usd": 10796.18,
+      "med_usd": 161.96,
+      "total_usd": 2342771.71
+    },
+    {
+      "CURRENCY_CODE": "MGA",
+      "cnt": 203,
+      "pct": 0.002,
+      "avg_usd": 23973.62,
+      "med_usd": 130.63,
+      "total_usd": 4866645.24
+    },
+    {
+      "CURRENCY_CODE": "SCR",
+      "cnt": 170,
+      "pct": 0.0017,
+      "avg_usd": 16661.79,
+      "med_usd": 1532.93,
+      "total_usd": 2832504.15
+    },
+    {
+      "CURRENCY_CODE": "STN",
+      "cnt": 104,
+      "pct": 0.001,
+      "avg_usd": 7744.25,
+      "med_usd": 332.0,
+      "total_usd": 805401.55
+    },
+    {
+      "CURRENCY_CODE": "WST",
+      "cnt": 62,
+      "pct": 0.0006,
+      "avg_usd": 10836.19,
+      "med_usd": 600.99,
+      "total_usd": 671843.93
+    },
+    {
+      "CURRENCY_CODE": "ERN",
+      "cnt": 15,
+      "pct": 0.0001,
+      "avg_usd": 31460.91,
+      "med_usd": 12719.7,
+      "total_usd": 471913.71
+    },
+    {
+      "CURRENCY_CODE": "FKP",
+      "cnt": 5,
+      "pct": 0.0001,
+      "avg_usd": 12161.47,
+      "med_usd": 4010.86,
+      "total_usd": 60807.33
+    },
+    {
+      "CURRENCY_CODE": "SVC",
+      "cnt": 4,
+      "pct": 0.0,
+      "avg_usd": 3296.67,
+      "med_usd": 1424.28,
+      "total_usd": 13186.68
+    }
+  ],
+  "fx_counts": [
+    {
+      "CURRENCY_CONVERSION_COUNT": 0,
+      "cnt": 1086531,
+      "pct": 10.8653,
+      "avg_usd": 114136.34,
+      "avg_dur": 715.61
+    },
+    {
+      "CURRENCY_CONVERSION_COUNT": 1,
+      "cnt": 5895841,
+      "pct": 58.9584,
+      "avg_usd": 96547.57,
+      "avg_dur": 672.09
+    },
+    {
+      "CURRENCY_CONVERSION_COUNT": 2,
+      "cnt": 2017992,
+      "pct": 20.1799,
+      "avg_usd": 88308.15,
+      "avg_dur": 881.84
+    },
+    {
+      "CURRENCY_CONVERSION_COUNT": 3,
+      "cnt": 666605,
+      "pct": 6.6661,
+      "avg_usd": 108934.3,
+      "avg_dur": 1088.93
+    },
+    {
+      "CURRENCY_CONVERSION_COUNT": 4,
+      "cnt": 222062,
+      "pct": 2.2206,
+      "avg_usd": 83341.19,
+      "avg_dur": 1302.67
+    },
+    {
+      "CURRENCY_CONVERSION_COUNT": 5,
+      "cnt": 73963,
+      "pct": 0.7396,
+      "avg_usd": 87676.38,
+      "avg_dur": 1519.3
+    },
+    {
+      "CURRENCY_CONVERSION_COUNT": 6,
+      "cnt": 24675,
+      "pct": 0.2468,
+      "avg_usd": 81286.32,
+      "avg_dur": 1732.69
+    },
+    {
+      "CURRENCY_CONVERSION_COUNT": 7,
+      "cnt": 8263,
+      "pct": 0.0826,
+      "avg_usd": 71675.29,
+      "avg_dur": 1922.04
+    },
+    {
+      "CURRENCY_CONVERSION_COUNT": 8,
+      "cnt": 2681,
+      "pct": 0.0268,
+      "avg_usd": 109049.68,
+      "avg_dur": 2169.04
+    },
+    {
+      "CURRENCY_CONVERSION_COUNT": 9,
+      "cnt": 915,
+      "pct": 0.0092,
+      "avg_usd": 76446.14,
+      "avg_dur": 2415.98
+    },
+    {
+      "CURRENCY_CONVERSION_COUNT": 10,
+      "cnt": 312,
+      "pct": 0.0031,
+      "avg_usd": 51530.65,
+      "avg_dur": 2542.58
+    },
+    {
+      "CURRENCY_CONVERSION_COUNT": 11,
+      "cnt": 109,
+      "pct": 0.0011,
+      "avg_usd": 54789.39,
+      "avg_dur": 2850.4
+    },
+    {
+      "CURRENCY_CONVERSION_COUNT": 12,
+      "cnt": 36,
+      "pct": 0.0004,
+      "avg_usd": 25682.13,
+      "avg_dur": 3085.19
+    },
+    {
+      "CURRENCY_CONVERSION_COUNT": 13,
+      "cnt": 9,
+      "pct": 0.0001,
+      "avg_usd": 92496.61,
+      "avg_dur": 2942.44
+    },
+    {
+      "CURRENCY_CONVERSION_COUNT": 14,
+      "cnt": 1,
+      "pct": 0.0,
+      "avg_usd": 1238.68,
+      "avg_dur": 725.0
+    },
+    {
+      "CURRENCY_CONVERSION_COUNT": 15,
+      "cnt": 3,
+      "pct": 0.0,
+      "avg_usd": 14932.51,
+      "avg_dur": 8400.67
+    },
+    {
+      "CURRENCY_CONVERSION_COUNT": 16,
+      "cnt": 1,
+      "pct": 0.0,
+      "avg_usd": 2035707.0,
+      "avg_dur": 3974.0
+    },
+    {
+      "CURRENCY_CONVERSION_COUNT": 17,
+      "cnt": 1,
+      "pct": 0.0,
+      "avg_usd": 5371.61,
+      "avg_dur": 8146.0
+    }
+  ],
+  "participant_counts": [
+    {
+      "PARTICIPANT_COUNT": 2,
+      "cnt": 6323280,
+      "pct": 63.2328,
+      "avg_usd": 99871.87,
+      "avg_dur": 663.31
+    },
+    {
+      "PARTICIPANT_COUNT": 3,
+      "cnt": 2324319,
+      "pct": 23.2432,
+      "avg_usd": 86949.4,
+      "avg_dur": 840.98
+    },
+    {
+      "PARTICIPANT_COUNT": 4,
+      "cnt": 855386,
+      "pct": 8.5539,
+      "avg_usd": 113277.26,
+      "avg_dur": 1042.04
+    },
+    {
+      "PARTICIPANT_COUNT": 5,
+      "cnt": 314014,
+      "pct": 3.1401,
+      "avg_usd": 83659.99,
+      "avg_dur": 1242.21
+    },
+    {
+      "PARTICIPANT_COUNT": 6,
+      "cnt": 115701,
+      "pct": 1.157,
+      "avg_usd": 83644.86,
+      "avg_dur": 1436.91
+    },
+    {
+      "PARTICIPANT_COUNT": 7,
+      "cnt": 42622,
+      "pct": 0.4262,
+      "avg_usd": 77465.09,
+      "avg_dur": 1648.97
+    },
+    {
+      "PARTICIPANT_COUNT": 8,
+      "cnt": 15481,
+      "pct": 0.1548,
+      "avg_usd": 97575.06,
+      "avg_dur": 1834.23
+    },
+    {
+      "PARTICIPANT_COUNT": 9,
+      "cnt": 5758,
+      "pct": 0.0576,
+      "avg_usd": 68601.53,
+      "avg_dur": 2023.56
+    },
+    {
+      "PARTICIPANT_COUNT": 10,
+      "cnt": 2205,
+      "pct": 0.0221,
+      "avg_usd": 124192.9,
+      "avg_dur": 2244.92
+    },
+    {
+      "PARTICIPANT_COUNT": 11,
+      "cnt": 769,
+      "pct": 0.0077,
+      "avg_usd": 95102.91,
+      "avg_dur": 2456.42
+    },
+    {
+      "PARTICIPANT_COUNT": 12,
+      "cnt": 310,
+      "pct": 0.0031,
+      "avg_usd": 48970.5,
+      "avg_dur": 2650.52
+    },
+    {
+      "PARTICIPANT_COUNT": 13,
+      "cnt": 91,
+      "pct": 0.0009,
+      "avg_usd": 54030.14,
+      "avg_dur": 2720.21
+    },
+    {
+      "PARTICIPANT_COUNT": 14,
+      "cnt": 43,
+      "pct": 0.0004,
+      "avg_usd": 87356.57,
+      "avg_dur": 2711.42
+    },
+    {
+      "PARTICIPANT_COUNT": 15,
+      "cnt": 12,
+      "pct": 0.0001,
+      "avg_usd": 15867.13,
+      "avg_dur": 3121.92
+    },
+    {
+      "PARTICIPANT_COUNT": 16,
+      "cnt": 4,
+      "pct": 0.0,
+      "avg_usd": 181595.13,
+      "avg_dur": 974.25
+    },
+    {
+      "PARTICIPANT_COUNT": 17,
+      "cnt": 2,
+      "pct": 0.0,
+      "avg_usd": 6850.05,
+      "avg_dur": 3424.0
+    },
+    {
+      "PARTICIPANT_COUNT": 19,
+      "cnt": 1,
+      "pct": 0.0,
+      "avg_usd": 2035707.0,
+      "avg_dur": 3974.0
+    },
+    {
+      "PARTICIPANT_COUNT": 21,
+      "cnt": 1,
+      "pct": 0.0,
+      "avg_usd": 24919.95,
+      "avg_dur": 21649.0
+    },
+    {
+      "PARTICIPANT_COUNT": 22,
+      "cnt": 1,
+      "pct": 0.0,
+      "avg_usd": 5371.61,
+      "avg_dur": 8146.0
+    }
+  ]
+}
