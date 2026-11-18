@@ -1,0 +1,1116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Swift UMDAC Datathon 2026 — Interactive &amp; Printable Dashboards</title>
+<style>
+  :root {
+    --navy: #0F2744;
+    --teal: #0D9488;
+    --coral: #DC2626;
+    --bg: #F1F5F9;
+    --card: #FFFFFF;
+    --border: #E2E8F0;
+    --text: #1E293B;
+    --muted: #64748B;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; background: var(--bg); color: var(--text); display: flex; min-height: 100vh; }
+  .sidebar { width: 235px; background: var(--navy); color: #FFF; padding: 20px 14px; display: flex; flex-direction: column; gap: 6px; flex-shrink: 0; position: sticky; top: 0; height: 100vh; }
+  .brand { font-size: 15px; font-weight: 800; letter-spacing: 0.3px; margin-bottom: 4px; color: #F8FAFC; }
+  .brand-sub { font-size: 11px; color: #94A3B8; margin-bottom: 14px; line-height: 1.4; }
+  .nav-btn { background: transparent; border: none; color: #CBD5E1; text-align: left; padding: 9px 12px; border-radius: 6px; font-size: 13px; font-weight: 600; cursor: pointer; transition: 0.15s; }
+  .nav-btn:hover { background: rgba(255,255,255,0.08); color: #FFF; }
+  .nav-btn.active { background: var(--teal); color: #FFF; }
+  .sidebar-footer { margin-top: auto; display: flex; flex-direction: column; gap: 8px; padding-top: 12px; border-top: 1px solid rgba(255,255,255,0.12); }
+  .action-btn { background: #2563EB; color: #FFF; border: none; padding: 9px 12px; border-radius: 6px; font-size: 12.5px; font-weight: 700; cursor: pointer; }
+  .action-btn.sec { background: rgba(255,255,255,0.12); }
+  .main { flex: 1; padding: 22px 28px; max-width: 1220px; margin: 0 auto; }
+  .dash-page { display: none; background: var(--card); border: 1px solid var(--border); border-radius: 10px; padding: 20px 24px; box-shadow: 0 1px 3px rgba(0,0,0,0.05); margin-bottom: 24px; }
+  .dash-page.active, body.show-all .dash-page { display: block; }
+  .dash-header { display: flex; justify-content: space-between; align-items: flex-start; border-bottom: 2px solid var(--navy); padding-bottom: 10px; margin-bottom: 14px; }
+  .dash-tag { font-size: 10px; font-weight: 800; color: var(--teal); letter-spacing: 0.8px; margin-bottom: 3px; }
+  .dash-header h1 { font-size: 20px; color: var(--navy); font-weight: 800; }
+  .dash-sub { font-size: 12px; color: var(--muted); margin-top: 2px; }
+  .page-badge { background: #E2E8F0; color: var(--navy); font-size: 11px; font-weight: 700; padding: 4px 10px; border-radius: 999px; white-space: nowrap; }
+  .kpi-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; margin-bottom: 14px; }
+  .kpi { background: #F8FAFC; border: 1px solid var(--border); border-left: 4px solid var(--teal); border-radius: 6px; padding: 10px 12px; }
+  .kpi-lbl { font-size: 10.5px; font-weight: 700; color: var(--muted); text-transform: uppercase; }
+  .kpi-val { font-size: 20px; font-weight: 800; color: var(--navy); margin: 2px 0; }
+  .kpi-sub { font-size: 11px; color: #475569; }
+  .charts-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-bottom: 14px; }
+  .card { border: 1px solid var(--border); border-radius: 8px; padding: 12px 14px; background: #FFF; }
+  .card-title { font-size: 12.5px; font-weight: 700; color: var(--navy); margin-bottom: 8px; line-height: 1.3; }
+  .chart-svg { width: 100%; height: auto; display: block; }
+  .bar-g:hover rect { opacity: 0.82; }
+  .insights-grid { display: grid; grid-template-columns: 1.2fr 1fr 1fr; gap: 12px; }
+  .insight-box { border-radius: 6px; padding: 10px 12px; font-size: 11.5px; line-height: 1.45; border: 1px solid var(--border); }
+  .rule-box { background: #EFF6FF; border-left: 4px solid #2563EB; }
+  .econ-box { background: #F0FDFA; border-left: 4px solid var(--teal); }
+  .rej-box { background: #FEF2F2; border-left: 4px solid var(--coral); }
+  .box-hdr { font-size: 10.5px; font-weight: 800; text-transform: uppercase; margin-bottom: 4px; color: var(--navy); }
+  @media print {
+    @page { size: A4 landscape; margin: 8mm; }
+    body { background: #FFF; display: block; }
+    .sidebar { display: none !important; }
+    .main { padding: 0; max-width: none; }
+    .dash-page { display: block !important; border: none; box-shadow: none; padding: 8px 10px; margin: 0; page-break-after: always; break-after: page; }
+    .dash-page:last-child { page-break-after: auto; break-after: auto; }
+  }
+</style>
+</head>
+<body>
+  <aside class="sidebar">
+    <div class="brand">SWIFT UMDAC 2026</div>
+    <div class="brand-sub">10,000,000 Rows &bull; $972.04B<br>8 Feature-Group Dashboards</div>
+    <button class="nav-btn active" data-target="d1" onclick="showDash('d1', this)">1. Party Flows</button>
+<button class="nav-btn" data-target="d2" onclick="showDash('d2', this)">2. Currencies</button>
+<button class="nav-btn" data-target="d3" onclick="showDash('d3', this)">3. Geography &amp; Time</button>
+<button class="nav-btn" data-target="d4" onclick="showDash('d4', this)">4. Routing &amp; FX</button>
+<button class="nav-btn" data-target="d5" onclick="showDash('d5', this)">5. Amounts &amp; Outliers</button>
+<button class="nav-btn" data-target="d6" onclick="showDash('d6', this)">6. Settlement Latency</button>
+<button class="nav-btn" data-target="d7" onclick="showDash('d7', this)">7. Anomalies &amp; Fraud</button>
+<button class="nav-btn" data-target="d8" onclick="showDash('d8', this)">8. Text &amp; Tokens</button>
+    <div class="sidebar-footer">
+      <button class="action-btn sec" onclick="toggleAll(this)">Show All 8 Dashboards</button>
+      <button class="action-btn" onclick="window.print()">Export 8-Page PDF</button>
+    </div>
+  </aside>
+  <main class="main">
+    
+    <section id="d1" class="dash-page active">
+      <div class="dash-header">
+        <div>
+          <div class="dash-tag">UMDAC DATATHON 2026 &bull; SWIFT PAYMENTS</div>
+          <h1>Dashboard 1: Party Flow Categories (B2C, B2B, C2C, C2B)</h1>
+          <div class="dash-sub">Feature Group: ORDERING_TYPE, BENEFICIARY_TYPE &amp; ORDERING_ACCOUNT (N = 10,000,000)</div>
+        </div>
+        <div class="page-badge">Dashboard 1 of 8</div>
+      </div>
+
+      <div class="kpi-grid"><div class="kpi"><div class="kpi-lbl">B2C Count Share</div><div class="kpi-val">56.04%</div><div class="kpi-sub">5.60M payroll/payout wires</div></div>
+<div class="kpi"><div class="kpi-lbl">B2B Value Share</div><div class="kpi-val">72.54%</div><div class="kpi-sub">$705.14B of $972.04B total</div></div>
+<div class="kpi"><div class="kpi-lbl">B2B vs C2C Median</div><div class="kpi-val">49.4x</div><div class="kpi-sub">$22,888 vs. $463</div></div>
+<div class="kpi"><div class="kpi-lbl">Account Role Purity</div><div class="kpi-val">100.0%</div><div class="kpi-sub">391,132 / 391,132 pure</div></div></div>
+
+      <div class="charts-grid">
+        <div class="card">
+          <div class="card-title">B2C Dominates Transaction Count (56%), While B2B Dominates USD Value (72.5%)</div>
+          <div class="card-body"><svg viewBox="0 0 480 230" class="chart-svg" xmlns="http://www.w3.org/2000/svg">
+<rect x="44" y="4" width="10" height="10" rx="2" fill="#0F2744"/><text x="58" y="13" font-size="10" fill="#334155">Tx Count Share (%)</text>
+<rect x="199" y="4" width="10" height="10" rx="2" fill="#DC2626"/><text x="213" y="13" font-size="10" fill="#334155">USD Volume Share (%)</text>
+<line x1="44" y1="152.0" x2="464" y2="152.0" stroke="#E2E8F0" stroke-dasharray="3,3"/>
+<text x="38" y="155.5" text-anchor="end" font-size="9.5" fill="#64748B">21%</text>
+<line x1="44" y1="110.0" x2="464" y2="110.0" stroke="#E2E8F0" stroke-dasharray="3,3"/>
+<text x="38" y="113.5" text-anchor="end" font-size="9.5" fill="#64748B">43%</text>
+<line x1="44" y1="68.0" x2="464" y2="68.0" stroke="#E2E8F0" stroke-dasharray="3,3"/>
+<text x="38" y="71.5" text-anchor="end" font-size="9.5" fill="#64748B">64%</text>
+<line x1="44" y1="26.0" x2="464" y2="26.0" stroke="#E2E8F0" stroke-dasharray="3,3"/>
+<text x="38" y="29.5" text-anchor="end" font-size="9.5" fill="#64748B">86%</text>
+<g class="bar-g"><title>B2C: Tx Count Share (%)=56.0%, USD Volume Share (%)=23.6%</title>
+<rect x="68.5" y="84.0" width="26.0" height="110.0" rx="2" fill="#0F2744"/>
+<text x="81.5" y="80.0" text-anchor="middle" font-size="9.5" font-weight="700" fill="#0F2744">56.0%</text>
+<rect x="98.5" y="147.6" width="26.0" height="46.4" rx="2" fill="#DC2626"/>
+<text x="111.5" y="143.6" text-anchor="middle" font-size="9.5" font-weight="700" fill="#DC2626">23.6%</text>
+<text x="96.5" y="214" text-anchor="middle" font-size="10.5" font-weight="700" fill="#1E293B">B2C</text>
+</g>
+<g class="bar-g"><title>B2B: Tx Count Share (%)=22.7%, USD Volume Share (%)=72.5%</title>
+<rect x="173.5" y="149.4" width="26.0" height="44.6" rx="2" fill="#0F2744"/>
+<text x="186.5" y="145.4" text-anchor="middle" font-size="9.5" font-weight="700" fill="#0F2744">22.7%</text>
+<rect x="203.5" y="51.6" width="26.0" height="142.4" rx="2" fill="#DC2626"/>
+<text x="216.5" y="47.6" text-anchor="middle" font-size="9.5" font-weight="700" fill="#DC2626">72.5%</text>
+<text x="201.5" y="214" text-anchor="middle" font-size="10.5" font-weight="700" fill="#1E293B">B2B</text>
+</g>
+<g class="bar-g"><title>C2C: Tx Count Share (%)=15.1%, USD Volume Share (%)=1.3%</title>
+<rect x="278.5" y="164.3" width="26.0" height="29.7" rx="2" fill="#0F2744"/>
+<text x="291.5" y="160.3" text-anchor="middle" font-size="9.5" font-weight="700" fill="#0F2744">15.1%</text>
+<rect x="308.5" y="191.5" width="26.0" height="2.5" rx="2" fill="#DC2626"/>
+<text x="321.5" y="187.5" text-anchor="middle" font-size="9.5" font-weight="700" fill="#DC2626">1.3%</text>
+<text x="306.5" y="214" text-anchor="middle" font-size="10.5" font-weight="700" fill="#1E293B">C2C</text>
+</g>
+<g class="bar-g"><title>C2B: Tx Count Share (%)=6.1%, USD Volume Share (%)=2.5%</title>
+<rect x="383.5" y="182.0" width="26.0" height="12.0" rx="2" fill="#0F2744"/>
+<text x="396.5" y="178.0" text-anchor="middle" font-size="9.5" font-weight="700" fill="#0F2744">6.1%</text>
+<rect x="413.5" y="189.0" width="26.0" height="5.0" rx="2" fill="#DC2626"/>
+<text x="426.5" y="185.0" text-anchor="middle" font-size="9.5" font-weight="700" fill="#DC2626">2.5%</text>
+<text x="411.5" y="214" text-anchor="middle" font-size="10.5" font-weight="700" fill="#1E293B">C2B</text>
+</g>
+</svg></div>
+        </div>
+        <div class="card">
+          <div class="card-title">Median Payment Value by Party Flow (Baseline: Overall Median $3,662)</div>
+          <div class="card-body"><svg viewBox="0 0 500 230" class="chart-svg" xmlns="http://www.w3.org/2000/svg">
+<line x1="175.0" y1="18" x2="175.0" y2="206" stroke="#E2E8F0" stroke-dasharray="3,3"/>
+<text x="175.0" y="224" text-anchor="middle" font-size="9.5" fill="#64748B">6580</text>
+<line x1="255.0" y1="18" x2="255.0" y2="206" stroke="#E2E8F0" stroke-dasharray="3,3"/>
+<text x="255.0" y="224" text-anchor="middle" font-size="9.5" fill="#64748B">13160</text>
+<line x1="335.0" y1="18" x2="335.0" y2="206" stroke="#E2E8F0" stroke-dasharray="3,3"/>
+<text x="335.0" y="224" text-anchor="middle" font-size="9.5" fill="#64748B">19741</text>
+<line x1="415.0" y1="18" x2="415.0" y2="206" stroke="#E2E8F0" stroke-dasharray="3,3"/>
+<text x="415.0" y="224" text-anchor="middle" font-size="9.5" fill="#64748B">26321</text>
+<g class="bar-g"><title>B2C: $3,119.00</title>
+<text x="87" y="45.0" text-anchor="end" font-size="10.5" font-weight="600" fill="#1E293B">B2C</text>
+<rect x="95" y="30.5" width="37.9" height="22.0" rx="3" fill="#0D9488"/>
+<text x="138.9" y="45.0" font-size="10" font-weight="600" fill="#334155">$3,119.00</text>
+</g>
+<g class="bar-g"><title>B2B: $22,887.71</title>
+<text x="87" y="92.0" text-anchor="end" font-size="10.5" font-weight="600" fill="#1E293B">B2B</text>
+<rect x="95" y="77.5" width="278.3" height="22.0" rx="3" fill="#0D9488"/>
+<text x="379.3" y="92.0" font-size="10" font-weight="600" fill="#334155">$22,887.71</text>
+</g>
+<g class="bar-g"><title>C2C: $463.17</title>
+<text x="87" y="139.0" text-anchor="end" font-size="10.5" font-weight="600" fill="#1E293B">C2C</text>
+<rect x="95" y="124.5" width="5.6" height="22.0" rx="3" fill="#0D9488"/>
+<text x="106.6" y="139.0" font-size="10" font-weight="600" fill="#334155">$463.17</text>
+</g>
+<g class="bar-g"><title>C2B: $3,229.06</title>
+<text x="87" y="186.0" text-anchor="end" font-size="10.5" font-weight="600" fill="#1E293B">C2B</text>
+<rect x="95" y="171.5" width="39.3" height="22.0" rx="3" fill="#0D9488"/>
+<text x="140.3" y="186.0" font-size="10" font-weight="600" fill="#334155">$3,229.06</text>
+</g>
+</svg></div>
+        </div>
+      </div>
+
+      <div class="insights-grid">
+        <div class="insight-box rule-box">
+          <div class="box-hdr">Reconstructed Causal Rule</div>
+          <p>Rule 1 &amp; 6: Every ORDERING_ACCOUNT has an immutable entity type (100% pure). B2B tickets are ~50x larger than C2C, yet routing mode (~63.2% Direct) is statistically independent of party flow.</p>
+        </div>
+        <div class="insight-box econ-box">
+          <div class="box-hdr">Real-World Economic Reasoning</div>
+          <p>Economic Logic: Corporates initiate high-value supplier settlements (B2B) and bulk consumer disbursements (B2C). Routing topology depends on bank-corridor agreements, not customer ticket size.</p>
+        </div>
+        <div class="insight-box rej-box">
+          <div class="box-hdr">Verification / Caveat</div>
+          <p>Rejected Hypothesis: &#x27;High-value B2B wires use Covered/Indirect routing more often than C2C.&#x27; Disproved: Direct share is 63.22% (B2B), 63.23% (B2C), 63.19% (C2B), 63.28% (C2C).</p>
+        </div>
+      </div>
+    </section>
+    
+    <section id="d2" class="dash-page">
+      <div class="dash-header">
+        <div>
+          <div class="dash-tag">UMDAC DATATHON 2026 &bull; SWIFT PAYMENTS</div>
+          <h1>Dashboard 2: Currency Distribution &amp; Home-Currency Dominance</h1>
+          <div class="dash-sub">Feature Group: CURRENCY_CODE across 155 ISO 4217 Currencies (N = 10,000,000)</div>
+        </div>
+        <div class="page-badge">Dashboard 2 of 8</div>
+      </div>
+
+      <div class="kpi-grid"><div class="kpi"><div class="kpi-lbl">Distinct Currencies</div><div class="kpi-val">155</div><div class="kpi-sub">ISO 4217 codes</div></div>
+<div class="kpi"><div class="kpi-lbl">EUR + USD Count</div><div class="kpi-val">49.02%</div><div class="kpi-sub">31.99% EUR + 17.03% USD</div></div>
+<div class="kpi"><div class="kpi-lbl">EUR + USD Volume</div><div class="kpi-val">59.46%</div><div class="kpi-sub">$577.98B combined</div></div>
+<div class="kpi"><div class="kpi-lbl">Home-Currency Rate</div><div class="kpi-val">84-94.5%</div><div class="kpi-sub">Top 10 ordering countries</div></div></div>
+
+      <div class="charts-grid">
+        <div class="card">
+          <div class="card-title">EUR (32.0%) and USD (17.0%) Account for Nearly Half of All Payment Instructions</div>
+          <div class="card-body"><svg viewBox="0 0 500 230" class="chart-svg" xmlns="http://www.w3.org/2000/svg">
+<line x1="175.0" y1="18" x2="175.0" y2="206" stroke="#E2E8F0" stroke-dasharray="3,3"/>
+<text x="175.0" y="224" text-anchor="middle" font-size="9.5" fill="#64748B">10%</text>
+<line x1="255.0" y1="18" x2="255.0" y2="206" stroke="#E2E8F0" stroke-dasharray="3,3"/>
+<text x="255.0" y="224" text-anchor="middle" font-size="9.5" fill="#64748B">19%</text>
+<line x1="335.0" y1="18" x2="335.0" y2="206" stroke="#E2E8F0" stroke-dasharray="3,3"/>
+<text x="335.0" y="224" text-anchor="middle" font-size="9.5" fill="#64748B">28%</text>
+<line x1="415.0" y1="18" x2="415.0" y2="206" stroke="#E2E8F0" stroke-dasharray="3,3"/>
+<text x="415.0" y="224" text-anchor="middle" font-size="9.5" fill="#64748B">38%</text>
+<g class="bar-g"><title>EUR: 31.99% ($357.4B)</title>
+<text x="87" y="30.9" text-anchor="end" font-size="10.5" font-weight="600" fill="#1E293B">EUR</text>
+<rect x="95" y="21.0" width="269.4" height="12.8" rx="3" fill="#0F2744"/>
+<text x="370.4" y="30.9" font-size="10" font-weight="600" fill="#334155">31.99% ($357.4B)</text>
+</g>
+<g class="bar-g"><title>USD: 17.03% ($220.6B)</title>
+<text x="87" y="49.7" text-anchor="end" font-size="10.5" font-weight="600" fill="#1E293B">USD</text>
+<rect x="95" y="39.8" width="143.4" height="12.8" rx="3" fill="#0F2744"/>
+<text x="244.4" y="49.7" font-size="10" font-weight="600" fill="#334155">17.03% ($220.6B)</text>
+</g>
+<g class="bar-g"><title>GBP: 8.74% ($68.1B)</title>
+<text x="87" y="68.5" text-anchor="end" font-size="10.5" font-weight="600" fill="#1E293B">GBP</text>
+<rect x="95" y="58.6" width="73.6" height="12.8" rx="3" fill="#0F2744"/>
+<text x="174.6" y="68.5" font-size="10" font-weight="600" fill="#334155">8.74% ($68.1B)</text>
+</g>
+<g class="bar-g"><title>CHF: 8.04% ($89.5B)</title>
+<text x="87" y="87.3" text-anchor="end" font-size="10.5" font-weight="600" fill="#1E293B">CHF</text>
+<rect x="95" y="77.4" width="67.7" height="12.8" rx="3" fill="#0F2744"/>
+<text x="168.7" y="87.3" font-size="10" font-weight="600" fill="#334155">8.04% ($89.5B)</text>
+</g>
+<g class="bar-g"><title>SGD: 3.68% ($45.3B)</title>
+<text x="87" y="106.1" text-anchor="end" font-size="10.5" font-weight="600" fill="#1E293B">SGD</text>
+<rect x="95" y="96.2" width="31.0" height="12.8" rx="3" fill="#0F2744"/>
+<text x="132.0" y="106.1" font-size="10" font-weight="600" fill="#334155">3.68% ($45.3B)</text>
+</g>
+<g class="bar-g"><title>CNY: 3.25% ($8.3B)</title>
+<text x="87" y="124.9" text-anchor="end" font-size="10.5" font-weight="600" fill="#1E293B">CNY</text>
+<rect x="95" y="115.0" width="27.4" height="12.8" rx="3" fill="#0F2744"/>
+<text x="128.4" y="124.9" font-size="10" font-weight="600" fill="#334155">3.25% ($8.3B)</text>
+</g>
+<g class="bar-g"><title>HKD: 1.97% ($25.7B)</title>
+<text x="87" y="143.7" text-anchor="end" font-size="10.5" font-weight="600" fill="#1E293B">HKD</text>
+<rect x="95" y="133.8" width="16.6" height="12.8" rx="3" fill="#0F2744"/>
+<text x="117.6" y="143.7" font-size="10" font-weight="600" fill="#334155">1.97% ($25.7B)</text>
+</g>
+<g class="bar-g"><title>JPY: 1.84% ($10.0B)</title>
+<text x="87" y="162.5" text-anchor="end" font-size="10.5" font-weight="600" fill="#1E293B">JPY</text>
+<rect x="95" y="152.6" width="15.5" height="12.8" rx="3" fill="#0F2744"/>
+<text x="116.5" y="162.5" font-size="10" font-weight="600" fill="#334155">1.84% ($10.0B)</text>
+</g>
+<g class="bar-g"><title>AUD: 1.67% ($17.1B)</title>
+<text x="87" y="181.3" text-anchor="end" font-size="10.5" font-weight="600" fill="#1E293B">AUD</text>
+<rect x="95" y="171.4" width="14.1" height="12.8" rx="3" fill="#0F2744"/>
+<text x="115.1" y="181.3" font-size="10" font-weight="600" fill="#334155">1.67% ($17.1B)</text>
+</g>
+<g class="bar-g"><title>CAD: 1.11% ($14.7B)</title>
+<text x="87" y="200.1" text-anchor="end" font-size="10.5" font-weight="600" fill="#1E293B">CAD</text>
+<rect x="95" y="190.2" width="9.4" height="12.8" rx="3" fill="#0F2744"/>
+<text x="110.4" y="200.1" font-size="10" font-weight="600" fill="#334155">1.11% ($14.7B)</text>
+</g>
+</svg></div>
+        </div>
+        <div class="card">
+          <div class="card-title">83.8% to 94.5% of Payments Are Initiated in the Ordering Country&#x27;s Home Currency</div>
+          <div class="card-body"><svg viewBox="0 0 500 230" class="chart-svg" xmlns="http://www.w3.org/2000/svg">
+<line x1="175.0" y1="18" x2="175.0" y2="206" stroke="#E2E8F0" stroke-dasharray="3,3"/>
+<text x="175.0" y="224" text-anchor="middle" font-size="9.5" fill="#64748B">26%</text>
+<line x1="255.0" y1="18" x2="255.0" y2="206" stroke="#E2E8F0" stroke-dasharray="3,3"/>
+<text x="255.0" y="224" text-anchor="middle" font-size="9.5" fill="#64748B">52%</text>
+<line x1="335.0" y1="18" x2="335.0" y2="206" stroke="#E2E8F0" stroke-dasharray="3,3"/>
+<text x="335.0" y="224" text-anchor="middle" font-size="9.5" fill="#64748B">79%</text>
+<line x1="415.0" y1="18" x2="415.0" y2="206" stroke="#E2E8F0" stroke-dasharray="3,3"/>
+<text x="415.0" y="224" text-anchor="middle" font-size="9.5" fill="#64748B">105%</text>
+<g class="bar-g"><title>US: 90.5%</title>
+<text x="87" y="31.9" text-anchor="end" font-size="10.5" font-weight="600" fill="#1E293B">US</text>
+<rect x="95" y="21.3" width="275.9" height="14.2" rx="3" fill="#0D9488"/>
+<text x="376.9" y="31.9" font-size="10" font-weight="600" fill="#334155">90.5%</text>
+</g>
+<g class="bar-g"><title>CH: 88.8%</title>
+<text x="87" y="52.8" text-anchor="end" font-size="10.5" font-weight="600" fill="#1E293B">CH</text>
+<rect x="95" y="42.2" width="270.5" height="14.2" rx="3" fill="#0D9488"/>
+<text x="371.5" y="52.8" font-size="10" font-weight="600" fill="#334155">88.8%</text>
+</g>
+<g class="bar-g"><title>GB: 88.5%</title>
+<text x="87" y="73.7" text-anchor="end" font-size="10.5" font-weight="600" fill="#1E293B">GB</text>
+<rect x="95" y="63.1" width="269.9" height="14.2" rx="3" fill="#0D9488"/>
+<text x="370.9" y="73.7" font-size="10" font-weight="600" fill="#334155">88.5%</text>
+</g>
+<g class="bar-g"><title>FR: 94.0%</title>
+<text x="87" y="94.6" text-anchor="end" font-size="10.5" font-weight="600" fill="#1E293B">FR</text>
+<rect x="95" y="84.0" width="286.5" height="14.2" rx="3" fill="#0D9488"/>
+<text x="387.5" y="94.6" font-size="10" font-weight="600" fill="#334155">94.0%</text>
+</g>
+<g class="bar-g"><title>DE: 94.5%</title>
+<text x="87" y="115.5" text-anchor="end" font-size="10.5" font-weight="600" fill="#1E293B">DE</text>
+<rect x="95" y="104.9" width="287.9" height="14.2" rx="3" fill="#0D9488"/>
+<text x="388.9" y="115.5" font-size="10" font-weight="600" fill="#334155">94.5%</text>
+</g>
+<g class="bar-g"><title>SG: 87.5%</title>
+<text x="87" y="136.4" text-anchor="end" font-size="10.5" font-weight="600" fill="#1E293B">SG</text>
+<rect x="95" y="125.8" width="266.8" height="14.2" rx="3" fill="#0D9488"/>
+<text x="367.8" y="136.4" font-size="10" font-weight="600" fill="#334155">87.5%</text>
+</g>
+<g class="bar-g"><title>CN: 86.2%</title>
+<text x="87" y="157.3" text-anchor="end" font-size="10.5" font-weight="600" fill="#1E293B">CN</text>
+<rect x="95" y="146.7" width="262.6" height="14.2" rx="3" fill="#0D9488"/>
+<text x="363.6" y="157.3" font-size="10" font-weight="600" fill="#334155">86.2%</text>
+</g>
+<g class="bar-g"><title>IT: 93.3%</title>
+<text x="87" y="178.2" text-anchor="end" font-size="10.5" font-weight="600" fill="#1E293B">IT</text>
+<rect x="95" y="167.6" width="284.4" height="14.2" rx="3" fill="#0D9488"/>
+<text x="385.4" y="178.2" font-size="10" font-weight="600" fill="#334155">93.3%</text>
+</g>
+<g class="bar-g"><title>JP: 88.3%</title>
+<text x="87" y="199.1" text-anchor="end" font-size="10.5" font-weight="600" fill="#1E293B">JP</text>
+<rect x="95" y="188.5" width="269.1" height="14.2" rx="3" fill="#0D9488"/>
+<text x="370.1" y="199.1" font-size="10" font-weight="600" fill="#334155">88.3%</text>
+</g>
+<line x1="247.4" y1="14" x2="247.4" y2="206" stroke="#DC2626" stroke-width="1.8" stroke-dasharray="4,3"/>
+<text x="251.4" y="26" font-size="9.5" font-weight="700" fill="#DC2626">50% Baseline</text>
+</svg></div>
+        </div>
+      </div>
+
+      <div class="insights-grid">
+        <div class="insight-box rule-box">
+          <div class="box-hdr">Reconstructed Causal Rule</div>
+          <p>Rule 2: When an ordering institution is in country C, 83.8%-94.5% of its outgoing payments use C&#x27;s domestic currency (DE 94.5% EUR, FR 94.0% EUR, US 90.5% USD, CH 88.8% CHF).</p>
+        </div>
+        <div class="insight-box econ-box">
+          <div class="box-hdr">Real-World Economic Reasoning</div>
+          <p>Economic Logic: Exporters and multinational corporates invoice and fund cross-border wires in their primary operating currency, pushing FX conversion downstream to correspondent/beneficiary banks.</p>
+        </div>
+        <div class="insight-box rej-box">
+          <div class="box-hdr">Verification / Caveat</div>
+          <p>Note: Synthetic country sizes are randomized per Swift&#x27;s privacy design, but home-currency invoicing behavior faithfully mirrors real-world corporate treasury practice.</p>
+        </div>
+      </div>
+    </section>
+    
+    <section id="d3" class="dash-page">
+      <div class="dash-header">
+        <div>
+          <div class="dash-tag">UMDAC DATATHON 2026 &bull; SWIFT PAYMENTS</div>
+          <h1>Dashboard 3: Geographic Corridors &amp; Temporal Banking Cycles</h1>
+          <div class="dash-sub">Feature Group: EPOCH_SECONDS &amp; BIC8 Country Codes (Apr 30 - Jul 31, 2023 UTC)</div>
+        </div>
+        <div class="page-badge">Dashboard 3 of 8</div>
+      </div>
+
+      <div class="kpi-grid"><div class="kpi"><div class="kpi-lbl">Cross-Border Share</div><div class="kpi-val">92.89%</div><div class="kpi-sub">9.29M cross-border wires</div></div>
+<div class="kpi"><div class="kpi-lbl">Top Corridor</div><div class="kpi-val">US -&gt; US</div><div class="kpi-sub">385,598 wires (3.86%)</div></div>
+<div class="kpi"><div class="kpi-lbl">Weekday vs Weekend</div><div class="kpi-val">4.2x</div><div class="kpi-sub">18.3% Mon/Fri vs 4.35% Sat</div></div>
+<div class="kpi"><div class="kpi-lbl">Same-BIC Transfers</div><div class="kpi-val">0.024%</div><div class="kpi-sub">2,387 internal book transfers</div></div></div>
+
+      <div class="charts-grid">
+        <div class="card">
+          <div class="card-title">Ordering Countries Peak During Local Business Hours (APAC 00-07 UTC vs. US 16-23 UTC)</div>
+          <div class="card-body"><svg viewBox="0 0 480 230" class="chart-svg" xmlns="http://www.w3.org/2000/svg">
+<rect x="44" y="4" width="10" height="10" rx="2" fill="#0D9488"/><text x="58" y="13" font-size="10" fill="#334155">00-07 UTC (APAC Hrs)</text>
+<rect x="199" y="4" width="10" height="10" rx="2" fill="#2563EB"/><text x="213" y="13" font-size="10" fill="#334155">16-23 UTC (US Hrs)</text>
+<line x1="44" y1="152.0" x2="464" y2="152.0" stroke="#E2E8F0" stroke-dasharray="3,3"/>
+<text x="38" y="155.5" text-anchor="end" font-size="9.5" fill="#64748B">14%</text>
+<line x1="44" y1="110.0" x2="464" y2="110.0" stroke="#E2E8F0" stroke-dasharray="3,3"/>
+<text x="38" y="113.5" text-anchor="end" font-size="9.5" fill="#64748B">28%</text>
+<line x1="44" y1="68.0" x2="464" y2="68.0" stroke="#E2E8F0" stroke-dasharray="3,3"/>
+<text x="38" y="71.5" text-anchor="end" font-size="9.5" fill="#64748B">41%</text>
+<line x1="44" y1="26.0" x2="464" y2="26.0" stroke="#E2E8F0" stroke-dasharray="3,3"/>
+<text x="38" y="29.5" text-anchor="end" font-size="9.5" fill="#64748B">55%</text>
+<g class="bar-g"><title>US: 00-07 UTC (APAC Hrs)=23.2%, 16-23 UTC (US Hrs)=46.7%</title>
+<rect x="50.4" y="123.3" width="17.9" height="70.7" rx="2" fill="#0D9488"/>
+<text x="59.3" y="119.3" text-anchor="middle" font-size="9.5" font-weight="700" fill="#0D9488">23.2%</text>
+<rect x="72.2" y="51.6" width="17.9" height="142.4" rx="2" fill="#2563EB"/>
+<text x="81.2" y="47.6" text-anchor="middle" font-size="9.5" font-weight="700" fill="#2563EB">46.7%</text>
+<text x="70.2" y="214" text-anchor="middle" font-size="10.5" font-weight="700" fill="#1E293B">US</text>
+</g>
+<g class="bar-g"><title>CH: 00-07 UTC (APAC Hrs)=20.9%, 16-23 UTC (US Hrs)=36.4%</title>
+<rect x="102.9" y="130.3" width="17.9" height="63.7" rx="2" fill="#0D9488"/>
+<text x="111.8" y="126.3" text-anchor="middle" font-size="9.5" font-weight="700" fill="#0D9488">20.9%</text>
+<rect x="124.8" y="83.0" width="17.9" height="111.0" rx="2" fill="#2563EB"/>
+<text x="133.7" y="79.0" text-anchor="middle" font-size="9.5" font-weight="700" fill="#2563EB">36.4%</text>
+<text x="122.8" y="214" text-anchor="middle" font-size="10.5" font-weight="700" fill="#1E293B">CH</text>
+</g>
+<g class="bar-g"><title>GB: 00-07 UTC (APAC Hrs)=16.7%, 16-23 UTC (US Hrs)=42.0%</title>
+<rect x="155.4" y="143.1" width="17.9" height="50.9" rx="2" fill="#0D9488"/>
+<text x="164.3" y="139.1" text-anchor="middle" font-size="9.5" font-weight="700" fill="#0D9488">16.7%</text>
+<rect x="177.2" y="66.0" width="17.9" height="128.0" rx="2" fill="#2563EB"/>
+<text x="186.2" y="62.0" text-anchor="middle" font-size="9.5" font-weight="700" fill="#2563EB">42.0%</text>
+<text x="175.2" y="214" text-anchor="middle" font-size="10.5" font-weight="700" fill="#1E293B">GB</text>
+</g>
+<g class="bar-g"><title>DE: 00-07 UTC (APAC Hrs)=21.0%, 16-23 UTC (US Hrs)=36.1%</title>
+<rect x="207.9" y="130.0" width="17.9" height="64.0" rx="2" fill="#0D9488"/>
+<text x="216.8" y="126.0" text-anchor="middle" font-size="9.5" font-weight="700" fill="#0D9488">21.0%</text>
+<rect x="229.8" y="83.9" width="17.9" height="110.1" rx="2" fill="#2563EB"/>
+<text x="238.7" y="79.9" text-anchor="middle" font-size="9.5" font-weight="700" fill="#2563EB">36.1%</text>
+<text x="227.8" y="214" text-anchor="middle" font-size="10.5" font-weight="700" fill="#1E293B">DE</text>
+</g>
+<g class="bar-g"><title>SG: 00-07 UTC (APAC Hrs)=40.7%, 16-23 UTC (US Hrs)=17.3%</title>
+<rect x="260.4" y="69.9" width="17.9" height="124.1" rx="2" fill="#0D9488"/>
+<text x="269.3" y="65.9" text-anchor="middle" font-size="9.5" font-weight="700" fill="#0D9488">40.7%</text>
+<rect x="282.2" y="141.3" width="17.9" height="52.7" rx="2" fill="#2563EB"/>
+<text x="291.2" y="137.3" text-anchor="middle" font-size="9.5" font-weight="700" fill="#2563EB">17.3%</text>
+<text x="280.2" y="214" text-anchor="middle" font-size="10.5" font-weight="700" fill="#1E293B">SG</text>
+</g>
+<g class="bar-g"><title>CN: 00-07 UTC (APAC Hrs)=41.5%, 16-23 UTC (US Hrs)=17.0%</title>
+<rect x="312.9" y="67.5" width="17.9" height="126.5" rx="2" fill="#0D9488"/>
+<text x="321.8" y="63.5" text-anchor="middle" font-size="9.5" font-weight="700" fill="#0D9488">41.5%</text>
+<rect x="334.8" y="142.2" width="17.9" height="51.8" rx="2" fill="#2563EB"/>
+<text x="343.7" y="138.2" text-anchor="middle" font-size="9.5" font-weight="700" fill="#2563EB">17.0%</text>
+<text x="332.8" y="214" text-anchor="middle" font-size="10.5" font-weight="700" fill="#1E293B">CN</text>
+</g>
+<g class="bar-g"><title>JP: 00-07 UTC (APAC Hrs)=41.9%, 16-23 UTC (US Hrs)=21.3%</title>
+<rect x="365.4" y="66.3" width="17.9" height="127.7" rx="2" fill="#0D9488"/>
+<text x="374.3" y="62.3" text-anchor="middle" font-size="9.5" font-weight="700" fill="#0D9488">41.9%</text>
+<rect x="387.2" y="129.1" width="17.9" height="64.9" rx="2" fill="#2563EB"/>
+<text x="396.2" y="125.1" text-anchor="middle" font-size="9.5" font-weight="700" fill="#2563EB">21.3%</text>
+<text x="385.2" y="214" text-anchor="middle" font-size="10.5" font-weight="700" fill="#1E293B">JP</text>
+</g>
+<g class="bar-g"><title>AU: 00-07 UTC (APAC Hrs)=46.4%, 16-23 UTC (US Hrs)=30.4%</title>
+<rect x="417.9" y="52.5" width="17.9" height="141.5" rx="2" fill="#0D9488"/>
+<text x="426.8" y="48.5" text-anchor="middle" font-size="9.5" font-weight="700" fill="#0D9488">46.4%</text>
+<rect x="439.8" y="101.3" width="17.9" height="92.7" rx="2" fill="#2563EB"/>
+<text x="448.7" y="97.3" text-anchor="middle" font-size="9.5" font-weight="700" fill="#2563EB">30.4%</text>
+<text x="437.8" y="214" text-anchor="middle" font-size="10.5" font-weight="700" fill="#1E293B">AU</text>
+</g>
+</svg></div>
+        </div>
+        <div class="card">
+          <div class="card-title">Global Payment Volume Drops ~75% on Saturdays (4.35%) &amp; Sundays (6.84%)</div>
+          <div class="card-body"><svg viewBox="0 0 480 225" class="chart-svg" xmlns="http://www.w3.org/2000/svg">
+<line x1="44" y1="147.8" x2="464" y2="147.8" stroke="#E2E8F0" stroke-dasharray="3,3"/>
+<text x="38" y="151.2" text-anchor="end" font-size="9.5" fill="#64748B">5%</text>
+<line x1="44" y1="104.5" x2="464" y2="104.5" stroke="#E2E8F0" stroke-dasharray="3,3"/>
+<text x="38" y="108.0" text-anchor="end" font-size="9.5" fill="#64748B">11%</text>
+<line x1="44" y1="61.2" x2="464" y2="61.2" stroke="#E2E8F0" stroke-dasharray="3,3"/>
+<text x="38" y="64.8" text-anchor="end" font-size="9.5" fill="#64748B">16%</text>
+<line x1="44" y1="18.0" x2="464" y2="18.0" stroke="#E2E8F0" stroke-dasharray="3,3"/>
+<text x="38" y="21.5" text-anchor="end" font-size="9.5" fill="#64748B">22%</text>
+<g class="bar-g"><title>Mon: 18.3%</title>
+<rect x="55.4" y="44.4" width="37.2" height="146.6" rx="3" fill="#0F2744"/>
+<text x="74.0" y="40.4" text-anchor="middle" font-size="9.5" font-weight="700" fill="#1E293B">18.3%</text>
+<text x="74.0" y="211" text-anchor="middle" font-size="10" font-weight="600" fill="#334155">Mon</text>
+</g>
+<g class="bar-g"><title>Tue: 17.1%</title>
+<rect x="115.4" y="54.5" width="37.2" height="136.5" rx="3" fill="#0F2744"/>
+<text x="134.0" y="50.5" text-anchor="middle" font-size="9.5" font-weight="700" fill="#1E293B">17.1%</text>
+<text x="134.0" y="211" text-anchor="middle" font-size="10" font-weight="600" fill="#334155">Tue</text>
+</g>
+<g class="bar-g"><title>Wed: 17.1%</title>
+<rect x="175.4" y="54.7" width="37.2" height="136.3" rx="3" fill="#0F2744"/>
+<text x="194.0" y="50.7" text-anchor="middle" font-size="9.5" font-weight="700" fill="#1E293B">17.1%</text>
+<text x="194.0" y="211" text-anchor="middle" font-size="10" font-weight="600" fill="#334155">Wed</text>
+</g>
+<g class="bar-g"><title>Thu: 18.0%</title>
+<rect x="235.4" y="47.0" width="37.2" height="144.0" rx="3" fill="#0F2744"/>
+<text x="254.0" y="43.0" text-anchor="middle" font-size="9.5" font-weight="700" fill="#1E293B">18.0%</text>
+<text x="254.0" y="211" text-anchor="middle" font-size="10" font-weight="600" fill="#334155">Thu</text>
+</g>
+<g class="bar-g"><title>Fri: 18.3%</title>
+<rect x="295.4" y="44.4" width="37.2" height="146.6" rx="3" fill="#0F2744"/>
+<text x="314.0" y="40.4" text-anchor="middle" font-size="9.5" font-weight="700" fill="#1E293B">18.3%</text>
+<text x="314.0" y="211" text-anchor="middle" font-size="10" font-weight="600" fill="#334155">Fri</text>
+</g>
+<g class="bar-g"><title>Sat: 4.3%</title>
+<rect x="355.4" y="156.2" width="37.2" height="34.8" rx="3" fill="#DC2626"/>
+<text x="374.0" y="152.2" text-anchor="middle" font-size="9.5" font-weight="700" fill="#1E293B">4.3%</text>
+<text x="374.0" y="211" text-anchor="middle" font-size="10" font-weight="600" fill="#334155">Sat</text>
+</g>
+<g class="bar-g"><title>Sun: 6.8%</title>
+<rect x="415.4" y="136.3" width="37.2" height="54.7" rx="3" fill="#DC2626"/>
+<text x="434.0" y="132.3" text-anchor="middle" font-size="9.5" font-weight="700" fill="#1E293B">6.8%</text>
+<text x="434.0" y="211" text-anchor="middle" font-size="10" font-weight="600" fill="#334155">Sun</text>
+</g>
+</svg></div>
+        </div>
+      </div>
+
+      <div class="insights-grid">
+        <div class="insight-box rule-box">
+          <div class="box-hdr">Reconstructed Causal Rule</div>
+          <p>Rule 3: Timestamp generation is modulated by ordering-country timezone (APAC 41-46% in 00-07 UTC; EU 41-43% in 08-15 UTC; US 46.7% in 16-23 UTC) and banking-calendar weekend closures.</p>
+        </div>
+        <div class="insight-box econ-box">
+          <div class="box-hdr">Real-World Economic Reasoning</div>
+          <p>Economic Logic: Real-time gross settlement (RTGS) systems (TARGET2, Fedwire, CHIPS) close on weekends and operate during regional business windows, creating the 15:00-17:00 UTC EU-US overlap peak.</p>
+        </div>
+        <div class="insight-box rej-box">
+          <div class="box-hdr">Verification / Caveat</div>
+          <p>Data Scope: Covers ~92 days (2023-04-30 11:22 UTC to 2023-07-31 09:56 UTC), with June accounting for 40.50% of volume.</p>
+        </div>
+      </div>
+    </section>
+    
+    <section id="d4" class="dash-page">
+      <div class="dash-header">
+        <div>
+          <div class="dash-tag">UMDAC DATATHON 2026 &bull; SWIFT PAYMENTS</div>
+          <h1>Dashboard 4: Routing Topology, Continuity &amp; FX Conversions</h1>
+          <div class="dash-sub">Feature Group: TRANSACTION_TYPE_CODE, PARTICIPANT_COUNT, CURRENCY_CONVERSION_COUNT, CONTINUITY_QFLAG</div>
+        </div>
+        <div class="page-badge">Dashboard 4 of 8</div>
+      </div>
+
+      <div class="kpi-grid"><div class="kpi"><div class="kpi-lbl">Direct Route Share</div><div class="kpi-val">63.23%</div><div class="kpi-sub">Strictly 2 participants</div></div>
+<div class="kpi"><div class="kpi-lbl">Direct FX Ceiling</div><div class="kpi-val">0 or 1</div><div class="kpi-sub">0.00% have &gt;=2 FX steps</div></div>
+<div class="kpi"><div class="kpi-lbl">Indirect/Covered Peak</div><div class="kpi-val">2 FX</div><div class="kpi-sub">~55.5% have 2 conversions</div></div>
+<div class="kpi"><div class="kpi-lbl">Discontinuous Paths</div><div class="kpi-val">7.67%</div><div class="kpi-sub">767,204 contain &#x27;...&#x27;</div></div></div>
+
+      <div class="charts-grid">
+        <div class="card">
+          <div class="card-title">Direct Bilateral Routing Accounts for 63.2% of Traffic vs. 32.6% Indirect &amp; 4.2% Covered</div>
+          <div class="card-body"><svg viewBox="0 0 480 225" class="chart-svg" xmlns="http://www.w3.org/2000/svg">
+<line x1="44" y1="147.8" x2="464" y2="147.8" stroke="#E2E8F0" stroke-dasharray="3,3"/>
+<text x="38" y="151.2" text-anchor="end" font-size="9.5" fill="#64748B">19%</text>
+<line x1="44" y1="104.5" x2="464" y2="104.5" stroke="#E2E8F0" stroke-dasharray="3,3"/>
+<text x="38" y="108.0" text-anchor="end" font-size="9.5" fill="#64748B">37%</text>
+<line x1="44" y1="61.2" x2="464" y2="61.2" stroke="#E2E8F0" stroke-dasharray="3,3"/>
+<text x="38" y="64.8" text-anchor="end" font-size="9.5" fill="#64748B">56%</text>
+<line x1="44" y1="18.0" x2="464" y2="18.0" stroke="#E2E8F0" stroke-dasharray="3,3"/>
+<text x="38" y="21.5" text-anchor="end" font-size="9.5" fill="#64748B">75%</text>
+<g class="bar-g"><title>Direct: 63.2%</title>
+<rect x="95.0" y="44.4" width="38.0" height="146.6" rx="3" fill="#0F2744"/>
+<text x="114.0" y="40.4" text-anchor="middle" font-size="9.5" font-weight="700" fill="#1E293B">63.2%</text>
+<text x="114.0" y="211" text-anchor="middle" font-size="10" font-weight="600" fill="#334155">Direct</text>
+</g>
+<g class="bar-g"><title>Indirect: 32.6%</title>
+<rect x="235.0" y="115.4" width="38.0" height="75.6" rx="3" fill="#0D9488"/>
+<text x="254.0" y="111.4" text-anchor="middle" font-size="9.5" font-weight="700" fill="#1E293B">32.6%</text>
+<text x="254.0" y="211" text-anchor="middle" font-size="10" font-weight="600" fill="#334155">Indirect</text>
+</g>
+<g class="bar-g"><title>Covered: 4.2%</title>
+<rect x="375.0" y="181.4" width="38.0" height="9.6" rx="3" fill="#D97706"/>
+<text x="394.0" y="177.4" text-anchor="middle" font-size="9.5" font-weight="700" fill="#1E293B">4.2%</text>
+<text x="394.0" y="211" text-anchor="middle" font-size="10" font-weight="600" fill="#334155">Covered</text>
+</g>
+</svg></div>
+        </div>
+        <div class="card">
+          <div class="card-title">Direct Routes Cap FX at 1 Step, While Indirect &amp; Covered Peak Sharply at 2 FX Steps</div>
+          <div class="card-body"><svg viewBox="0 0 480 225" class="chart-svg" xmlns="http://www.w3.org/2000/svg">
+<line x1="44" y1="9" x2="58" y2="9" stroke="#0F2744" stroke-width="2.5"/><text x="62" y="12.5" font-size="10" font-weight="600" fill="#334155">Direct</text>
+<line x1="159" y1="9" x2="173" y2="9" stroke="#0D9488" stroke-width="2.5"/><text x="177" y="12.5" font-size="10" font-weight="600" fill="#334155">Indirect</text>
+<line x1="274" y1="9" x2="288" y2="9" stroke="#D97706" stroke-width="2.5"/><text x="292" y="12.5" font-size="10" font-weight="600" fill="#334155">Covered</text>
+<line x1="44" y1="149.8" x2="462" y2="149.8" stroke="#E2E8F0" stroke-dasharray="3,3"/>
+<text x="38" y="153.2" text-anchor="end" font-size="9.5" fill="#64748B">24%</text>
+<line x1="44" y1="108.5" x2="462" y2="108.5" stroke="#E2E8F0" stroke-dasharray="3,3"/>
+<text x="38" y="112.0" text-anchor="end" font-size="9.5" fill="#64748B">48%</text>
+<line x1="44" y1="67.2" x2="462" y2="67.2" stroke="#E2E8F0" stroke-dasharray="3,3"/>
+<text x="38" y="70.8" text-anchor="end" font-size="9.5" fill="#64748B">73%</text>
+<line x1="44" y1="26.0" x2="462" y2="26.0" stroke="#E2E8F0" stroke-dasharray="3,3"/>
+<text x="38" y="29.5" text-anchor="end" font-size="9.5" fill="#64748B">97%</text>
+<text x="44.0" y="211" text-anchor="middle" font-size="10" fill="#475569">0</text>
+<text x="127.6" y="211" text-anchor="middle" font-size="10" fill="#475569">1</text>
+<text x="211.2" y="211" text-anchor="middle" font-size="10" fill="#475569">2</text>
+<text x="294.8" y="211" text-anchor="middle" font-size="10" fill="#475569">3</text>
+<text x="378.4" y="211" text-anchor="middle" font-size="10" fill="#475569">4</text>
+<text x="462.0" y="211" text-anchor="middle" font-size="10" fill="#475569">5</text>
+<path d="M44.0,164.3 L127.6,47.5 L211.2,191.0 L294.8,191.0 L378.4,191.0 L462.0,191.0" fill="none" stroke="#0F2744" stroke-width="2.4"/>
+<circle cx="44.0" cy="164.3" r="3.5" fill="#0F2744" stroke="#FFF" stroke-width="1"><title>Direct (0): 15.69%</title></circle>
+<circle cx="127.6" cy="47.5" r="3.5" fill="#0F2744" stroke="#FFF" stroke-width="1"><title>Direct (1): 84.31%</title></circle>
+<circle cx="211.2" cy="191.0" r="3.5" fill="#0F2744" stroke="#FFF" stroke-width="1"><title>Direct (2): 0.00%</title></circle>
+<circle cx="294.8" cy="191.0" r="3.5" fill="#0F2744" stroke="#FFF" stroke-width="1"><title>Direct (3): 0.00%</title></circle>
+<circle cx="378.4" cy="191.0" r="3.5" fill="#0F2744" stroke="#FFF" stroke-width="1"><title>Direct (4): 0.00%</title></circle>
+<circle cx="462.0" cy="191.0" r="3.5" fill="#0F2744" stroke="#FFF" stroke-width="1"><title>Direct (5): 0.00%</title></circle>
+<path d="M44.0,186.8 L127.6,164.4 L211.2,96.7 L294.8,159.8 L378.4,180.6 L462.0,187.5" fill="none" stroke="#0D9488" stroke-width="2.4"/>
+<circle cx="44.0" cy="186.8" r="3.5" fill="#0D9488" stroke="#FFF" stroke-width="1"><title>Indirect (0): 2.47%</title></circle>
+<circle cx="127.6" cy="164.4" r="3.5" fill="#0D9488" stroke="#FFF" stroke-width="1"><title>Indirect (1): 15.63%</title></circle>
+<circle cx="211.2" cy="96.7" r="3.5" fill="#0D9488" stroke="#FFF" stroke-width="1"><title>Indirect (2): 55.40%</title></circle>
+<circle cx="294.8" cy="159.8" r="3.5" fill="#0D9488" stroke="#FFF" stroke-width="1"><title>Indirect (3): 18.36%</title></circle>
+<circle cx="378.4" cy="180.6" r="3.5" fill="#0D9488" stroke="#FFF" stroke-width="1"><title>Indirect (4): 6.10%</title></circle>
+<circle cx="462.0" cy="187.5" r="3.5" fill="#0D9488" stroke="#FFF" stroke-width="1"><title>Indirect (5): 2.04%</title></circle>
+<path d="M44.0,184.8 L127.6,166.3 L211.2,96.1 L294.8,160.4 L378.4,180.6 L462.0,187.6" fill="none" stroke="#D97706" stroke-width="2.4"/>
+<circle cx="44.0" cy="184.8" r="3.5" fill="#D97706" stroke="#FFF" stroke-width="1"><title>Covered (0): 3.63%</title></circle>
+<circle cx="127.6" cy="166.3" r="3.5" fill="#D97706" stroke="#FFF" stroke-width="1"><title>Covered (1): 14.53%</title></circle>
+<circle cx="211.2" cy="96.1" r="3.5" fill="#D97706" stroke="#FFF" stroke-width="1"><title>Covered (2): 55.79%</title></circle>
+<circle cx="294.8" cy="160.4" r="3.5" fill="#D97706" stroke="#FFF" stroke-width="1"><title>Covered (3): 17.96%</title></circle>
+<circle cx="378.4" cy="180.6" r="3.5" fill="#D97706" stroke="#FFF" stroke-width="1"><title>Covered (4): 6.09%</title></circle>
+<circle cx="462.0" cy="187.6" r="3.5" fill="#D97706" stroke="#FFF" stroke-width="1"><title>Covered (5): 2.00%</title></circle>
+<text x="253.0" y="223" text-anchor="middle" font-size="9.5" fill="#64748B">CURRENCY_CONVERSION_COUNT</text>
+</svg></div>
+        </div>
+      </div>
+
+      <div class="insights-grid">
+        <div class="insight-box rule-box">
+          <div class="box-hdr">Reconstructed Causal Rule</div>
+          <p>Rule 5: Direct = 2 participants and FX in {0, 1} (100% deterministic). Indirect (32.61%) &amp; Covered (4.16%) average 3.582 participants, peak at 2 FX conversions, and reach up to 22 hops / 17 FX steps.</p>
+        </div>
+        <div class="insight-box econ-box">
+          <div class="box-hdr">Real-World Economic Reasoning</div>
+          <p>Economic Logic: Direct Nostro/Vostro accounts settle bilaterally with at most one currency conversion, whereas multi-bank correspondent chains introduce intermediate clearing legs and double-FX conversions.</p>
+        </div>
+        <div class="insight-box rej-box">
+          <div class="box-hdr">Verification / Caveat</div>
+          <p>Continuity Coupling: Discontinuous paths (CONTINUITY_QFLAG=&#x27;N&#x27;) occur at 12.3% in Indirect/Covered vs. only 5.0% in Direct.</p>
+        </div>
+      </div>
+    </section>
+    
+    <section id="d5" class="dash-page">
+      <div class="dash-header">
+        <div>
+          <div class="dash-tag">UMDAC DATATHON 2026 &bull; SWIFT PAYMENTS</div>
+          <h1>Dashboard 5: Payment Value Distribution &amp; Fat-Finger Distortion</h1>
+          <div class="dash-sub">Feature Group: USD_AMOUNT ($0.01 to $15.66B; Aggregate $972.04B)</div>
+        </div>
+        <div class="page-badge">Dashboard 5 of 8</div>
+      </div>
+
+      <div class="kpi-grid"><div class="kpi"><div class="kpi-lbl">Median USD Amount</div><div class="kpi-val">$3,661.90</div><div class="kpi-sub">IQR: $634 - $19,960</div></div>
+<div class="kpi"><div class="kpi-lbl">Mean USD Amount</div><div class="kpi-val">$97,204.10</div><div class="kpi-sub">26.5x median (heavy tail)</div></div>
+<div class="kpi"><div class="kpi-lbl">&gt;= $10M Wires</div><div class="kpi-val">0.08%</div><div class="kpi-sub">7,586 rows = 35.0% of value</div></div>
+<div class="kpi"><div class="kpi-lbl">Fat-Finger Impact</div><div class="kpi-val">$175.14B</div><div class="kpi-sub">18.02% of total from 1,940 rows</div></div></div>
+
+      <div class="charts-grid">
+        <div class="card">
+          <div class="card-title">Extreme Right-Skew: 0.08% of Payments (&gt;=$10M) Generate 35.0% of Total USD Volume</div>
+          <div class="card-body"><svg viewBox="0 0 480 230" class="chart-svg" xmlns="http://www.w3.org/2000/svg">
+<rect x="44" y="4" width="10" height="10" rx="2" fill="#0F2744"/><text x="58" y="13" font-size="10" fill="#334155">Tx Count %</text>
+<rect x="199" y="4" width="10" height="10" rx="2" fill="#DC2626"/><text x="213" y="13" font-size="10" fill="#334155">USD Volume %</text>
+<line x1="44" y1="152.0" x2="464" y2="152.0" stroke="#E2E8F0" stroke-dasharray="3,3"/>
+<text x="38" y="155.5" text-anchor="end" font-size="9.5" fill="#64748B">10%</text>
+<line x1="44" y1="110.0" x2="464" y2="110.0" stroke="#E2E8F0" stroke-dasharray="3,3"/>
+<text x="38" y="113.5" text-anchor="end" font-size="9.5" fill="#64748B">21%</text>
+<line x1="44" y1="68.0" x2="464" y2="68.0" stroke="#E2E8F0" stroke-dasharray="3,3"/>
+<text x="38" y="71.5" text-anchor="end" font-size="9.5" fill="#64748B">31%</text>
+<line x1="44" y1="26.0" x2="464" y2="26.0" stroke="#E2E8F0" stroke-dasharray="3,3"/>
+<text x="38" y="29.5" text-anchor="end" font-size="9.5" fill="#64748B">41%</text>
+<g class="bar-g"><title>< $100: Tx Count %=8.5%, USD Volume %=0.0%</title>
+<rect x="51.6" y="159.4" width="20.4" height="34.6" rx="2" fill="#0F2744"/>
+<text x="61.8" y="155.4" text-anchor="middle" font-size="9.5" font-weight="700" fill="#0F2744">8.5%</text>
+<rect x="76.0" y="194.0" width="20.4" height="0.0" rx="2" fill="#DC2626"/>
+<text x="86.2" y="190.0" text-anchor="middle" font-size="9.5" font-weight="700" fill="#DC2626">0.0%</text>
+<text x="74.0" y="214" text-anchor="middle" font-size="10.5" font-weight="700" fill="#1E293B">&lt; $100</text>
+</g>
+<g class="bar-g"><title>$100-$1K: Tx Count %=22.2%, USD Volume %=0.1%</title>
+<rect x="111.6" y="103.5" width="20.4" height="90.5" rx="2" fill="#0F2744"/>
+<text x="121.8" y="99.5" text-anchor="middle" font-size="9.5" font-weight="700" fill="#0F2744">22.2%</text>
+<rect x="136.0" y="193.6" width="20.4" height="0.4" rx="2" fill="#DC2626"/>
+<text x="146.2" y="189.6" text-anchor="middle" font-size="9.5" font-weight="700" fill="#DC2626">0.1%</text>
+<text x="134.0" y="214" text-anchor="middle" font-size="10.5" font-weight="700" fill="#1E293B">$100-$1K</text>
+</g>
+<g class="bar-g"><title>$1K-$10K: Tx Count %=34.4%, USD Volume %=1.4%</title>
+<rect x="171.6" y="53.9" width="20.4" height="140.1" rx="2" fill="#0F2744"/>
+<text x="181.8" y="49.9" text-anchor="middle" font-size="9.5" font-weight="700" fill="#0F2744">34.4%</text>
+<rect x="196.0" y="188.4" width="20.4" height="5.6" rx="2" fill="#DC2626"/>
+<text x="206.2" y="184.4" text-anchor="middle" font-size="9.5" font-weight="700" fill="#DC2626">1.4%</text>
+<text x="194.0" y="214" text-anchor="middle" font-size="10.5" font-weight="700" fill="#1E293B">$1K-$10K</text>
+</g>
+<g class="bar-g"><title>$10K-$100K: Tx Count %=25.1%, USD Volume %=8.7%</title>
+<rect x="231.6" y="91.6" width="20.4" height="102.4" rx="2" fill="#0F2744"/>
+<text x="241.8" y="87.6" text-anchor="middle" font-size="9.5" font-weight="700" fill="#0F2744">25.1%</text>
+<rect x="256.0" y="158.7" width="20.4" height="35.3" rx="2" fill="#DC2626"/>
+<text x="266.2" y="154.7" text-anchor="middle" font-size="9.5" font-weight="700" fill="#DC2626">8.7%</text>
+<text x="254.0" y="214" text-anchor="middle" font-size="10.5" font-weight="700" fill="#1E293B">$10K-$100K</text>
+</g>
+<g class="bar-g"><title>$100K-$1M: Tx Count %=8.4%, USD Volume %=24.6%</title>
+<rect x="291.6" y="159.8" width="20.4" height="34.2" rx="2" fill="#0F2744"/>
+<text x="301.8" y="155.8" text-anchor="middle" font-size="9.5" font-weight="700" fill="#0F2744">8.4%</text>
+<rect x="316.0" y="94.0" width="20.4" height="100.0" rx="2" fill="#DC2626"/>
+<text x="326.2" y="90.0" text-anchor="middle" font-size="9.5" font-weight="700" fill="#DC2626">24.6%</text>
+<text x="314.0" y="214" text-anchor="middle" font-size="10.5" font-weight="700" fill="#1E293B">$100K-$1M</text>
+</g>
+<g class="bar-g"><title>$1M-$10M: Tx Count %=1.2%, USD Volume %=30.3%</title>
+<rect x="351.6" y="189.0" width="20.4" height="5.0" rx="2" fill="#0F2744"/>
+<text x="361.8" y="185.0" text-anchor="middle" font-size="9.5" font-weight="700" fill="#0F2744">1.2%</text>
+<rect x="376.0" y="70.6" width="20.4" height="123.4" rx="2" fill="#DC2626"/>
+<text x="386.2" y="66.6" text-anchor="middle" font-size="9.5" font-weight="700" fill="#DC2626">30.3%</text>
+<text x="374.0" y="214" text-anchor="middle" font-size="10.5" font-weight="700" fill="#1E293B">$1M-$10M</text>
+</g>
+<g class="bar-g"><title>>= $10M: Tx Count %=0.1%, USD Volume %=35.0%</title>
+<rect x="411.6" y="193.7" width="20.4" height="0.3" rx="2" fill="#0F2744"/>
+<text x="421.8" y="189.7" text-anchor="middle" font-size="9.5" font-weight="700" fill="#0F2744">0.1%</text>
+<rect x="436.0" y="51.6" width="20.4" height="142.4" rx="2" fill="#DC2626"/>
+<text x="446.2" y="47.6" text-anchor="middle" font-size="9.5" font-weight="700" fill="#DC2626">35.0%</text>
+<text x="434.0" y="214" text-anchor="middle" font-size="10.5" font-weight="700" fill="#1E293B">&gt;= $10M</text>
+</g>
+</svg></div>
+        </div>
+        <div class="card">
+          <div class="card-title">Just 1,940 FAT_FINGER_MISTAKE Rows (0.019%) Account for 18.02% ($175.1B) of Dataset Value</div>
+          <div class="card-body"><svg viewBox="0 0 500 230" class="chart-svg" xmlns="http://www.w3.org/2000/svg">
+<line x1="222.2" y1="18" x2="222.2" y2="206" stroke="#E2E8F0" stroke-dasharray="3,3"/>
+<text x="222.2" y="224" text-anchor="middle" font-size="9.5" fill="#64748B">225B</text>
+<line x1="286.5" y1="18" x2="286.5" y2="206" stroke="#E2E8F0" stroke-dasharray="3,3"/>
+<text x="286.5" y="224" text-anchor="middle" font-size="9.5" fill="#64748B">450B</text>
+<line x1="350.8" y1="18" x2="350.8" y2="206" stroke="#E2E8F0" stroke-dasharray="3,3"/>
+<text x="350.8" y="224" text-anchor="middle" font-size="9.5" fill="#64748B">675B</text>
+<line x1="415.0" y1="18" x2="415.0" y2="206" stroke="#E2E8F0" stroke-dasharray="3,3"/>
+<text x="415.0" y="224" text-anchor="middle" font-size="9.5" fill="#64748B">900B</text>
+<g class="bar-g"><title>Normal (99.93%): $795.4B (Mean $79.6K)</title>
+<text x="150" y="52.8" text-anchor="end" font-size="10.5" font-weight="600" fill="#1E293B">Normal (99.93%)</text>
+<rect x="158" y="38.3" width="227.1" height="22.0" rx="3" fill="#0F2744"/>
+<text x="391.1" y="52.8" font-size="10" font-weight="600" fill="#334155">$795.4B (Mean $79.6K)</text>
+</g>
+<g class="bar-g"><title>Fat Finger (0.019%): $175.1B (Mean $90.3M)</title>
+<text x="150" y="115.5" text-anchor="end" font-size="10.5" font-weight="600" fill="#1E293B">Fat Finger (0.019%)</text>
+<rect x="158" y="101.0" width="50.0" height="22.0" rx="3" fill="#DC2626"/>
+<text x="214.0" y="115.5" font-size="10" font-weight="600" fill="#334155">$175.1B (Mean $90.3M)</text>
+</g>
+<g class="bar-g"><title>Other Anomalies (0.05%): $1.5B</title>
+<text x="150" y="178.2" text-anchor="end" font-size="10.5" font-weight="600" fill="#1E293B">Other Anomalies (0.05%)</text>
+<rect x="158" y="163.7" width="2.0" height="22.0" rx="3" fill="#0F2744"/>
+<text x="166.0" y="178.2" font-size="10" font-weight="600" fill="#334155">$1.5B</text>
+</g>
+</svg></div>
+        </div>
+      </div>
+
+      <div class="insights-grid">
+        <div class="insight-box rule-box">
+          <div class="box-hdr">Reconstructed Causal Rule</div>
+          <p>Rule 8a: Normal payments follow a log-normal-like retail/corporate mix (median $3,663), but FAT_FINGER_MISTAKE injects 71x-1000x magnitude errors (median $260,241; mean $90.28M) without altering duration.</p>
+        </div>
+        <div class="insight-box econ-box">
+          <div class="box-hdr">Real-World Economic Reasoning</div>
+          <p>Economic Logic: Comma/decimal-separator typos in manual wire entry create massive outlier spikes that distort aggregate volume metrics if not isolated during data cleaning.</p>
+        </div>
+        <div class="insight-box rej-box">
+          <div class="box-hdr">Verification / Caveat</div>
+          <p>Data Integrity Action: Always filter or stratify by ANOMALY_TYPE != &#x27;FAT_FINGER_MISTAKE&#x27; before estimating normal corridor ticket sizes.</p>
+        </div>
+      </div>
+    </section>
+    
+    <section id="d6" class="dash-page">
+      <div class="dash-header">
+        <div>
+          <div class="dash-tag">UMDAC DATATHON 2026 &bull; SWIFT PAYMENTS</div>
+          <h1>Dashboard 6: Bimodal Settlement Duration &amp; Hop-Count Law</h1>
+          <div class="dash-sub">Feature Group: TOTAL_DURATION (2s to 21,649s; Median 56s; Mean 771.5s)</div>
+        </div>
+        <div class="page-badge">Dashboard 6 of 8</div>
+      </div>
+
+      <div class="kpi-grid"><div class="kpi"><div class="kpi-lbl">Fast STP (&lt; 2 min)</div><div class="kpi-val">53.92%</div><div class="kpi-sub">30.35% &lt;30s + 23.57% 30s-2m</div></div>
+<div class="kpi"><div class="kpi-lbl">Slow Cluster (10m-1h)</div><div class="kpi-val">28.53%</div><div class="kpi-sub">Second modal peak</div></div>
+<div class="kpi"><div class="kpi-lbl">Per-Hop Latency</div><div class="kpi-val">+~200s</div><div class="kpi-sub">Linear scaling per bank</div></div>
+<div class="kpi"><div class="kpi-lbl">Direct vs Indirect Med</div><div class="kpi-val">39s vs 281s</div><div class="kpi-sub">7.2x faster median</div></div></div>
+
+      <div class="charts-grid">
+        <div class="card">
+          <div class="card-title">Bimodal Settlement: 53.9% Clear Under 2 Minutes vs. a 28.5% Cluster at 10m-1h</div>
+          <div class="card-body"><svg viewBox="0 0 480 225" class="chart-svg" xmlns="http://www.w3.org/2000/svg">
+<line x1="44" y1="147.8" x2="464" y2="147.8" stroke="#E2E8F0" stroke-dasharray="3,3"/>
+<text x="38" y="151.2" text-anchor="end" font-size="9.5" fill="#64748B">9%</text>
+<line x1="44" y1="104.5" x2="464" y2="104.5" stroke="#E2E8F0" stroke-dasharray="3,3"/>
+<text x="38" y="108.0" text-anchor="end" font-size="9.5" fill="#64748B">18%</text>
+<line x1="44" y1="61.2" x2="464" y2="61.2" stroke="#E2E8F0" stroke-dasharray="3,3"/>
+<text x="38" y="64.8" text-anchor="end" font-size="9.5" fill="#64748B">27%</text>
+<line x1="44" y1="18.0" x2="464" y2="18.0" stroke="#E2E8F0" stroke-dasharray="3,3"/>
+<text x="38" y="21.5" text-anchor="end" font-size="9.5" fill="#64748B">36%</text>
+<g class="bar-g"><title>&lt; 30s: 30.4%</title>
+<rect x="67.0" y="44.4" width="38.0" height="146.6" rx="3" fill="#0D9488"/>
+<text x="86.0" y="40.4" text-anchor="middle" font-size="9.5" font-weight="700" fill="#1E293B">30.4%</text>
+<text x="86.0" y="211" text-anchor="middle" font-size="10" font-weight="600" fill="#334155">&lt; 30s</text>
+</g>
+<g class="bar-g"><title>30s - 2m: 23.6%</title>
+<rect x="151.0" y="77.1" width="38.0" height="113.9" rx="3" fill="#0D9488"/>
+<text x="170.0" y="73.1" text-anchor="middle" font-size="9.5" font-weight="700" fill="#1E293B">23.6%</text>
+<text x="170.0" y="211" text-anchor="middle" font-size="10" font-weight="600" fill="#334155">30s - 2m</text>
+</g>
+<g class="bar-g"><title>2m - 10m: 13.3%</title>
+<rect x="235.0" y="126.6" width="38.0" height="64.4" rx="3" fill="#64748B"/>
+<text x="254.0" y="122.6" text-anchor="middle" font-size="9.5" font-weight="700" fill="#1E293B">13.3%</text>
+<text x="254.0" y="211" text-anchor="middle" font-size="10" font-weight="600" fill="#334155">2m - 10m</text>
+</g>
+<g class="bar-g"><title>10m - 1h: 28.5%</title>
+<rect x="319.0" y="53.2" width="38.0" height="137.8" rx="3" fill="#DC2626"/>
+<text x="338.0" y="49.2" text-anchor="middle" font-size="9.5" font-weight="700" fill="#1E293B">28.5%</text>
+<text x="338.0" y="211" text-anchor="middle" font-size="10" font-weight="600" fill="#334155">10m - 1h</text>
+</g>
+<g class="bar-g"><title>&gt;= 1h: 4.2%</title>
+<rect x="403.0" y="170.7" width="38.0" height="20.3" rx="3" fill="#64748B"/>
+<text x="422.0" y="166.7" text-anchor="middle" font-size="9.5" font-weight="700" fill="#1E293B">4.2%</text>
+<text x="422.0" y="211" text-anchor="middle" font-size="10" font-weight="600" fill="#334155">&gt;= 1h</text>
+</g>
+</svg></div>
+        </div>
+        <div class="card">
+          <div class="card-title">Mean Settlement Duration Scales Linearly by ~200 Seconds per Participant Bank Hop</div>
+          <div class="card-body"><svg viewBox="0 0 500 230" class="chart-svg" xmlns="http://www.w3.org/2000/svg">
+<line x1="175.0" y1="18" x2="175.0" y2="206" stroke="#E2E8F0" stroke-dasharray="3,3"/>
+<text x="175.0" y="224" text-anchor="middle" font-size="9.5" fill="#64748B">500s</text>
+<line x1="255.0" y1="18" x2="255.0" y2="206" stroke="#E2E8F0" stroke-dasharray="3,3"/>
+<text x="255.0" y="224" text-anchor="middle" font-size="9.5" fill="#64748B">1000s</text>
+<line x1="335.0" y1="18" x2="335.0" y2="206" stroke="#E2E8F0" stroke-dasharray="3,3"/>
+<text x="335.0" y="224" text-anchor="middle" font-size="9.5" fill="#64748B">1500s</text>
+<line x1="415.0" y1="18" x2="415.0" y2="206" stroke="#E2E8F0" stroke-dasharray="3,3"/>
+<text x="415.0" y="224" text-anchor="middle" font-size="9.5" fill="#64748B">2000s</text>
+<g class="bar-g"><title>2 hops: 663s</title>
+<text x="87" y="37.2" text-anchor="end" font-size="10.5" font-weight="600" fill="#1E293B">2 hops</text>
+<rect x="95" y="23.0" width="106.1" height="21.3" rx="3" fill="#2563EB"/>
+<text x="207.1" y="37.2" font-size="10" font-weight="600" fill="#334155">663s</text>
+</g>
+<g class="bar-g"><title>3 hops: 841s</title>
+<text x="87" y="68.5" text-anchor="end" font-size="10.5" font-weight="600" fill="#1E293B">3 hops</text>
+<rect x="95" y="54.3" width="134.6" height="21.3" rx="3" fill="#2563EB"/>
+<text x="235.6" y="68.5" font-size="10" font-weight="600" fill="#334155">841s</text>
+</g>
+<g class="bar-g"><title>4 hops: 1042s</title>
+<text x="87" y="99.8" text-anchor="end" font-size="10.5" font-weight="600" fill="#1E293B">4 hops</text>
+<rect x="95" y="85.7" width="166.7" height="21.3" rx="3" fill="#2563EB"/>
+<text x="267.7" y="99.8" font-size="10" font-weight="600" fill="#334155">1042s</text>
+</g>
+<g class="bar-g"><title>5 hops: 1242s</title>
+<text x="87" y="131.2" text-anchor="end" font-size="10.5" font-weight="600" fill="#1E293B">5 hops</text>
+<rect x="95" y="117.0" width="198.8" height="21.3" rx="3" fill="#2563EB"/>
+<text x="299.8" y="131.2" font-size="10" font-weight="600" fill="#334155">1242s</text>
+</g>
+<g class="bar-g"><title>6 hops: 1437s</title>
+<text x="87" y="162.5" text-anchor="end" font-size="10.5" font-weight="600" fill="#1E293B">6 hops</text>
+<rect x="95" y="148.3" width="229.9" height="21.3" rx="3" fill="#2563EB"/>
+<text x="330.9" y="162.5" font-size="10" font-weight="600" fill="#334155">1437s</text>
+</g>
+<g class="bar-g"><title>7 hops: 1649s</title>
+<text x="87" y="193.8" text-anchor="end" font-size="10.5" font-weight="600" fill="#1E293B">7 hops</text>
+<rect x="95" y="179.7" width="263.8" height="21.3" rx="3" fill="#2563EB"/>
+<text x="364.8" y="193.8" font-size="10" font-weight="600" fill="#334155">1649s</text>
+</g>
+</svg></div>
+        </div>
+      </div>
+
+      <div class="insights-grid">
+        <div class="insight-box rule-box">
+          <div class="box-hdr">Reconstructed Causal Rule</div>
+          <p>Rule 4: PARTICIPANT_COUNT—not FX count—governs TOTAL_DURATION: mean latency rises linearly (+~200s/hop) from 663s (2 hops) -&gt; 841s (3) -&gt; 1,042s (4) -&gt; 1,242s (5) -&gt; 1,437s (6) -&gt; 1,649s (7).</p>
+        </div>
+        <div class="insight-box econ-box">
+          <div class="box-hdr">Real-World Economic Reasoning</div>
+          <p>Economic Logic: Straight-through processing (STP) Direct wires clear in seconds, while each intermediary bank adds sanctions screening, batch cut-off, and reconciliation latency.</p>
+        </div>
+        <div class="insight-box rej-box">
+          <div class="box-hdr">Verification / Caveat</div>
+          <p>Rejected Hypothesis: &#x27;More FX conversions cause longer settlement duration.&#x27; Disproved: Within 4-hop payments, median duration is 429s (0 FX), 418s (1 FX), 418s (2 FX), 418s (3 FX).</p>
+        </div>
+      </div>
+    </section>
+    
+    <section id="d7" class="dash-page">
+      <div class="dash-header">
+        <div>
+          <div class="dash-tag">UMDAC DATATHON 2026 &bull; SWIFT PAYMENTS</div>
+          <h1>Dashboard 7: Anomaly Taxonomy &amp; Role-Gated Fraud Forensics</h1>
+          <div class="dash-sub">Feature Group: ANOMALY_TYPE (7,006 Labeled Records = 0.0701% across 6 Categories)</div>
+        </div>
+        <div class="page-badge">Dashboard 7 of 8</div>
+      </div>
+
+      <div class="kpi-grid"><div class="kpi"><div class="kpi-lbl">Total Anomalies</div><div class="kpi-val">7,006</div><div class="kpi-sub">0.0701% of 10M rows</div></div>
+<div class="kpi"><div class="kpi-lbl">Romance Scam Purity</div><div class="kpi-val">100% C2*</div><div class="kpi-sub">500 senders -&gt; 378 mules</div></div>
+<div class="kpi"><div class="kpi-lbl">CEO Scam Purity</div><div class="kpi-val">100% B2*</div><div class="kpi-sub">98.7% cross-border, $1.38M avg</div></div>
+<div class="kpi"><div class="kpi-lbl">Undocumented Class</div><div class="kpi-val">317 rows</div><div class="kpi-sub">CUSTOMER_RECALL (not in PDF)</div></div></div>
+
+      <div class="charts-grid">
+        <div class="card">
+          <div class="card-title">6 Anomaly Categories: ROMANCE_SCAM (35.3%) and FAT_FINGER_MISTAKE (27.7%) Lead Counts</div>
+          <div class="card-body"><svg viewBox="0 0 500 230" class="chart-svg" xmlns="http://www.w3.org/2000/svg">
+<line x1="199.0" y1="18" x2="199.0" y2="206" stroke="#E2E8F0" stroke-dasharray="3,3"/>
+<text x="199.0" y="224" text-anchor="middle" font-size="9.5" fill="#64748B">775</text>
+<line x1="271.0" y1="18" x2="271.0" y2="206" stroke="#E2E8F0" stroke-dasharray="3,3"/>
+<text x="271.0" y="224" text-anchor="middle" font-size="9.5" fill="#64748B">1550</text>
+<line x1="343.0" y1="18" x2="343.0" y2="206" stroke="#E2E8F0" stroke-dasharray="3,3"/>
+<text x="343.0" y="224" text-anchor="middle" font-size="9.5" fill="#64748B">2325</text>
+<line x1="415.0" y1="18" x2="415.0" y2="206" stroke="#E2E8F0" stroke-dasharray="3,3"/>
+<text x="415.0" y="224" text-anchor="middle" font-size="9.5" fill="#64748B">3100</text>
+<g class="bar-g"><title>ROMANCE SCAM: 2,476 (35.3%)</title>
+<text x="119" y="37.2" text-anchor="end" font-size="10.5" font-weight="600" fill="#1E293B">ROMANCE SCAM</text>
+<rect x="127" y="23.0" width="230.0" height="21.3" rx="3" fill="#DC2626"/>
+<text x="363.0" y="37.2" font-size="10" font-weight="600" fill="#334155">2,476 (35.3%)</text>
+</g>
+<g class="bar-g"><title>FAT FINGER MISTAKE: 1,940 (27.7%)</title>
+<text x="119" y="68.5" text-anchor="end" font-size="10.5" font-weight="600" fill="#1E293B">FAT FINGER MISTAKE</text>
+<rect x="127" y="54.3" width="180.2" height="21.3" rx="3" fill="#DC2626"/>
+<text x="313.2" y="68.5" font-size="10" font-weight="600" fill="#334155">1,940 (27.7%)</text>
+</g>
+<g class="bar-g"><title>CEO SCAM: 945 (13.5%)</title>
+<text x="119" y="99.8" text-anchor="end" font-size="10.5" font-weight="600" fill="#1E293B">CEO SCAM</text>
+<rect x="127" y="85.7" width="87.8" height="21.3" rx="3" fill="#DC2626"/>
+<text x="220.8" y="99.8" font-size="10" font-weight="600" fill="#334155">945 (13.5%)</text>
+</g>
+<g class="bar-g"><title>DUPLICATE PAYMENT: 679 (9.7%)</title>
+<text x="119" y="131.2" text-anchor="end" font-size="10.5" font-weight="600" fill="#1E293B">DUPLICATE PAYMENT</text>
+<rect x="127" y="117.0" width="63.1" height="21.3" rx="3" fill="#DC2626"/>
+<text x="196.1" y="131.2" font-size="10" font-weight="600" fill="#334155">679 (9.7%)</text>
+</g>
+<g class="bar-g"><title>ACCT REPLACEMENT: 649 (9.3%)</title>
+<text x="119" y="162.5" text-anchor="end" font-size="10.5" font-weight="600" fill="#1E293B">ACCT REPLACEMENT</text>
+<rect x="127" y="148.3" width="60.3" height="21.3" rx="3" fill="#DC2626"/>
+<text x="193.3" y="162.5" font-size="10" font-weight="600" fill="#334155">649 (9.3%)</text>
+</g>
+<g class="bar-g"><title>CUSTOMER RECALL: 317 (4.5%)</title>
+<text x="119" y="193.8" text-anchor="end" font-size="10.5" font-weight="600" fill="#1E293B">CUSTOMER RECALL</text>
+<rect x="127" y="179.7" width="29.5" height="21.3" rx="3" fill="#DC2626"/>
+<text x="162.5" y="193.8" font-size="10" font-weight="600" fill="#334155">317 (4.5%)</text>
+</g>
+</svg></div>
+        </div>
+        <div class="card">
+          <div class="card-title">Social-Engineering Scams Exhibit 10x-20x Longer Duration vs. Normal Baseline (56s)</div>
+          <div class="card-body"><svg viewBox="0 0 500 230" class="chart-svg" xmlns="http://www.w3.org/2000/svg">
+<line x1="199.0" y1="18" x2="199.0" y2="206" stroke="#E2E8F0" stroke-dasharray="3,3"/>
+<text x="199.0" y="224" text-anchor="middle" font-size="9.5" fill="#64748B">338s</text>
+<line x1="271.0" y1="18" x2="271.0" y2="206" stroke="#E2E8F0" stroke-dasharray="3,3"/>
+<text x="271.0" y="224" text-anchor="middle" font-size="9.5" fill="#64748B">675s</text>
+<line x1="343.0" y1="18" x2="343.0" y2="206" stroke="#E2E8F0" stroke-dasharray="3,3"/>
+<text x="343.0" y="224" text-anchor="middle" font-size="9.5" fill="#64748B">1012s</text>
+<line x1="415.0" y1="18" x2="415.0" y2="206" stroke="#E2E8F0" stroke-dasharray="3,3"/>
+<text x="415.0" y="224" text-anchor="middle" font-size="9.5" fill="#64748B">1350s</text>
+<g class="bar-g"><title>ROMANCE SCAM: 1148s</title>
+<text x="119" y="37.2" text-anchor="end" font-size="10.5" font-weight="600" fill="#1E293B">ROMANCE SCAM</text>
+<rect x="127" y="23.0" width="244.9" height="21.3" rx="3" fill="#0F2744"/>
+<text x="377.9" y="37.2" font-size="10" font-weight="600" fill="#334155">1148s</text>
+</g>
+<g class="bar-g"><title>FAT FINGER MISTAKE: 53s</title>
+<text x="119" y="68.5" text-anchor="end" font-size="10.5" font-weight="600" fill="#1E293B">FAT FINGER MISTAKE</text>
+<rect x="127" y="54.3" width="11.3" height="21.3" rx="3" fill="#0F2744"/>
+<text x="144.3" y="68.5" font-size="10" font-weight="600" fill="#334155">53s</text>
+</g>
+<g class="bar-g"><title>CEO SCAM: 741s</title>
+<text x="119" y="99.8" text-anchor="end" font-size="10.5" font-weight="600" fill="#1E293B">CEO SCAM</text>
+<rect x="127" y="85.7" width="158.1" height="21.3" rx="3" fill="#0F2744"/>
+<text x="291.1" y="99.8" font-size="10" font-weight="600" fill="#334155">741s</text>
+</g>
+<g class="bar-g"><title>DUPLICATE PAYMENT: 261s</title>
+<text x="119" y="131.2" text-anchor="end" font-size="10.5" font-weight="600" fill="#1E293B">DUPLICATE PAYMENT</text>
+<rect x="127" y="117.0" width="55.7" height="21.3" rx="3" fill="#0F2744"/>
+<text x="188.7" y="131.2" font-size="10" font-weight="600" fill="#334155">261s</text>
+</g>
+<g class="bar-g"><title>ACCT REPLACEMENT: 571s</title>
+<text x="119" y="162.5" text-anchor="end" font-size="10.5" font-weight="600" fill="#1E293B">ACCT REPLACEMENT</text>
+<rect x="127" y="148.3" width="121.8" height="21.3" rx="3" fill="#0F2744"/>
+<text x="254.8" y="162.5" font-size="10" font-weight="600" fill="#334155">571s</text>
+</g>
+<g class="bar-g"><title>CUSTOMER RECALL: 53s</title>
+<text x="119" y="193.8" text-anchor="end" font-size="10.5" font-weight="600" fill="#1E293B">CUSTOMER RECALL</text>
+<rect x="127" y="179.7" width="11.3" height="21.3" rx="3" fill="#0F2744"/>
+<text x="144.3" y="193.8" font-size="10" font-weight="600" fill="#334155">53s</text>
+</g>
+<line x1="138.9" y1="14" x2="138.9" y2="206" stroke="#DC2626" stroke-width="1.8" stroke-dasharray="4,3"/>
+<text x="142.9" y="26" font-size="9.5" font-weight="700" fill="#DC2626">Normal Med: 56s</text>
+</svg></div>
+        </div>
+      </div>
+
+      <div class="insights-grid">
+        <div class="insight-box rule-box">
+          <div class="box-hdr">Reconstructed Causal Rule</div>
+          <p>Rule 7, 8b &amp; 9: ROMANCE_SCAM is 100% Consumer-originated (500 senders -&gt; 378 receivers); CEO_SCAM is 100% Business-originated; DUPLICATE_PAYMENT replays 185 tuples (median 1,099s gap); CUSTOMER_RECALL has 11.04% path gaps.</p>
+        </div>
+        <div class="insight-box econ-box">
+          <div class="box-hdr">Real-World Economic Reasoning</div>
+          <p>Economic Logic: Fraud topologies mirror real-world typologies—romance victims send repeated small wires to mule networks, BEC/CEO fraud targets corporate treasuries, and recalls surface on opaque chains.</p>
+        </div>
+        <div class="insight-box rej-box">
+          <div class="box-hdr">Verification / Caveat</div>
+          <p>Critical Discovery: CUSTOMER_RECALL (317 rows) exists in the CSV despite being omitted from the official Case Study PDF Appendix.</p>
+        </div>
+      </div>
+    </section>
+    
+    <section id="d8" class="dash-page">
+      <div class="dash-header">
+        <div>
+          <div class="dash-tag">UMDAC DATATHON 2026 &bull; SWIFT PAYMENTS</div>
+          <h1>Dashboard 8: Remittance Text Tokens &amp; Structural Integrity</h1>
+          <div class="dash-sub">Feature Group: ORDERING_TOKENS, BENEFICIARY_TOKENS &amp; Schema Integrity (200K Reservoir Sample)</div>
+        </div>
+        <div class="page-badge">Dashboard 8 of 8</div>
+      </div>
+
+      <div class="kpi-grid"><div class="kpi"><div class="kpi-lbl">Token Tag Families</div><div class="kpi-val">19</div><div class="kpi-sub">Extracted across 200K sample</div></div>
+<div class="kpi"><div class="kpi-lbl">Top Pattern Tag</div><div class="kpi-val">&lt;chr:...&gt;</div><div class="kpi-sub">529,061 character masks</div></div>
+<div class="kpi"><div class="kpi-lbl">IBAN Detections</div><div class="kpi-val">200,449</div><div class="kpi-sub">Standardized &lt;iban:22&gt;</div></div>
+<div class="kpi"><div class="kpi-lbl">Zero-Null Columns</div><div class="kpi-val">19 / 21</div><div class="kpi-sub">100% populated fields</div></div></div>
+
+      <div class="charts-grid">
+        <div class="card">
+          <div class="card-title">Top 10 Semantic Token Tags Extracted from Party Details (200,000-Row Sample)</div>
+          <div class="card-body"><svg viewBox="0 0 500 230" class="chart-svg" xmlns="http://www.w3.org/2000/svg">
+<line x1="184.8" y1="18" x2="184.8" y2="206" stroke="#E2E8F0" stroke-dasharray="3,3"/>
+<text x="184.8" y="224" text-anchor="middle" font-size="9.5" fill="#64748B">155K</text>
+<line x1="261.5" y1="18" x2="261.5" y2="206" stroke="#E2E8F0" stroke-dasharray="3,3"/>
+<text x="261.5" y="224" text-anchor="middle" font-size="9.5" fill="#64748B">310K</text>
+<line x1="338.2" y1="18" x2="338.2" y2="206" stroke="#E2E8F0" stroke-dasharray="3,3"/>
+<text x="338.2" y="224" text-anchor="middle" font-size="9.5" fill="#64748B">465K</text>
+<line x1="415.0" y1="18" x2="415.0" y2="206" stroke="#E2E8F0" stroke-dasharray="3,3"/>
+<text x="415.0" y="224" text-anchor="middle" font-size="9.5" fill="#64748B">620K</text>
+<g class="bar-g"><title>&lt;chr:&gt;: 529,061</title>
+<text x="100" y="30.9" text-anchor="end" font-size="10.5" font-weight="600" fill="#1E293B">&lt;chr:&gt;</text>
+<rect x="108" y="21.0" width="262.0" height="12.8" rx="3" fill="#0D9488"/>
+<text x="376.0" y="30.9" font-size="10" font-weight="600" fill="#334155">529,061</text>
+</g>
+<g class="bar-g"><title>&lt;street:&gt;: 284,302</title>
+<text x="100" y="49.7" text-anchor="end" font-size="10.5" font-weight="600" fill="#1E293B">&lt;street:&gt;</text>
+<rect x="108" y="39.8" width="140.8" height="12.8" rx="3" fill="#0D9488"/>
+<text x="254.8" y="49.7" font-size="10" font-weight="600" fill="#334155">284,302</text>
+</g>
+<g class="bar-g"><title>&lt;city:&gt;: 265,812</title>
+<text x="100" y="68.5" text-anchor="end" font-size="10.5" font-weight="600" fill="#1E293B">&lt;city:&gt;</text>
+<rect x="108" y="58.6" width="131.6" height="12.8" rx="3" fill="#0D9488"/>
+<text x="245.6" y="68.5" font-size="10" font-weight="600" fill="#334155">265,812</text>
+</g>
+<g class="bar-g"><title>&lt;country_code:&gt;: 243,894</title>
+<text x="100" y="87.3" text-anchor="end" font-size="10.5" font-weight="600" fill="#1E293B">&lt;country_code:&gt;</text>
+<rect x="108" y="77.4" width="120.8" height="12.8" rx="3" fill="#0D9488"/>
+<text x="234.8" y="87.3" font-size="10" font-weight="600" fill="#334155">243,894</text>
+</g>
+<g class="bar-g"><title>&lt;line_break:&gt;: 204,431</title>
+<text x="100" y="106.1" text-anchor="end" font-size="10.5" font-weight="600" fill="#1E293B">&lt;line_break:&gt;</text>
+<rect x="108" y="96.2" width="101.2" height="12.8" rx="3" fill="#0D9488"/>
+<text x="215.2" y="106.1" font-size="10" font-weight="600" fill="#334155">204,431</text>
+</g>
+<g class="bar-g"><title>&lt;iban:&gt;: 200,449</title>
+<text x="100" y="124.9" text-anchor="end" font-size="10.5" font-weight="600" fill="#1E293B">&lt;iban:&gt;</text>
+<rect x="108" y="115.0" width="99.3" height="12.8" rx="3" fill="#0D9488"/>
+<text x="213.3" y="124.9" font-size="10" font-weight="600" fill="#334155">200,449</text>
+</g>
+<g class="bar-g"><title>&lt;business:&gt;: 184,001</title>
+<text x="100" y="143.7" text-anchor="end" font-size="10.5" font-weight="600" fill="#1E293B">&lt;business:&gt;</text>
+<rect x="108" y="133.8" width="91.1" height="12.8" rx="3" fill="#0D9488"/>
+<text x="205.1" y="143.7" font-size="10" font-weight="600" fill="#334155">184,001</text>
+</g>
+<g class="bar-g"><title>&lt;post_code:&gt;: 177,934</title>
+<text x="100" y="162.5" text-anchor="end" font-size="10.5" font-weight="600" fill="#1E293B">&lt;post_code:&gt;</text>
+<rect x="108" y="152.6" width="88.1" height="12.8" rx="3" fill="#0D9488"/>
+<text x="202.1" y="162.5" font-size="10" font-weight="600" fill="#334155">177,934</text>
+</g>
+<g class="bar-g"><title>&lt;last_name:&gt;: 175,256</title>
+<text x="100" y="181.3" text-anchor="end" font-size="10.5" font-weight="600" fill="#1E293B">&lt;last_name:&gt;</text>
+<rect x="108" y="171.4" width="86.8" height="12.8" rx="3" fill="#0D9488"/>
+<text x="200.8" y="181.3" font-size="10" font-weight="600" fill="#334155">175,256</text>
+</g>
+<g class="bar-g"><title>&lt;other_words:&gt;: 139,233</title>
+<text x="100" y="200.1" text-anchor="end" font-size="10.5" font-weight="600" fill="#1E293B">&lt;other_words:&gt;</text>
+<rect x="108" y="190.2" width="68.9" height="12.8" rx="3" fill="#0D9488"/>
+<text x="182.9" y="200.1" font-size="10" font-weight="600" fill="#334155">139,233</text>
+</g>
+</svg></div>
+        </div>
+        <div class="card">
+          <div class="card-title">Dataset Structural Integrity &amp; Graph Invariants Across All 10,000,000 Records</div>
+          <div class="card-body"><svg viewBox="0 0 500 230" class="chart-svg" xmlns="http://www.w3.org/2000/svg">
+<line x1="227.5" y1="18" x2="227.5" y2="206" stroke="#E2E8F0" stroke-dasharray="3,3"/>
+<text x="227.5" y="224" text-anchor="middle" font-size="9.5" fill="#64748B">29%</text>
+<line x1="290.0" y1="18" x2="290.0" y2="206" stroke="#E2E8F0" stroke-dasharray="3,3"/>
+<text x="290.0" y="224" text-anchor="middle" font-size="9.5" fill="#64748B">58%</text>
+<line x1="352.5" y1="18" x2="352.5" y2="206" stroke="#E2E8F0" stroke-dasharray="3,3"/>
+<text x="352.5" y="224" text-anchor="middle" font-size="9.5" fill="#64748B">86%</text>
+<line x1="415.0" y1="18" x2="415.0" y2="206" stroke="#E2E8F0" stroke-dasharray="3,3"/>
+<text x="415.0" y="224" text-anchor="middle" font-size="9.5" fill="#64748B">115%</text>
+<g class="bar-g"><title>Pure Single-Type Accts: 391,132 / 391,132 (100%)</title>
+<text x="157" y="45.0" text-anchor="end" font-size="10.5" font-weight="600" fill="#1E293B">Pure Single-Type Accts</text>
+<rect x="165" y="30.5" width="217.4" height="22.0" rx="3" fill="#0F2744"/>
+<text x="388.4" y="45.0" font-size="10" font-weight="600" fill="#334155">391,132 / 391,132 (100%)</text>
+</g>
+<g class="bar-g"><title>Continuous BIC Paths (Y): 9,232,796 (92.33%)</title>
+<text x="157" y="92.0" text-anchor="end" font-size="10.5" font-weight="600" fill="#1E293B">Continuous BIC Paths (Y)</text>
+<rect x="165" y="77.5" width="200.7" height="22.0" rx="3" fill="#0F2744"/>
+<text x="371.7" y="92.0" font-size="10" font-weight="600" fill="#334155">9,232,796 (92.33%)</text>
+</g>
+<g class="bar-g"><title>Cross-Border Flows: 9,288,884 (92.89%)</title>
+<text x="157" y="139.0" text-anchor="end" font-size="10.5" font-weight="600" fill="#1E293B">Cross-Border Flows</text>
+<rect x="165" y="124.5" width="201.9" height="22.0" rx="3" fill="#0F2744"/>
+<text x="372.9" y="139.0" font-size="10" font-weight="600" fill="#334155">9,288,884 (92.89%)</text>
+</g>
+<g class="bar-g"><title>Zero-Null Schema Cols: 19 / 21 Columns (0 NULLs)</title>
+<text x="157" y="186.0" text-anchor="end" font-size="10.5" font-weight="600" fill="#1E293B">Zero-Null Schema Cols</text>
+<rect x="165" y="171.5" width="196.7" height="22.0" rx="3" fill="#0F2744"/>
+<text x="367.7" y="186.0" font-size="10" font-weight="600" fill="#334155">19 / 21 Columns (0 NULLs)</text>
+</g>
+</svg></div>
+        </div>
+      </div>
+
+      <div class="insights-grid">
+        <div class="insight-box rule-box">
+          <div class="box-hdr">Reconstructed Causal Rule</div>
+          <p>Schema &amp; Tokenization Rule: Raw multiline party text (expanding 10M rows to 83.81M physical lines) is deterministically masked into 19 semantic tag classes (&lt;chr:&gt;, &lt;street:&gt;, &lt;city:CC:N&gt;, &lt;iban:N&gt;, &lt;business:&gt;, &lt;last_name:&gt; ).</p>
+        </div>
+        <div class="insight-box econ-box">
+          <div class="box-hdr">Real-World Economic Reasoning</div>
+          <p>Economic Logic: Engineered *_TOKENS preserve structural formatting signals (IBAN presence, corporate keywords, address completeness) needed for AML/sanctions screening without exposing PII.</p>
+        </div>
+        <div class="insight-box rej-box">
+          <div class="box-hdr">Verification / Caveat</div>
+          <p>Engineering Warning: Naive line-splitting tools (awk/wc) break on embedded newlines inside quoted *_DETAILS fields; always use an RFC-4180 CSV parser.</p>
+        </div>
+      </div>
+    </section>
+    
+  </main>
+<script>
+  function showDash(id, btn) {
+    document.body.classList.remove('show-all');
+    document.querySelectorAll('.dash-page').forEach(el => el.classList.remove('active'));
+    document.querySelectorAll('.nav-btn').forEach(el => el.classList.remove('active'));
+    document.getElementById(id).classList.add('active');
+    if (btn) btn.classList.add('active');
+  }
+  function toggleAll(btn) {
+    const on = document.body.classList.toggle('show-all');
+    btn.textContent = on ? 'Single Dashboard View' : 'Show All 8 Dashboards';
+  }
+</script>
+</body>
+</html>
