@@ -52,34 +52,81 @@
   .econ-box { background: #F0FDFA; border-left: 4px solid var(--teal); }
   .rej-box { background: #FEF2F2; border-left: 4px solid var(--coral); }
   .box-hdr { font-size: 10.5px; font-weight: 800; text-transform: uppercase; margin-bottom: 4px; color: var(--navy); }
-  @media (max-width: 900px) {
-    body { display: block; }
-    .sidebar { width: 100%; height: auto; position: relative; padding: 14px; }
-    .sidebar .brand-sub { margin-bottom: 8px; }
-    .sidebar { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); }
-    .brand, .brand-sub, .sidebar-footer { grid-column: 1 / -1; }
-    .sidebar-footer { margin-top: 8px; }
-    .main { padding: 14px; }
-    .dash-page { padding: 16px; }
-    .kpi-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
-    .insights-grid { grid-template-columns: 1fr; }
+/* ---------- Responsive (screen) ---------- */
+@media (max-width: 900px) {
+  body { display: block; }
+  .sidebar { width: 100%; height: auto; position: relative; padding: 14px;
+             display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .sidebar .brand-sub { margin-bottom: 8px; }
+  .brand, .brand-sub, .sidebar-footer { grid-column: 1 / -1; }
+  .sidebar-footer { margin-top: 8px; }
+  .main { padding: 14px; }
+  .dash-page { padding: 16px; }
+  .kpi-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .insights-grid { grid-template-columns: 1fr; }
+}
+
+@media (max-width: 600px) {
+  .charts-grid { grid-template-columns: 1fr; }
+  .dash-header { gap: 10px; flex-direction: column; }
+  .dash-header h1 { font-size: 18px; }
+  .page-badge { align-self: flex-start; }
+  .kpi-val { font-size: 18px; }
+}
+
+/* ---------- Print: A4 PORTRAIT + DARK theme ---------- */
+@media print {
+  @page { size: A4 portrait; margin: 8mm; }
+
+  /* Layout */
+  body { display: block; }
+  .sidebar { display: none !important; }
+  .main { padding: 0; max-width: none; }
+  .dash-page {
+    display: block !important;
+    border: none; box-shadow: none;
+    padding: 8px 10px; margin: 0;
+    page-break-after: always; break-after: page;
   }
-  @media (max-width: 600px) {
-    .charts-grid { grid-template-columns: 1fr; }
-    .dash-header { gap: 10px; flex-direction: column; }
-    .dash-header h1 { font-size: 18px; }
-    .page-badge { align-self: flex-start; }
-    .kpi-val { font-size: 18px; }
-  }
-  @media print {
-    @page { size: A4 landscape; margin: 8mm; }
-    body { background: #FFF; display: block; }
-    .sidebar { display: none !important; }
-    .main { padding: 0; max-width: none; }
-    .dash-page { display: block !important; border: none; box-shadow: none; padding: 8px 10px; margin: 0; page-break-after: always; break-after: page; }
-    .dash-page:last-child { page-break-after: auto; break-after: auto; }
+  .dash-page:last-child { page-break-after: auto; break-after: auto; }
+
+  /* Portrait-friendly stacking */
+  .charts-grid   { grid-template-columns: 1fr !important; }
+  .kpi-grid      { grid-template-columns: repeat(2, 1fr) !important; }
+  .insights-grid { grid-template-columns: 1fr !important; }
+  .term-grid     { grid-template-columns: repeat(2, 1fr) !important; }
+  .rulebook-table { font-size: 10px; }
+
+  /* Dark theme for print */
+  body { background: #0B1120 !important; color: #E5EDF5 !important; }
+
+  .dash-page, .card, .kpi, .insight-box,
+  .global-guide, .plain-takeaway {
+    background: #17212F !important;
+    color: #E5EDF5 !important;
+    border-color: #2B394A !important;
   }
 
+  .dash-header h1, .card-title, .kpi-val,
+  .box-hdr, .global-guide h2 { color: #F1F5F9 !important; }
+
+  .dash-sub, .kpi-sub, .insight-box p,
+  .plain-takeaway p, .plain-takeaway small { color: #9AAABD !important; }
+
+  .chart-svg text { fill: #CBD5E1 !important; }
+  .chart-svg line { stroke: #344456 !important; }
+
+  .rulebook-table th { background: #101A27 !important; color: #EAF2F8 !important; }
+  .rulebook-table td { color: #B9C7D5 !important; }
+  .rulebook-table th, .rulebook-table td { border-color: #2B394A !important; }
+  .conf-badge { background: #1E3A5F !important; color: #93C5FD !important; }
+
+  .chart-explainer {
+    background: #101A27 !important;
+    color: #B9C7D5 !important;
+    border-left-color: #14B8A6 !important;
+  }
+}
   /* Beginner-friendly dark dashboard theme */
   :root {
     --navy:#111827; --teal:#14B8A6; --coral:#FB7185; --bg:#0B1120;
