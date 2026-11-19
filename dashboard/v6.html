@@ -118,7 +118,7 @@
     .global-guide, .plain-takeaway { padding: 15px; }
   }
 
-  /* ---------- 5. Print: A4 LANDSCAPE + DARK theme (Strict 8 pages) ---------- */
+  /* ---------- 5. Print: A4 LANDSCAPE + DARK theme (Max 15 pages) ---------- */
   @media print {
     @page { 
       size: A4 landscape; 
@@ -136,16 +136,14 @@
     .sidebar { display: none !important; }
     .main { padding: 0; max-width: none; }
     
-    /* Force each dashboard to fit exactly on 1 page */
+    /* Allow natural flow so nothing gets cut off, while keeping pages under limit */
     .dash-page {
       display: block !important;
       border: none; box-shadow: none;
-      padding: 15px 20px; 
+      padding: 10px 15px; 
       margin: 0;
       page-break-after: always; 
       break-after: page;
-      max-height: 100vh; 
-      overflow: hidden; /* Prevents spilling to a 2nd page */
     }
     .dash-page:last-child { page-break-after: auto; break-after: auto; }
 
@@ -154,7 +152,15 @@
     .kpi-grid      { grid-template-columns: repeat(4, 1fr) !important; }
     .insights-grid { grid-template-columns: 1.2fr 1fr 1fr !important; }
     .term-grid     { grid-template-columns: repeat(4, 1fr) !important; }
-    .rulebook-table { font-size: 10px; } /* Slightly smaller to fit dashboard 8 */
+    
+    /* Compacting spacing slightly so everything fits cleanly */
+    .dash-header { padding-bottom: 10px; margin-bottom: 10px; }
+    .evidence-note { margin-bottom: 10px; padding: 6px 10px; }
+    .card { padding: 10px 12px; }
+    .kpi { padding: 10px; }
+    .global-guide, .plain-takeaway { padding: 12px 15px; margin-bottom: 12px; }
+    .rulebook-table { font-size: 10px; margin: 8px 0; }
+    .chart-explainer { margin-top: 6px; padding: 6px 10px; font-size: 11px; }
 
     /* Dark theme overrides for print */
     .dash-page, .card, .kpi, .insight-box,
